@@ -1,0 +1,8 @@
+# Python environments
+virtual
+venv
+
+# Pycache and other stuffs
+__pycache__
+.pytest_cache
+.vscode
