@@ -1,6 +1,6 @@
-$font-primary:'IBMPlex Sans',sans-serif;
+$font-primary:'Lora',sans-serif;
 $font-secondary:'Poppins',sans-serif;
-$font-tertiary:'Noto sans',sans-serif;
+$font-tertiary:'Roboto',sans-serif;
 $color-white:#fff;
 @mixin flex($just,$align,$dir:row) {
     display:flex;
@@ -29,7 +29,7 @@ body {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1000%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%230e2a47'%3e%3c/rect%3e%3cpath d='M583.405%2c475.586C603.264%2c475.137%2c622.833%2c467.613%2c633.067%2c450.588C643.597%2c433.072%2c642.563%2c411.351%2c632.82%2c393.386C622.568%2c374.483%2c604.907%2c358.749%2c583.405%2c359.019C562.257%2c359.284%2c546.593%2c376.24%2c536.092%2c394.599C525.684%2c412.796%2c519.119%2c434.825%2c529.693%2c452.926C540.199%2c470.909%2c562.583%2c476.057%2c583.405%2c475.586' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1137.7580907822983 379.48265019665604L1078.5795323209682 467.2184711442733 1166.3153532685856 526.3970296056034 1225.4939117299155 438.6612086579861z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1347.2705753543908 280.2167255987323L1410.1271019688566 221.6020662685295 1351.5124426386537 158.7455396540638 1288.655916024188 217.3601989842666z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M376.6617847142575 215.4363058684307L291.0090765157514 187.60605393904635 292.09005272092793 330.00024220149766z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M380.088%2c701.783C428.351%2c703.362%2c471.566%2c675.662%2c497.593%2c634.987C526.084%2c590.461%2c541.191%2c535.117%2c516.71%2c488.267C490.668%2c438.429%2c436.204%2c406.511%2c380.088%2c410.115C328.711%2c413.414%2c293.174%2c457.683%2c270.816%2c504.058C251.619%2c543.877%2c253.802%2c589.023%2c275.184%2c627.713C297.376%2c667.869%2c334.233%2c700.283%2c380.088%2c701.783' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1122.719%2c587.277C1145.887%2c587.748%2c1167.042%2c574.686%2c1178.828%2c554.734C1190.828%2c534.42%2c1191.292%2c509.928%2c1180.935%2c488.728C1169.018%2c464.333%2c1149.856%2c440.737%2c1122.719%2c439.881C1094.512%2c438.991%2c1069.658%2c459.247%2c1057.775%2c484.844C1047.416%2c507.158%2c1057.251%2c531.755%2c1070.424%2c552.532C1082.435%2c571.476%2c1100.293%2c586.822%2c1122.719%2c587.277' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1000'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
     background-attachment: fixed;
     background-size: contain;
-    font:400 1em/1.6 $font-primary;
+    font:400 1em/1.6 $font-tertiary;
     position:relative;
 }
 
@@ -48,20 +48,22 @@ Application Header
         width:100%;
         top:0;
         position:fixed;
+        z-index:100;
     }
 }
 
 .logo {
-    &__wrapper {
+    &__link {
         @include flex(flex-start, center);
         text-decoration:none;
 
         p {
-            font-weight:600;
-            font-family:$font-secondary;
+            font-weight:700;
+            font-family:$font-primary;
+            font-style:italic;
             color:hsl(199, 100%, 10%);
             font-size:1.2em;
-            display:none;
+            margin-left:.5em;
 
             span {
                 color:orangered;
@@ -216,11 +218,175 @@ Navigation when user is logged in
 
 }
 
+/**************************
+Application Footer
+***************************/ 
+.footer {
+    &--section {
+        background-color:#FFBE0B;
+        padding:2em 1.5em;
+    }
+    
+    &__logo {
+
+        &__link {
+            display:inline-flex;
+            justify-content:flex-start;
+            align-items:center;
+            text-decoration:none;
+            margin-bottom:2em;
+    
+            p {
+                font-weight:700;
+                font-family:$font-primary;
+                color:hsl(199, 100%, 10%);
+                font-style:italic;
+                font-size:1.5em;
+                margin-left:.5em;
+    
+                span {
+                    color:orangered;
+                }
+            }
+        }
+        &__image {
+            height:4.5em;
+            display:block;
+            filter:drop-shadow(0 0 3px rgba(0,0,0,.75));
+        }
+    }
+
+    &__links__section {
+        display:grid;
+        grid-template-columns:1fr;
+        grid-row-gap:1.5em;
+        margin-bottom:2em;
+
+        h2 {
+            font-family:$font-primary;
+            text-decoration:.13em underline currentColor;
+            text-underline-offset:.2em;
+            margin-bottom:1em;
+            text-transform:uppercase;
+        }
+    }
+
+    &__navigation {
+        @include flex(flex-start,flex-start);
+    }
+
+    &__navigation__first,
+    &__navigation__second {
+        @include flex(center,flex-start,column);
+    }
+
+    &__navigation__first {
+        margin-right:5em;
+    }
+
+    &__navigation__link {
+        text-decoration:none;
+        text-transform:uppercase;
+        font-family:$font-secondary;
+        font-size:1em;
+        color:#222;
+        margin:.25em 0;
+        font-weight:600;
+        display:inline-block;
+
+        i {
+            margin-right:.5em;
+        }
+
+        .fa-user-plus {
+            margin-right:.35em;
+        }
+
+        &:hover,
+        &:focus {
+            opacity:.6;
+        }
+    }
+}
+.social {
+    &__wrapper {
+        @include flex(flex-start,center);
+    }
+    &__link {
+        text-decoration:none;
+        display:inline-block;
+
+        i {
+            font-size:1.5em;
+            color:#222;
+            padding:.2em;
+            border-radius:50%;
+            border:.1em solid currentColor;
+        }
+        .fa-facebook-f {
+            padding:.2em .4em;
+        }
+
+        &:hover i,
+        &:focus i {
+            opacity:.75;
+        }
+    }
+    &__link:not(.social__link:last-child) {
+        margin-right:1em;
+    }
+}
+
+.need__help__wrapper {
+    font-family:$font-secondary;
+    font-weight:500;
+    font-size:1.15em;
+    margin-bottom:1.5em;
+
+    a {
+        text-decoration:none;
+        color:rgb(120, 73, 231);
+        display:inline-block;
+        font-family:$font-primary;
+        font-weight:700;
+        font-style:italic;
+        font-size:1.1em;
+
+        &:hover,
+        &:focus {
+            text-decoration:.12em underline currentColor;
+            text-underline-offset:.15em;
+        }
+    }
+}
+
+.copyright__wrapper {
+    h3 {
+        font-weight:500;
+        font-family:$font-secondary;
+        color:#333;
+        font-size:1.1em;
+    }
+}
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+/***************************
+MEDIA QUERIES FOR RESPONSIVE DESIGN
+***************************/
 
 @media (max-width:480px) {
     body {
@@ -247,21 +413,26 @@ Navigation when user is logged in
         font-size:1.05em;
     }
     .header--section {
-        padding:.8em 1.5em;
+        padding:.8em 2em;
     }
-    .logo__wrapper p {
-        display:block;
-        margin-left:1em;
+    .footer--section {
+        padding:2.5em;
+    }
+    .footer__links__section {
+        grid-template-columns:4fr 2fr 2fr;
+        margin-bottom:1.5em;
+    }
+    .footer__navigation__first{
+        margin-right:3.5em
     }
 }
-
 
 @media (min-width:1280px) {
     body {
         font-size:1.1em;
     }
-    .header--section {
-        padding:.8em 2em;
+    .footer--section {
+        padding:2.5em 3em;
     }
 }
 

@@ -27,8 +27,7 @@
     <!---------------------- Google fonts  ------------------------>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&family=Lora:
-    wght@500;600&family=Noto+Sans:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,700&family=Poppins:wght@500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
 
     <!------------------- Fontawesome stylesheet  -------------------->
@@ -52,7 +51,7 @@
     <!--___________________Header of the application(includes logo and navigation bar)___________________-->
     <header class="header--section header--fixed">
 
-        <a href="" class="logo__wrapper logo__link" title="Sakha logo">
+        <a href="{{url_for('home')}}" class="logo__link" title="Sakha logo">
             <img src="{{url_for('static', filename='site-images/logo.png')}}" alt="Sakha Logo" class="logo__image">
             <p>Sa<span>kh</span>a</p>
         </a>
@@ -61,17 +60,17 @@
         <nav class="navigation">
 
             <div class="navigation__wrapper">
-                <a href="" class="navigation__link navigation__home__link" title="Home">
+                <a href="{{url_for('home')}}" class="navigation__link navigation__home__link" title="Home">
                     <i class="fa fa-home"></i>
                 </a>
 
                 <div class="navigation__user__wrapper">
-                    <a href="" class="navigation__link navigation__user__link" title="Register">
+                    <a href="{{url_for('register')}}" class="navigation__link navigation__user__link" title="Register">
                         <i class="fa fa-user-plus"></i>
                         <span>Register</span>
                     </a>
 
-                    <a href="" class="navigation__link navigation__user__link" title="Login">
+                    <a href="{{url_for('login')}}" class="navigation__link navigation__user__link" title="Login">
                         <i class="fa fa-sign-in-alt"></i>
                         <span>Login</span>
                     </a>
@@ -171,9 +170,105 @@
 
 
 
+
     <!-- --- Jinja block for adding more content in the body of child templates -- -->
     {% block body %}
     {% endblock body %}
+
+
+
+
+    <!--______________________________Footer of the application ______________________________-->
+    <footer class="footer--section">
+
+        <div class="logo__wrapper">
+            <a href="{{url_for('home')}}" class="footer__logo__link" title="Sakha logo">
+                <img src="{{url_for('static', filename='site-images/logo.png')}}" alt="Sakha Logo" class="footer__logo__image">
+                <p>Sa<span>kh</span>a</p>
+            </a>
+        </div>
+
+        <section class="footer__links__section">
+            <nav class="footer__navigation__wrapper">
+
+                <h2>Quick Links</h2>
+
+                <div class="footer__navigation">
+
+                    <div class="footer__navigation__first">
+                        <a href="{{url_for('home')}}" class="footer__navigation__link" title="Home">
+                            <i class="fa fa-home"></i>
+                            <span>Home</span>
+                        </a>
+        
+                        <a href="{{url_for('register')}}" class="footer__navigation__link" title="Register">
+                            <i class="fa fa-user-plus"></i>
+                            <span>Register</span>
+                        </a>
+
+                        <a href="{{url_for('login')}}" class="footer__navigation__link" title="Login">
+                            <i class="fa fa-sign-in-alt"></i>
+                            <span>Login</span>
+                        </a>
+
+                        <a href="" class="footer__navigation__link">
+                            <i class="fas fa-address-book"></i>
+                            <span>About Us</span>
+                        </a>
+                    </div>
+
+                    <div class="footer__navigation__second">
+                        <a href="" class="footer__navigation__link">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Contact Us</span>
+                        </a>
+
+                        <a href="" class="footer__navigation__link">
+                            <i class="fas fa-user-tag"></i>
+                            <span>Our Policies</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </nav>  
+
+            <div class="social___links___container">
+                <h2>Social Links</h2>
+
+                <div class="social__wrapper">
+                    <a href="" class="social__link" title="github">
+                        <i class="fab fa-github-alt"></i>
+                    </a>
+                    <a href="" class="social__link" title="codepen">
+                        <i class="fab fa-codepen"></i>
+                    </a>
+                    <a href="" class="social__link" title="twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="" class="social__link" title="facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="need__help__wrapper">
+            <span>Need help???</span>
+            <a href="mailto:rahulkumar47624barnwal@gmail.com" title="Email Address">Mail Us</a>
+        </div>
+
+        <div class="copyright__wrapper">
+            <h3>
+                <i class="fa fa-copyright"></i>
+                Copyright reserved since 2021, Team Sakha
+            </h3>
+        </div>
+
+    </footer>
+    <!--______________________________________________________-->
 
 
     <!-- ___________________________ Script file _____________________________ -->

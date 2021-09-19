@@ -4,12 +4,14 @@ from flask_login import LoginManager, login_user, logout_user , login_required, 
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
+from form import RegistrationForm, LoginForm
+from config import Config
 
 
 
 
 app = Flask(__name__)
-
+app.config.from_object(Config)
 
 
 
@@ -23,13 +25,15 @@ def home():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('register.html', title='Register Here')
+    form = RegistrationForm()
+    return render_template('register.html', title='Register Here', form=form)
 
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html', title='Login Here')
+    form = LoginForm()
+    return render_template('login.html', title='Login Here', form=form)
 
 
 
