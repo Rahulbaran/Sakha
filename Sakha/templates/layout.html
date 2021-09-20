@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Rahul Kumar">
     <meta name="contact" content="rahulkumar47624barnwal@gmail.com">
-    <meta name="keywords" content="Sakha, Social Media, Sakha Social Media, Indian Social Media, Social Media Platform, Social Media web application ">
-    <meta name="description" content="Sakha is social media web application which has been created with ❤ for the people.
+    <meta name="keywords" content="Sakha, Social Media,Social Network, Sakha Social Media, Indian Social Media, Social Media Platform, Social Media web application ">
+    <meta name="description" content="Sakha is social network web application which has been created with ❤ for the people.
                                      It provides a great platform to connect with people around the world.">
 
 
@@ -16,7 +16,7 @@
 
 
     <!-------------------- Application Title ---------------------->
-    <title>{{title}} | Sakha - Social platform from India for the world</title>
+    <title>{{title}} | Sakha - Social network platform from India for the world</title>
 
 
     <!--------------------- Application Favicon  ----------------------->
@@ -44,6 +44,10 @@
     {% block stylesheet %}
     {% endblock stylesheet %}
 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;800&display=swap');
+    </style>
+
 </head>
 <body>
      
@@ -56,60 +60,12 @@
             <p>Sa<span>kh</span>a</p>
         </a>
 
-        <!--______________ Navigation when user has not logged in _____________-->
+         <!--_______________________ Navigation when user has logged in_____________________-->
+        {% if current_user.is_authenticated %}
         <nav class="navigation">
 
             <div class="navigation__wrapper">
                 <a href="{{url_for('home')}}" class="navigation__link navigation__home__link" title="Home">
-                    <i class="fa fa-home"></i>
-                </a>
-
-                <div class="navigation__user__wrapper">
-                    <a href="{{url_for('register')}}" class="navigation__link navigation__user__link" title="Register">
-                        <i class="fa fa-user-plus"></i>
-                        <span>Register</span>
-                    </a>
-
-                    <a href="{{url_for('login')}}" class="navigation__link navigation__user__link" title="Login">
-                        <i class="fa fa-sign-in-alt"></i>
-                        <span>Login</span>
-                    </a>
-                </div>
-
-                <button class="navigation__about__btn">
-                    <span class="navigation__about">About</span>
-                    <i class="fas fa-angle-down"></i>
-                </button>
-            </div>
-
-            <div class="navigation__application__stuffs">
-                <h4>Application Stuffs</h4>
-
-                <a href="" class="navigation__link navigation__application__link">
-                    <i class="fas fa-user-tag"></i>
-                    <span>Our Policies</span>
-                </a>
-
-                <a href="" class="navigation__link navigation__application__link">
-                    <i class="fas fa-address-book"></i>
-                    <span>About Us</span>
-                </a>
-
-                <a href="" class="navigation__link navigation__application__link">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>Contact Us</span>
-                </a>
-
-            </div>
-        </nav>
-        <!--________________________________________________-->
-
-
-        <!--_______________________ Navigation when user has logged in_____________________-->
-        <!-- <nav class="navigation">
-
-            <div class="navigation__wrapper">
-                <a href="" class="navigation__link navigation__home__link" title="Home">
                     <i class="fa fa-home"></i>
                 </a>
 
@@ -146,7 +102,7 @@
                     <span>Our Policies</span>
                 </a>
 
-                <a href="" class="navigation__link navigation__application__link">
+                <a href="{{url_for('about_us')}}" class="navigation__link navigation__application__link">
                     <i class="fas fa-address-book"></i>
                     <span>About Us</span>
                 </a>
@@ -156,19 +112,88 @@
                     <span>Contact Us</span>
                 </a>
 
-                <a href="" class="navigation__link navigation__application__link" style="border-top:.1em solid rgb(98, 102, 107);width:100%;">
+                <a href="{{url_for('logout')}}" class="navigation__link navigation__application__link" 
+                style="border-top:.1em solid #666;width:100%;padding-top:.8em;margin-top:1em;">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
                 </a>
 
             </div>
 
-        </nav> -->
+        </nav>
 
         <!-- ______________________________________________ -->
+
+        <!--______________ Navigation when user has not logged in _____________-->
+        {% else %}
+        <nav class="navigation">
+
+            <div class="navigation__wrapper">
+                <a href="{{url_for('home')}}" class="navigation__link navigation__home__link" title="Home">
+                    <i class="fa fa-home"></i>
+                </a>
+
+                <div class="navigation__user__wrapper">
+                    <a href="{{url_for('register')}}" class="navigation__link navigation__user__link" title="Register">
+                        <i class="fa fa-user-plus"></i>
+                        <span>Register</span>
+                    </a>
+
+                    <a href="{{url_for('login')}}" class="navigation__link navigation__user__link" title="Login">
+                        <i class="fa fa-sign-in-alt"></i>
+                        <span>Login</span>
+                    </a>
+                </div>
+
+                <button class="navigation__about__btn">
+                    <span class="navigation__about">About</span>
+                    <i class="fas fa-angle-down"></i>
+                </button>
+            </div>
+
+            <div class="navigation__application__stuffs">
+                <h4>Application Stuffs</h4>
+
+                <a href="" class="navigation__link navigation__application__link">
+                    <i class="fas fa-user-tag"></i>
+                    <span>Our Policies</span>
+                </a>
+
+                <a href="{{url_for('about_us')}}" class="navigation__link navigation__application__link">
+                    <i class="fas fa-address-book"></i>
+                    <span>About Us</span>
+                </a>
+
+                <a href="" class="navigation__link navigation__application__link">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Contact Us</span>
+                </a>
+
+            </div>
+        </nav>
+        {% endif %}
+        <!--________________________________________________-->
+
+
     </header>
 
 
+    <!-- ________________________ Message Flashing related html ________________________-->
+    {% with messages=get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+    <div class="msg--wrapper">
+    {% for cat, msg in messages %}
+    <div class="msg--container msg--{{cat}}--container">
+        <span class="msg {{cat}}__msg">
+            {{msg}}
+        </span>
+        <button class="msg__hide__btn {{cat}}__hide__btn">&Cross;</button>
+    </div>
+    {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <!-- __________________________________________________ -->
 
 
     <!-- --- Jinja block for adding more content in the body of child templates -- -->
@@ -200,7 +225,18 @@
                             <i class="fa fa-home"></i>
                             <span>Home</span>
                         </a>
-        
+                        
+                        {% if current_user.is_authenticated %}
+                        <a href="" class="footer__navigation__link" title="Settings">
+                            <i class="fa fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+
+                        <a href="" class="footer__navigation__link" title="User Profile">
+                            <i class="fa fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                        {% else %}
                         <a href="{{url_for('register')}}" class="footer__navigation__link" title="Register">
                             <i class="fa fa-user-plus"></i>
                             <span>Register</span>
@@ -210,8 +246,9 @@
                             <i class="fa fa-sign-in-alt"></i>
                             <span>Login</span>
                         </a>
+                        {% endif %}
 
-                        <a href="" class="footer__navigation__link">
+                        <a href="{{url_for('about_us')}}" class="footer__navigation__link">
                             <i class="fas fa-address-book"></i>
                             <span>About Us</span>
                         </a>

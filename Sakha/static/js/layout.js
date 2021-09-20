@@ -22,3 +22,18 @@ if (navigationProfileWrapper) {
         applicationStuff.classList.toggle('navigation__application__show__stuffs');
     })
 }
+
+
+/*--------------------------------
+* Functionality related with hiding messages
+* -------------------------------- */ 
+const msgHideBtns = document.querySelectorAll('.msg__hide__btn');
+const msgContainers = document.querySelectorAll('.msg--container');
+
+if (msgContainers) {
+    msgHideBtns.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            msgContainers[index].style.display = 'none';
+        });
+    });
+}
