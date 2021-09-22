@@ -54,3 +54,31 @@
 
 </main>
 {% endblock %}
+
+{% block script %}
+<script>
+
+    /*********************To show or hide password**********************/
+    const password = document.querySelector('.password__field input')
+    const eyeIcon = document.querySelector('.password__field .fa-eye');
+    let tracker = true;
+
+    eyeIcon.addEventListener('click', () => {
+        if(tracker) {
+            password.type="text";
+            eyeIcon.classList.add('fa-eye-slash');
+            tracker = false;
+        }
+        else {
+            password.type="password";
+            eyeIcon.classList.remove('fa-eye-slash');
+            tracker = true;
+        }
+    });
+
+    // /********************To prevent default refreshing when client submit the form********************/
+    // const form = document.querySelector('.form');
+    // form.addEventListener('submit', e => e.preventDefault());
+
+</script>
+{% endblock %}

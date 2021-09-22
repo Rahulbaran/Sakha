@@ -1,5 +1,31 @@
+:root {
+  --general-color:rgb(120, 73, 231);
+  --logo-color-1:hsl(199, 100%, 10%);
+  --logo-color-2:orangered;
+  --footer-link-color:#222;
+  --warning-color:rgb(158, 0, 0);
+  --info-color:rgb(0, 33, 141);
+  --nav-border-color:rgb(218, 181, 255);
+  --nav-heading-color:#666;
+  --color-white:#fff;
+  --input-color:rgb(248, 248, 248);
+  --btn-color-1:rgb(177, 24, 185);
+  --btn-color-2:rgb(128, 66, 199);
+  --btn-hover-color-1:rgb(216, 10, 226);
+  --btn-hover-color-2:rgb(109, 47, 255);
+  --grad-color-1:rgb(255, 47, 0);
+  --grad-color-2:rgb(131, 83, 226);
+  --grad-color-3:rgb(156, 109, 250);
+  --label-color:#444;
+  --input-border-color:rgb(172, 172, 172);
+  --btn-shadow-color:rgb(242, 0, 255);
+  --h1-color:hsl(250deg, 80%, 10%);
+  --h3-color:rgb(58, 50, 92);
+}
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   height: 100%;
@@ -27,7 +53,7 @@ body {
 APPLICATION HEADER
 ************************/
 .header--section {
-  background-color: white;
+  background-color: var(--color-white);
   padding: .8em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -74,13 +100,13 @@ APPLICATION HEADER
   font-weight: 700;
   font-family: "Lora", sans-serif;
   font-style: italic;
-  color: #002333;
+  color: var(--logo-color-1);
   font-size: 1.2em;
   margin-left: .5em;
 }
 
 .logo__link p span {
-  color: orangered;
+  color: var(--logo-color-2);
 }
 
 .logo__image {
@@ -113,7 +139,7 @@ Navigation when user is not logged in
 .navigation__link {
   display: inline-block;
   text-decoration: none;
-  color: #7849e7;
+  color: var(--general-color);
   font-size: 1em;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
@@ -130,10 +156,14 @@ Navigation when user is not logged in
   margin-right: .25em;
 }
 
+.navigation__home__link i {
+  font-size: 1.3em;
+}
+
 .navigation__user__wrapper {
   padding: 0 .55em;
-  border-right: 2px solid #dab5ff;
-  border-left: 2px solid #dab5ff;
+  border-right: 2px solid var(--nav-border-color);
+  border-left: 2px solid var(--nav-border-color);
 }
 
 .navigation__user__link {
@@ -153,7 +183,7 @@ Navigation when user is not logged in
   letter-spacing: .06em;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
-  color: #7849e7;
+  color: var(--general-color);
 }
 
 .navigation__about__btn span {
@@ -170,7 +200,7 @@ Navigation when user is not logged in
   top: 4.6em;
   right: 0;
   position: fixed;
-  background-color: #fff;
+  background-color: var(--color-white);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -185,7 +215,7 @@ Navigation when user is not logged in
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 1em 1.5em;
-  border-top: 2px solid #d8c7ff;
+  border-top: 2px solid var(--nav-border-color);
   border-bottom-left-radius: .25em;
   border-bottom-right-radius: .25em;
   -webkit-box-shadow: -8px 8px 15px rgba(0, 0, 0, 0.25);
@@ -206,9 +236,9 @@ Navigation when user is not logged in
   word-spacing: .25em;
   letter-spacing: .06em;
   text-transform: uppercase;
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid var(--nav-heading-color);
   margin-bottoM: 1em;
-  color: #666;
+  color: var(--nav-heading-color);
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
@@ -260,9 +290,9 @@ Navigation when user is logged in
       -ms-flex-direction: row;
           flex-direction: row;
   margin-left: .75em;
-  color: #7849e7;
+  color: var(--general-color);
   margin-right: .25em;
-  border-left: 2px solid #dab5ff;
+  border-left: 2px solid var(--nav-border-color);
   padding-left: 1.2em;
 }
 
@@ -280,10 +310,13 @@ Navigation when user is logged in
 }
 
 /**************************
-Application Footer
+LINK TO REACH ON TOP OF PAGE
+**************************/
+/**************************
+APPLICATION FOOTER
 ***************************/
 .footer--section {
-  background-color: #E4B7E5;
+  background-color: #cdfff6;
   padding: 2em 1.5em;
 }
 
@@ -304,14 +337,14 @@ Application Footer
 .footer__logo__link p {
   font-weight: 700;
   font-family: "Lora", sans-serif;
-  color: #002333;
+  color: var(--logo-color-1);
   font-style: italic;
   font-size: 1.5em;
   margin-left: .5em;
 }
 
 .footer__logo__link p span {
-  color: orangered;
+  color: var(--logo-color-2);
 }
 
 .footer__logo__image {
@@ -380,7 +413,7 @@ Application Footer
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
   font-size: 1em;
-  color: #222;
+  color: var(--footer-link-color);
   margin: .25em 0;
   font-weight: 600;
   letter-spacing: .06em;
@@ -422,7 +455,7 @@ Application Footer
 
 .social__link i {
   font-size: 1.5em;
-  color: #222;
+  color: var(--footer-link-color);
   padding: .2em;
   border-radius: 50%;
   border: .1em solid currentColor;
@@ -450,7 +483,7 @@ Application Footer
 
 .need__help__wrapper a {
   text-decoration: none;
-  color: #7849e7;
+  color: var(--general-color);
   display: inline-block;
   font-family: "Lora", sans-serif;
   font-weight: 700;
@@ -517,19 +550,19 @@ MESSAGE STYLING
 }
 
 .warning__msg {
-  color: #9e0000;
+  color: var(--warning-color);
 }
 
 .info__msg {
-  color: #00218d;
+  color: var(--info-color);
 }
 
 .warning__hide__btn {
-  color: #9e0000;
+  color: var(--warning-color);
 }
 
 .info__hide__btn {
-  color: #00218d;
+  color: var(--info-color);
 }
 
 /***************************

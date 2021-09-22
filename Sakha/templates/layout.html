@@ -84,7 +84,7 @@
                     <span>Profile</span>
                 </a>
 
-                <a href="" class="navigation__link navigation__application__link">
+                <a href="{{url_for('settings')}}" class="navigation__link navigation__application__link">
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>
                 </a>
@@ -107,7 +107,7 @@
                     <span>About Us</span>
                 </a>
 
-                <a href="" class="navigation__link navigation__application__link">
+                <a href="{{url_for('contact_us')}}" class="navigation__link navigation__application__link">
                     <i class="fas fa-phone-alt"></i>
                     <span>Contact Us</span>
                 </a>
@@ -164,7 +164,7 @@
                     <span>About Us</span>
                 </a>
 
-                <a href="" class="navigation__link navigation__application__link">
+                <a href="{{url_for('contact_us')}}" class="navigation__link navigation__application__link">
                     <i class="fas fa-phone-alt"></i>
                     <span>Contact Us</span>
                 </a>
@@ -174,8 +174,16 @@
         {% endif %}
         <!--________________________________________________-->
 
-
     </header>
+
+     <!--________________________ Section related with top reaching link _____________________ -->
+     <!-- will not work since header is already fixed so it is onthe top -->
+     <!-- <div class="top__section__link__container">
+        <a href="#top-header" class="top__section__link">
+           top
+        </a>
+    </div> -->
+    <!--_______________________________________________________-->
 
 
     <!-- ________________________ Message Flashing related html ________________________-->
@@ -199,7 +207,6 @@
     <!-- --- Jinja block for adding more content in the body of child templates -- -->
     {% block body %}
     {% endblock body %}
-
 
 
 
@@ -227,25 +234,25 @@
                         </a>
                         
                         {% if current_user.is_authenticated %}
-                        <a href="" class="footer__navigation__link" title="Settings">
-                            <i class="fa fa-cog"></i>
-                            <span>Settings</span>
-                        </a>
+                            <a href="{{url_for('settings')}}" class="footer__navigation__link" title="Settings">
+                                <i class="fa fa-cog"></i>
+                                <span>Settings</span>
+                            </a>
 
-                        <a href="" class="footer__navigation__link" title="User Profile">
-                            <i class="fa fa-user"></i>
-                            <span>Profile</span>
-                        </a>
+                            <a href="" class="footer__navigation__link" title="User Profile">
+                                <i class="fa fa-user"></i>
+                                <span>Profile</span>
+                            </a>
                         {% else %}
-                        <a href="{{url_for('register')}}" class="footer__navigation__link" title="Register">
-                            <i class="fa fa-user-plus"></i>
-                            <span>Register</span>
-                        </a>
+                            <a href="{{url_for('register')}}" class="footer__navigation__link" title="Register">
+                                <i class="fa fa-user-plus"></i>
+                                <span>Register</span>
+                            </a>
 
-                        <a href="{{url_for('login')}}" class="footer__navigation__link" title="Login">
-                            <i class="fa fa-sign-in-alt"></i>
-                            <span>Login</span>
-                        </a>
+                            <a href="{{url_for('login')}}" class="footer__navigation__link" title="Login">
+                                <i class="fa fa-sign-in-alt"></i>
+                                <span>Login</span>
+                            </a>
                         {% endif %}
 
                         <a href="{{url_for('about_us')}}" class="footer__navigation__link">
@@ -255,7 +262,7 @@
                     </div>
 
                     <div class="footer__navigation__second">
-                        <a href="" class="footer__navigation__link">
+                        <a href="{{url_for('contact_us')}}" class="footer__navigation__link">
                             <i class="fas fa-phone-alt"></i>
                             <span>Contact Us</span>
                         </a>

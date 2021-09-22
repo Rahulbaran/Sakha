@@ -2,7 +2,7 @@ from flask import render_template, url_for, redirect, flash, request
 from flask_mail import Message
 from flask_login import login_user, logout_user, current_user, login_required
 from Sakha import app, db, mail, bcrypt
-from Sakha.form import LoginForm, RegistrationForm
+from Sakha.form import LoginForm, RegistrationForm, NameUpdateForm, AboutUpdateForm, UniqueDetailsUpdateForm
 from Sakha.models import User
 
 
@@ -16,9 +16,16 @@ def home():
     return render_template('home.html', title = 'Home')
 
 
+
 @app.route('/about_us')
 def about_us():
     return render_template('aboutus.html', title='About Us')
+
+
+
+@app.route('/contact_us')
+def contact_us():
+    return render_template('contact.html', title='Contact Us')
 
 
 
@@ -71,3 +78,54 @@ def logout():
     logout_user()
     flash('You have logged out', 'info')
     return redirect(url_for('home'))
+
+
+
+@app.route('/settings', methods=['GET', 'POST'])
+@login_required
+def settings():
+    nameForm = NameUpdateForm()
+    uniqueForm = UniqueDetailsUpdateForm()
+    aboutForm = AboutUpdateForm()
+    nameForm.firstname.data = current_user.firstname
+    nameForm.lastname.data = current_user.lastname
+    aboutForm.about_user.data = current_user.about_user
+    if request.method=="GET":
+        uniqueForm.username.data = current_user.username
+        uniqueForm.email.data = current_user.email
+    if uniqueForm.validate_on_submit():
+        current_user.username = uniqueForm.username.data
+        current_user.email = uniqueForm.email.data
+        db.session.commit()
+        flash('Your account details has been updated', 'info')
+        return redirect(url_for('settings'))
+    return render_template('settings.html', title='Settings',nameForm=nameForm,\
+                             aboutForm=aboutForm, uniqueForm=uniqueForm)
+
+
+
+@app.route('/updateName',methods=['POST'])
+@login_required
+def updateName():
+    data = request.get_json()
+    current_user.firstname=data.get('firstname')
+    current_user.lastname = data.get('lastname')
+    db.session.commit()
+    return 'OK',200
+
+
+
+@app.route('/updateAboutUser',methods=['POST'])
+@login_required
+def updateAboutUser():
+    data = request.get_json()
+    current_user.about_user=data.get('about_user')
+    db.session.commit()
+    return 'OK',200
+
+
+
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html', title='Profile')

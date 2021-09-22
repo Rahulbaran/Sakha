@@ -3,7 +3,6 @@
  *  ----------------------------- */
 const applicationStuff = document.querySelector('.navigation__application__stuffs');
 const aboutBtn = document.querySelector('.navigation__about__btn');
-console.log(applicationStuff, aboutBtn);
 
 if(aboutBtn) {
     aboutBtn.addEventListener('click', () => {
