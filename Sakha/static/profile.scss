@@ -1,0 +1,170 @@
+.profile {
+    &--main--container {
+        width:100%;
+        max-width:840px;
+        margin:0 auto;
+        background-color:var(--color-white);
+        background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e3b4f6' fill-opacity='0.18'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        font-family:'Poppins',sans-serif;
+    }
+
+    &__sub__container__one {
+        display:flex;
+        justify-content:flex-start;
+        align-items:center;
+        flex-direction:column;
+    }
+    &__header__img__container {
+        width:100%;
+        height:20em;
+
+        img {
+            width:100%;
+            height:100%;
+            display:block;
+            object-fit:cover;
+        }
+    }
+    &__avatar__img__container {
+        position:relative;
+
+        .avatar__container {
+            text-align:Center;
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+
+            h2 {
+                margin-top:.5em;
+                font-family:'Nunito',sans-serif;
+                color:var(--h1-color);
+                line-height:1.1;
+            }
+            p {
+                color:var(--general-color);
+            }
+        }
+    }
+    &__navigation {
+        top:3.5em;
+        right:-13em;
+        position:absolute;
+        background-color:var(--color-white);
+        display:flex;
+        justify-content:center;
+        align-items:flex-start;
+        flex-direction:Column;
+        padding:1.5em .75em;
+        box-shadow:0 0 5px rgba(0,0,0,.35);
+        border-radius:.5em;
+    }
+    &__navigation__hidden {
+        display:none;
+    }
+    &__navigation__link {
+        margin-bottom:.4em;
+        padding:.2em .1em;
+        letter-spacing:.03em;
+        display:inline-block;
+        text-decoration:none;
+        color:var(--general-color);
+        font-size:1em;
+        font-weight:600;
+        text-transform:uppercase;
+
+        &:hover,
+        &:focus {
+            opacity:.65;
+        }
+
+        i {
+            margin-right:.2em;
+        }
+    }
+    &__navigation__link:last-child {
+        margin-bottom:0;
+    }
+}
+
+.avatar__container div {
+    height:10em;
+    border-radius:50%;
+    border:5px solid var(--color-white);
+    background-color:var(--color-white);
+    box-shadow:0 0 6px rgba(0,0,0,.3);
+
+    img {
+        height:100%;
+        display:block;
+        border-radius:50%;
+        margin-bottom:.75em;
+    }
+}
+.profile__btn {
+    position:absolute;
+    top:1em;
+    right:-7.5em;
+    background-color:transparent;
+    outline:none;
+    border:none;
+    border-radius:.35em;
+
+    i {
+        font-size:1.5em;
+        padding:.25em .35em;
+        color:var(--general-color);
+        background-color:rgb(248, 237, 255);
+    }
+    &:hover i{
+        background-color:rgb(234, 230, 255);
+        cursor:pointer;
+    }
+}
+
+
+/**********************
+Profile Sub container Two
+*********************/
+.profile__sub__container__two {
+    margin-top:7em;
+    display:grid;
+    grid-template-columns:1fr;
+    grid-row-gap:.75em;
+    padding:3em 2em;
+    color:var(--profile-para-color);
+
+    i {
+        margin-right:.5em;
+    }
+}
+.join__date__container {
+    color:rgb(63, 58, 67);
+}
+.follow__details__container {
+    display:flex;
+    justify-content:flex-start;
+    align-items:flex-start;
+
+    h4:first-child {
+        margin-right:1em;
+    }
+    h4 {
+        color:var(--h1-color);
+    }
+}
+
+
+
+
+
+
+
+/***********************
+MEDIA QUERIES
+************************/
+@media (min-width:720px) {
+    .profile__btn {
+        right:-8.5em;
+    }
+}

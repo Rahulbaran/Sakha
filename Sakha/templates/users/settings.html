@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'others/layout.html' %}
 {% block stylesheet %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/settings.min.css')}}">
 {% endblock %}
@@ -51,9 +51,15 @@
         {{aboutForm.hidden_tag()}}
 
         <div class="form__group">
+            {{aboutForm.address.label}}
+            {{aboutForm.address(class="address")}}
+        </div>
+
+        <div class="form__group">
             {{aboutForm.about_user.label}}
             {{aboutForm.about_user(class="about_user")}}
         </div>
+
 
         <div class="form__submit__group">
             {{aboutForm.submit}}

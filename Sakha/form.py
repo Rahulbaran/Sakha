@@ -60,6 +60,7 @@ class NameUpdateForm(FlaskForm):
 
 
 class AboutUpdateForm(FlaskForm):
+    address = StringField('Address')
     about_user = TextAreaField('About Me')
     submit = SubmitField('Save')
 

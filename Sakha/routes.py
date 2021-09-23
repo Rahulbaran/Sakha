@@ -13,19 +13,19 @@ from Sakha.models import User
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html', title = 'Home')
+    return render_template('sites/home.html', title = 'Home')
 
 
 
 @app.route('/about_us')
 def about_us():
-    return render_template('aboutus.html', title='About Us')
+    return render_template('sites/aboutus.html', title='About Us')
 
 
 
 @app.route('/contact_us')
 def contact_us():
-    return render_template('contact.html', title='Contact Us')
+    return render_template('sites/contact.html', title='Contact Us')
 
 
 
@@ -50,7 +50,7 @@ def register():
         # registration_mail(user)
         flash('You have created a brand new account', 'info')
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register Here', form=form)
+    return render_template('users/register.html', title='Register Here', form=form)
 
 
 
@@ -68,7 +68,7 @@ def login():
             return redirect(next) if next else redirect(url_for('home'))
         else:
             flash('Either username or password is wrong', 'warning')
-    return render_template('login.html', title='Login Here', form=form)
+    return render_template('users/login.html', title='Login Here', form=form)
 
 
 
@@ -90,6 +90,7 @@ def settings():
     nameForm.firstname.data = current_user.firstname
     nameForm.lastname.data = current_user.lastname
     aboutForm.about_user.data = current_user.about_user
+    aboutForm.address.data = current_user.address
     if request.method=="GET":
         uniqueForm.username.data = current_user.username
         uniqueForm.email.data = current_user.email
@@ -99,7 +100,7 @@ def settings():
         db.session.commit()
         flash('Your account details has been updated', 'info')
         return redirect(url_for('settings'))
-    return render_template('settings.html', title='Settings',nameForm=nameForm,\
+    return render_template('users/settings.html', title='Settings',nameForm=nameForm,\
                              aboutForm=aboutForm, uniqueForm=uniqueForm)
 
 
@@ -120,6 +121,7 @@ def updateName():
 def updateAboutUser():
     data = request.get_json()
     current_user.about_user=data.get('about_user')
+    current_user.address = data.get('address')
     db.session.commit()
     return 'OK',200
 
@@ -128,4 +130,12 @@ def updateAboutUser():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html', title='Profile')
+    return render_template('users/profile.html', title='Profile')
+
+
+@app.route('/avatar', methods=['GET', 'POST'])
+@login_required
+def avatar():
+    form=UploadAvatarForm()
+    return render_template('users/avatar.html', title='Avatar', form=form)
+

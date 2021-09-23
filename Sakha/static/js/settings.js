@@ -46,6 +46,7 @@ nameForm.addEventListener('submit', e => {
  * Functionality related with sending json for about_user field
 ---------------------------- */
 const aboutUser = document.querySelector('.about_user');
+const address = document.querySelector('.address')
 const aboutForm = document.querySelector('.aboutForm');
 
 aboutForm.addEventListener('submit', e => {
@@ -57,7 +58,8 @@ aboutForm.addEventListener('submit', e => {
         },
         method : 'POST',
         body : JSON.stringify( {
-            'about_user':aboutUser.value
+            'about_user':aboutUser.value,
+            'address':address.value
         })
     })
     .then(res => res.text()).then(res => res)

@@ -20,5 +20,6 @@ class User(UserMixin, db.Model):
     gender = db.Column(db.Text, nullable=False)
     account_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     password = db.Column(db.String(100), nullable=False)
+    address = db.Column(db.String(200))
     dob = db.Column(db.DateTime)
     about_user = db.Column(db.Text)
