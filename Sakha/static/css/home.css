@@ -102,6 +102,38 @@ HOMEPAGE WHEN USER IS NOT LOGGED IN
   background-image: linear-gradient(to top, var(--btn-hover-color-1), var(--btn-hover-color-2));
 }
 
+/******************************
+HOMEPAGE WHEN USER IS LOGGED IN
+*******************************/
+.home__logged--main {
+  margin-top: 4.6em;
+  background-color: var(--home-logged-bg);
+  width: 100%;
+  padding: 3em 2em;
+  font-family: 'Poppins',sans-serif;
+}
+
+.home__logged__heading__container {
+  text-align: center;
+  margin-bottom: 2.5em;
+}
+
+.home__logged__heading__container h1 {
+  font-family: 'Nunito', cursive;
+  margin-bottom: .25em;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-size: 2.3em;
+  line-height: 1.15;
+  color: var(--h1-color);
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.35);
+}
+
+.home__logged__heading__container p {
+  color: var(--nav-heading-color);
+  font-size: 1em;
+}
+
 /********************
 MEDIA QUERIES
 ********************/

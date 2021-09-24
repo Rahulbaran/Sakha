@@ -1,8 +1,10 @@
+import secrets, os
 from flask import render_template, url_for, redirect, flash, request
 from flask_mail import Message
 from flask_login import login_user, logout_user, current_user, login_required
 from Sakha import app, db, mail, bcrypt
-from Sakha.form import LoginForm, RegistrationForm, NameUpdateForm, AboutUpdateForm, UniqueDetailsUpdateForm
+from Sakha.form import LoginForm, RegistrationForm, NameUpdateForm, AboutUpdateForm,\
+                       UniqueDetailsUpdateForm, UploadAvatarForm
 from Sakha.models import User
 
 
@@ -72,12 +74,14 @@ def login():
 
 
 
+
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     flash('You have logged out', 'info')
     return redirect(url_for('home'))
+
 
 
 
@@ -105,6 +109,7 @@ def settings():
 
 
 
+
 @app.route('/updateName',methods=['POST'])
 @login_required
 def updateName():
@@ -113,6 +118,7 @@ def updateName():
     current_user.lastname = data.get('lastname')
     db.session.commit()
     return 'OK',200
+
 
 
 
@@ -127,15 +133,54 @@ def updateAboutUser():
 
 
 
+
+def dateModifier(time):
+    months = [
+            'Jan','Feb','March','April','May','June',
+            'July','Aug','Sep', 'Oct','Nov','Dec'
+            ]
+    dateArray = time.split('/')
+    mod_date = months[int(dateArray[0]) - 1] + ' ' + dateArray[1]
+    return mod_date
+
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('users/profile.html', title='Profile')
+    joined_date = dateModifier(current_user.account_date.strftime('%m/%Y'))
+    return render_template('users/profile.html', title='Profile', joined_date=joined_date)
 
+
+
+
+def save_pic(pic):
+    random_hex = secrets.token_hex(16)
+    _, ext = os.path.splitext(pic.filename)
+    mod_pic = random_hex + ext
+    path = os.path.join(app.config['UPLOAD_PATH'], 'static', 'user-images', mod_pic)
+    pic.save(path)
+    return mod_pic
+
+def delete_pic(file):
+    if file != 'default.png' or file != 'header.jpg':
+        path = os.path.join(app.config['UPLOAD_PATH'], 'static', 'user-images', file)
+        try:
+            os.remove(path)
+        except:
+            pass
 
 @app.route('/avatar', methods=['GET', 'POST'])
 @login_required
 def avatar():
     form=UploadAvatarForm()
+    if form.validate_on_submit():
+        if form.profile_pic.data:
+            delete_pic(current_user.profile_pic)
+            current_user.profile_pic = save_pic(form.profile_pic.data)
+        if form.header_pic.data:
+            delete_pic(current_user.header_pic)
+            current_user.header_pic = save_pic(form.header_pic.data)
+        db.session.commit()
+        flash('Your account details has been updated', 'info')
+        return redirect(url_for('avatar'))
     return render_template('users/avatar.html', title='Avatar', form=form)
 

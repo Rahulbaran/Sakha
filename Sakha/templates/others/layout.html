@@ -70,7 +70,7 @@
                 </a>
 
                 <div class="navigation__user__profile__wrapper">
-                    <img src="{{url_for('static', filename='user-images/default.png')}}" alt="User Avatar">
+                    <img src="{{url_for('static', filename='user-images/'+current_user.profile_pic)}}" alt="User Avatar">
                     <i class="fas fa-angle-down"></i>
                 </div>
 
@@ -89,7 +89,7 @@
                     <span>Settings</span>
                 </a>
 
-                <a href="" class="navigation__link navigation__application__link"  style="margin-bottom:1em;">
+                <a href="{{url_for('avatar')}}" class="navigation__link navigation__application__link"  style="margin-bottom:1em;">
                     <i class="fas fa-tshirt"></i>
                     <span>Avatar</span>
                 </a>
@@ -176,15 +176,8 @@
 
     </header>
 
-     <!--________________________ Section related with top reaching link _____________________ -->
-     <!-- will not work since header is already fixed so it is onthe top -->
-     <!-- <div class="top__section__link__container">
-        <a href="#top-header" class="top__section__link">
-           top
-        </a>
-    </div> -->
-    <!--_______________________________________________________-->
 
+    
 
     <!-- ________________________ Message Flashing related html ________________________-->
     {% with messages=get_flashed_messages(with_categories=True) %}

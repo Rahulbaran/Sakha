@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, SubmitField, BooleanField, PasswordField, RadioField, TextAreaField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError, Regexp
 from flask_login import current_user
@@ -85,3 +86,13 @@ class UniqueDetailsUpdateForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('email address is already registerd, try different one')
+
+
+
+
+class UploadAvatarForm(FlaskForm):
+    profile_pic=FileField('Profile Image', validators=[FileAllowed(['jpg','png','gif','svg', 'jpeg'],
+                                                                 message='Image with extension jpg/png/gif/svg is only allowed')])
+    header_pic = FileField('Header Image', validators=[FileAllowed(['jpg','png','gif','svg', 'jpeg'],
+                                                        message='Image with extension jpg/png/gif/svg is only allowed')])
+    submit = SubmitField('Upload')

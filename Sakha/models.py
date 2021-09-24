@@ -23,3 +23,5 @@ class User(UserMixin, db.Model):
     address = db.Column(db.String(200))
     dob = db.Column(db.DateTime)
     about_user = db.Column(db.Text)
+    profile_pic = db.Column(db.String(100), nullable=False, default='default.png')
+    header_pic = db.Column(db.String(100), nullable=False, default='header.jpg')

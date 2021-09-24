@@ -10,15 +10,17 @@
     <section class="profile__sub__container__one">
 
         <div class="profile__header__img__container">
-            <img src="../static/user-images/header.jpg" alt="Profile Header Image" class="header__img">
+            <a href="{{url_for('avatar')}}" title='Update Header'>
+                <img src="{{url_for('static', filename='user-images/'+current_user.header_pic)}}" alt="Profile Header Image" class="header__img">
+            </a>
         </div>
 
         <div class="profile__avatar__img__container">
 
             <div class="avatar__container">
-                <div>
-                    <img src="../static/user-images/default.png" alt="Profile Avater" class="avatar">
-                </div>
+                <a href="{{url_for('avatar')}}" title='Update Profile Image'>
+                    <img src="{{url_for('static', filename='user-images/'+current_user.profile_pic)}}" alt="Profile Avater" class="avatar">
+                </a>
                 <h2>{{current_user.firstname}}</h2>
                 <p>@{{current_user.username}}</p>
             </div>
@@ -32,10 +34,7 @@
                     <i class="fas fa-edit"></i>
                     <span>Edit Profile</span>
                 </a>
-                <a href="" class="profile__navigation__link">
-                    <i class="fas fa-tshirt"></i>
-                    <span>Avatar</span>
-                </a>
+        
                 <a href="" class="profile__navigation__link">
                     <i class="fas fa-plus-circle"></i>
                     <span>CREATE POST</span>
@@ -57,7 +56,7 @@
 
         <div class="join__date__container">
             <i class="fas fa-calendar-alt"></i>
-            <span>Joined on Sep 2019</span>
+            <span>Joined on {{joined_date}}</span>
         </div>
 
         {% if current_user.address %}

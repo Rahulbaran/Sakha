@@ -4,7 +4,23 @@
 {% endblock stylesheet %}
 
 {% block body %}
+
+<!--_____________________Homepage when user has logged in_________________________-->
 {% if current_user.is_authenticated %}
+<main class="home__logged--main">
+
+    <div class="home__logged__heading__container">
+        <h1>CONTACT US</h1>
+        <p>This is a customer support of Team Sakha. You can either call or send email 
+            to our team and they will reach out as soon as possible.
+        </p>
+    </div>
+
+
+</main>
+<!-- ______________________________________________ -->
+
+<!--_____________________Homepage when user has not logged in_________________________-->
 {% else %}
 <main class="home--general--main">
 
@@ -24,5 +40,6 @@
         </a>
     </div>
 </main>
+<!-- _____________________________________________________ -->
 {% endif %}
 {% endblock %}
