@@ -35,7 +35,7 @@
                     <span>Edit Profile</span>
                 </a>
         
-                <a href="" class="profile__navigation__link">
+                <a href="{{url_for('create_post')}}" class="profile__navigation__link">
                     <i class="fas fa-plus-circle"></i>
                     <span>CREATE POST</span>
                 </a>
@@ -72,8 +72,8 @@
         </div>
 
         <div class="follow__details__container">
-            <h4>270 Followers</h4>
-            <h4>40 Following</h4>
+            <button class="followers__btn">{{current_user.followers.all() | length}} Followers</button>
+            <button class="following__btn">{{current_user.followed.all() | length}} Following</button>
         </div>
 
     </section>

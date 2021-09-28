@@ -1,11 +1,11 @@
 import secrets, os
-from flask import render_template, url_for, redirect, flash, request
+from flask import render_template, url_for, redirect, flash, request, abort
 from flask_mail import Message
 from flask_login import login_user, logout_user, current_user, login_required
 from Sakha import app, db, mail, bcrypt
 from Sakha.form import LoginForm, RegistrationForm, NameUpdateForm, AboutUpdateForm,\
-                       UniqueDetailsUpdateForm, UploadAvatarForm
-from Sakha.models import User
+                       UniqueDetailsUpdateForm, UploadAvatarForm, CreatePostForm
+from Sakha.models import User,Post
 
 
 
@@ -15,7 +15,8 @@ from Sakha.models import User
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('sites/home.html', title = 'Home')
+    posts = Post.query.order_by(Post.postDate.desc()).all()
+    return render_template('sites/home.html', title='Home', posts=posts)
 
 
 
@@ -53,6 +54,7 @@ def register():
         flash('You have created a brand new account', 'info')
         return redirect(url_for('login'))
     return render_template('users/register.html', title='Register Here', form=form)
+
 
 
 
@@ -133,7 +135,6 @@ def updateAboutUser():
 
 
 
-
 def dateModifier(time):
     months = [
             'Jan','Feb','March','April','May','June',
@@ -161,7 +162,7 @@ def save_pic(pic):
     return mod_pic
 
 def delete_pic(file):
-    if file != 'default.png' or file != 'header.jpg':
+    if file != 'default.png' and file != 'header.jpg':
         path = os.path.join(app.config['UPLOAD_PATH'], 'static', 'user-images', file)
         try:
             os.remove(path)
@@ -184,3 +185,87 @@ def avatar():
         return redirect(url_for('avatar'))
     return render_template('users/avatar.html', title='Avatar', form=form)
 
+
+
+
+@app.route('/create_post', methods=['GET', 'POST'])
+@login_required
+def create_post():
+    form = CreatePostForm()
+    if form.validate_on_submit():
+        if form.postImage.data:
+            pic = save_pic(form.postImage.data)
+            post = Post(content=form.content.data, postImage=pic, author=current_user)
+        else:
+            post = Post(content=form.content.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('You have created a new post', 'info')
+        return redirect(url_for('home'))
+    return render_template('users/createPost.html', title='Create Post', form=form)
+
+
+
+
+@app.route('/delete_post/post-<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    if post.postImage: delete_pic(post.postImage)
+    db.session.delete(post)
+    db.session.commit()
+    flash('Your post has been deleted', 'info')
+    return redirect(url_for('home'))
+
+
+
+
+# @app.route('/follow/<username>')
+# @login_required
+# def follow(username):
+#     user = User.query.filter_by(username=username).first()
+#     if user is None:
+#         flash('No user found', 'info')
+#         return redirect(url_for('home'))
+#     if user == current_user:
+#         flash('You can not follow yourself', 'warning')
+#         return redirect(url_for('home'))
+#     current_user.follow(user)
+#     db.session.commit()
+#     flash(f'You are following {user.firstname}','info')
+#     return redirect(url_for('home'))
+
+
+
+# @app.route('/unfollow/<username>')
+# @login_required
+# def unfollow(username):
+#     user = User.query.filter_by(username=username).first()
+#     if user is None:
+#         flash('No user found', 'info')
+#         return redirect(url_for('home'))
+#     if user == current_user:
+#         flash('You can not unfollow yourself', 'warning')
+#         return redirect(url_for('home'))
+#     current_user.unfollow(user)
+#     db.session.commit()
+#     flash(f'You have unfollowed {user.firstname}','info')
+#     return redirect(url_for('home'))
+
+
+
+
+@app.route('/like_action', methods=['POST'])
+@login_required
+def like_action():
+    idData = request.get_json()
+    post_id = idData.get('post_id')
+    post = Post.query.filter_by(id=post_id).first_or_404()
+    if current_user.has_liked(post):
+        current_user.unlike_post(post)
+    else:
+        current_user.like_post(post)
+    db.session.commit()
+    return {'totalLikes' : post.likes.count()}

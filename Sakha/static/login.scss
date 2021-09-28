@@ -27,28 +27,25 @@ LOGIN FORM SECTION
         letter-spacing:.1em;
         position:relative;
 
-        &::after {
-            content:'';
-            position:absolute;
-            bottom:0;
-            right:0;
-            left:60%;
-            width:30%;
-            height:.25em;
-            background-image:linear-gradient(to top right, var(--grad-color-1) 30%,
-                            var(--grad-color-2) 50%, var(--grad-color-3));
-            border-radius:50%;
-        }
+        &::after,
         &::before {
             content:'';
             position:absolute;
             bottom:0;
-            left:10%;
             width:30%;
-            height:.25em;
+            height:.2em;
+            border-radius:50%;
+        }
+        &::after { 
+            right:0;
+            left:60%;
+            background-image:linear-gradient(to top right, var(--grad-color-1) 30%,
+                            var(--grad-color-2) 50%, var(--grad-color-3));
+        }
+        &::before {
+            left:10%;
             background-image:linear-gradient(to top left, var(--grad-color-1) 30%,
                             var(--grad-color-2) 50%, var(--grad-color-3));
-            border-radius:50%;
         }
     }
 

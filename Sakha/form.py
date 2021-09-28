@@ -96,3 +96,12 @@ class UploadAvatarForm(FlaskForm):
     header_pic = FileField('Header Image', validators=[FileAllowed(['jpg','png','gif','svg', 'jpeg'],
                                                         message='Image with extension jpg/png/gif/svg is only allowed')])
     submit = SubmitField('Upload')
+
+
+
+
+class CreatePostForm(FlaskForm):
+    content=TextAreaField('Content', validators=[Length(max = 5000, message = 'Upto 5000 characters are allowed')])
+    postImage = FileField('Upload Image', validators=[FileAllowed(['jpg','png','gif','svg', 'jpeg'],
+                                                        message = 'Image with extension jpg/png/gif/svg is only allowed')])
+    submit = SubmitField('Post')

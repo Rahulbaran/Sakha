@@ -31,29 +31,26 @@ LOGIN FORM SECTION
   position: relative;
 }
 
-.form legend::after {
+.form legend::after, .form legend::before {
   content: '';
   position: absolute;
   bottom: 0;
-  right: 0;
-  left: 60%;
   width: 30%;
-  height: .25em;
-  background-image: -webkit-gradient(linear, left bottom, right top, color-stop(30%, var(--grad-color-1)), color-stop(50%, var(--grad-color-2)), to(var(--grad-color-3)));
-  background-image: linear-gradient(to top right, var(--grad-color-1) 30%, var(--grad-color-2) 50%, var(--grad-color-3));
+  height: .2em;
   border-radius: 50%;
 }
 
+.form legend::after {
+  right: 0;
+  left: 60%;
+  background-image: -webkit-gradient(linear, left bottom, right top, color-stop(30%, var(--grad-color-1)), color-stop(50%, var(--grad-color-2)), to(var(--grad-color-3)));
+  background-image: linear-gradient(to top right, var(--grad-color-1) 30%, var(--grad-color-2) 50%, var(--grad-color-3));
+}
+
 .form legend::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
   left: 10%;
-  width: 30%;
-  height: .25em;
   background-image: -webkit-gradient(linear, right bottom, left top, color-stop(30%, var(--grad-color-1)), color-stop(50%, var(--grad-color-2)), to(var(--grad-color-3)));
   background-image: linear-gradient(to top left, var(--grad-color-1) 30%, var(--grad-color-2) 50%, var(--grad-color-3));
-  border-radius: 50%;
 }
 
 .form__group {

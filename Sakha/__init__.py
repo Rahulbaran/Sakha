@@ -4,13 +4,18 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
-from Sakha.config import Config
+from Sakha.config import DevelopmentConfig, ProductionConfig, TestingConfig
 
 
 
 
 app = Flask(__name__)
-app.config.from_object(Config)
+if app.config['ENV'] == "production":
+    app.config.from_object(ProductionConfig)
+elif app.config['ENV'] == "testing":
+    app.config.from_object(TestingConfig)
+else:
+    app.config.from_object(DevelopmentConfig)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 mail = Mail(app)
