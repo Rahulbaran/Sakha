@@ -9,11 +9,11 @@
 {% if current_user.is_authenticated %}
 <main class="home__logged--main">
 
-    <div class="home__logged__heading__container">
-        <h1>POSTS</h1>
-        <p>
-            Checkout all the posts
-        </p>
+    <div class="create__post__btn__container">
+        <a href="{{url_for('create_post')}}" class="create__post__btn">
+            <i class="fas fa-plus-circle"></i>
+            CREATE POST
+        </a>
     </div>
 
     <section class="home__logged__posts__container">
@@ -26,14 +26,14 @@
                 <div class="post__author__container">
 
                     <div class="post__author__img__wrapper">
-                        <a href="" class="img__link" title='Post Author'>
+                        <a href="{{url_for('user_profile',user_id=post.author.id)}}" class="img__link" title='Post Author'>
                             <img src="{{url_for('static',filename='user-images/'+post.author.profile_pic)}}" alt="">
                         </a>
                     </div>
 
                     <div class="post__author__name__container">
                         <div>
-                            <a href="" class="author__name" title='Post Author'>{{post.author.firstname}}</a>
+                            <a href="{{url_for('user_profile',user_id=post.author.id)}}" class="author__name" title='Post Author'>{{post.author.firstname}}</a>
                             {% if post.author == current_user %}
                             <p class="current__user">You</p>
                             {% endif %}
@@ -44,6 +44,7 @@
 
                 </div>
 
+                {% if post.author == current_user %}
                 <div class="post__related__btn__links__container">
 
                     <button class="sideNavShowBtn">
@@ -69,6 +70,7 @@
                     </div>
 
                 </div>
+                {% endif %}
 
             </div>
 
@@ -114,27 +116,6 @@
 
 </main>
 
-<!-----------------------Overlay Container---------------------->
-{#
-<section class="overlay__container">
-
-    <div class="overlay__content">
-        <p>Do you want to delete the post?</p>
-
-        <div>
-            <a href="{{url_for('delete_post',post_id=post.id)}}" class="delete__btn btn">Confirm</a>
-            <button type="button" class="cancel__btn btn">Cancel</button>
-        </div>
-    </div>
-
-    <div class="overlay__bg"></div>
-
-</section> 
-#}
-
-
-<!-- _____________________________________________________ -->
-
 
 <!--_____________________________Homepage when user has not logged in_____________________________-->
 {% else %}
@@ -158,6 +139,7 @@
 </main>
 <!-- _____________________________________________________ -->
 {% endif %}
+
 {% endblock body %}
 
 
@@ -170,19 +152,22 @@
 
 
 
-{# 
------------------------ Will think about this later -------------------------
-
-{% if post.author != current_user %}
-
-{% if current_user.is_following(post.author) %}
-<a href="{{url_for('unfollow', username=post.author.username)}}" class="unfollow--btn" title='Unfollow'>unfollow</a>
-{% else %}
-<a href="{{url_for('follow', username=post.author.username)}}" class="follow--btn" title='Follow'>follow</a>
-{% endif %}
-
-{% else %}
-<p class="current__user">You</p>
-{% endif %}
-
-#}
+<!-----------------------Overlay Container---------------------->
+{#
+    <section class="overlay__container">
+    
+        <div class="overlay__content">
+            <p>Do you want to delete the post?</p>
+    
+            <div>
+                <a href="{{url_for('delete_post',post_id=post.id)}}" class="delete__btn btn">Confirm</a>
+                <button type="button" class="cancel__btn btn">Cancel</button>
+            </div>
+        </div>
+    
+        <div class="overlay__bg"></div>
+    
+    </section> 
+    #}
+    
+    <!-- _____________________________________________________ -->

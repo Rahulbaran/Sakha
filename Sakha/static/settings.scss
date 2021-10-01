@@ -52,7 +52,7 @@ GENERAL STYLING
         border:none;
         font-size:1.4em;
         font-weight:500;
-        font-family:'Poppins',sans-serif;
+        font-family:inherit;
         padding:.2em; 
         color:var(--info-color);
 
@@ -71,7 +71,7 @@ GENERAL STYLING
 FORMS STYLING
 ***********************/
 .form {
-    width:90%;
+    width:95%;
     max-width:720px;
     margin:0 auto;
 

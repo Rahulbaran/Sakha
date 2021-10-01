@@ -4,10 +4,10 @@
     align-items:$align;
     flex-direction:$dir;
 }
+
 /************************
 PROFILE SUB SECTION 2
 *************************/
-
 .profile {
     &--main--container {
         width:100%;
@@ -51,50 +51,12 @@ PROFILE SUB SECTION 2
                 color:var(--general-color);
             }
         }
-    }
-    &__navigation {
-        top:3.5em;
-        right:-13em;
-        position:absolute;
-        background-color:var(--color-white);
-        @include flex(center,flex-start,column);
-        padding:1.5em .75em;
-        box-shadow:0 0 5px rgba(0,0,0,.35);
-        border-radius:.5em;
-    }
-    &__navigation__hidden {
-        display:none;
-    }
-    &__navigation__link {
-        margin-bottom:.4em;
-        padding:.2em .1em;
-        letter-spacing:.03em;
-        display:inline-block;
-        text-decoration:none;
-        color:var(--general-color);
-        font-size:1em;
-        font-weight:600;
-        text-transform:uppercase;
-
-        &:hover,
-        &:focus {
-            opacity:.65;
-        }
-
-        i {
-            margin-right:.2em;
-        }
-    }
-    &__navigation__link:last-child {
-        margin-bottom:0;
-    }
+    } 
 }
 
-.avatar__container a {
+.avatar__container div {
     height:11em;
     width:11em;
-    display:inline-block;
-    text-decoration:none;
     border-radius:50%;
     border:5px solid var(--color-white);
     background-color:var(--color-white);
@@ -108,26 +70,6 @@ PROFILE SUB SECTION 2
         border-radius:50%;
     }
 }
-.profile__btn {
-    position:absolute;
-    top:1em;
-    right:-7.5em;
-    background-color:transparent;
-    outline:none;
-    border:none;
-    border-radius:.35em;
-
-    i {
-        font-size:1.5em;
-        padding:.25em .35em;
-        color:var(--general-color);
-        background-color:rgb(248, 237, 255);
-    }
-    &:hover i{
-        background-color:rgb(234, 230, 255);
-        cursor:pointer;
-    }
-}
 
 
 /***************************
@@ -136,18 +78,50 @@ PROFILE SUB CONTAINER TWO
 .profile__sub__container__two {
     margin-top:7em;
     display:grid;
-    grid-template-columns:1fr;
-    grid-row-gap:.75em;
-    padding:3em 2em;
+    grid-template-columns:auto max-content;
+    align-items:flex-start;
+    gap:2em;
+    padding:3em 1.5em;
     color:var(--profile-para-color);
 
-    i {
-        margin-right:.5em;
+    > div:not(.follow__btn__container) {
+        display:grid;
+        grid-template-columns:1fr;
+        gap:.65em 0;
+
+        i {
+            margin-right:.5em;
+        }
     }
 }
-.join__date__container {
-    color:rgb(63, 58, 67);
+
+
+
+.follow__btn__container {
+    justify-self:flex-end;
+    
+   button {
+        background-color:var(--h1-color);
+        padding:.3em .6em;
+        border-radius:.6em;
+        display:block;
+        color:var(--color-white);
+        box-shadow: 0 0 4px rgba(0,0,0,.5);
+        font-size:.9em;
+        border:none;
+        font-family:inherit;
+        font-weight:500;
+   
+        &:hover,
+        &:focus {
+            opacity:.75;
+            cursor:pointer;
+        }
+   }
 }
+
+
+
 .follow__details__container {
     @include flex(flex-start,flex-start);
 
@@ -181,7 +155,7 @@ PROFILE USER POSTS SECTION
     }
 
     max-width:540px;
-    width:90%;
+    width:93%;
     margin:0 auto;
     display:grid;
     grid-template-columns:1fr;
@@ -202,46 +176,12 @@ PROFILE USER POSTS SECTION
 }
 
 
-.create__post__btn {
-    &__container {
-        width:100%;
-        max-width:540px;
-        margin:2em auto;
-    }
-
-    text-transform:uppercase;
-    display:block;
-    text-decoration:none;
-    background-image:linear-gradient(to top, var(--btn-color-1), var(--btn-color-2));
-    color:var(--color-white);
-    padding:1em;
-    font-weight:500;
-    font-family:'Poppins',sans-serif;
-    border:none;
-    font-size:1.2em;
-    letter-spacing:.05em;
-    box-shadow:0 0 4px var(--btn-shadow-color);
-    border-radius:.35em;
-    text-align:center;
-
-    &:hover,
-    &:focus {
-        cursor:pointer;
-        background-image:linear-gradient(to top, var(--btn-hover-color-1), var(--btn-hover-color-2));
-    }
-
-    i {
-        margin-right:.6em;
-    }
-}
-
 
 .post {
     &__header {
         @include flex(space-between, flex-start);
         padding:1em;
     }
-
 /***************************
 POST AUTHOR RELATED STYLING
 ***************************/    
@@ -249,15 +189,11 @@ POST AUTHOR RELATED STYLING
         @include flex(flex-start,flex-start);
     }
     &__author__img__wrapper {
+        width:3em;
+        height:3em;
+        border-radius:50%;
+        margin-right:.6em;
 
-        a {
-            text-decoration:none;
-            display:block;
-            margin-right:.6em;
-            width:3em;
-            height:3em;
-            border-radius:50%;
-        }
         img {
             width:100%;
             height:100%;
@@ -270,20 +206,11 @@ POST AUTHOR RELATED STYLING
     &__author__name__container {
         div {
             @include flex(flex-start,flex-start);
-            a {
-                text-decoration:none;
-                display:block;
-            }
         }
         .author__name {
             font-size:.9em;
             color:var(--h1-color);
             line-height:1.3;
-        
-            &:hover,
-            &:focus {
-                opacity:.65;
-            }
         }
         span {
             line-height:1.2;
@@ -293,67 +220,6 @@ POST AUTHOR RELATED STYLING
             font-weight:600;
         }
     }
-
-/****************************
-POST BUTTONS RELATED STYLING
-*****************************/
-    &__related__btn__links__container {
-        position:relative;
-
-        .sideNavShowBtn,
-        .sideNavHideBtn {
-            background:transparent;
-            border:none;
-            cursor:pointer;
-
-            i {
-                padding:.15em;
-            }
-        }
-        
-        div {
-            @include flex(center, flex-start,column);
-            position:absolute;
-            top:-1em;
-            right:-1em;
-            width:8em;
-            background-color:rgb(243, 236, 255);
-            padding:2em .75em 1em;
-            clip-path:polygon(var(--x, 100%) 0,100% 0,100% 100%,var(--x,100%) 100%);
-            transition:clip-path 200ms ease-in-out;
-
-            a {
-                font-size:.9em;
-                text-decoration:none;
-                display:block;
-                color:var(--general-color);
-
-                i {
-                    margin-right:.2em;
-                }
-
-                &:hover,
-                &:focus {
-                    opacity:.7;
-                    cursor:pointer;
-                }
-            }
-
-            > a  {
-                margin-bottom:.25em;
-            }
-
-            .sideNavHideBtn {
-                position:absolute;
-                top:.75em;
-                right:1em;
-            }
-        }
-    }
-}
-
-.show__post__sidenav {
-    --x:0;
 }
 
 /***************************
@@ -411,17 +277,4 @@ LIKE AND COMMENT BTNS
 
 .heart__btn__active {
     color:var(--grad-color-1);
-}
-
-
-
-
-
-/***********************
-MEDIA QUERIES
-************************/
-@media (min-width:720px) {
-    .profile__btn {
-        right:-8.5em;
-    }
 }

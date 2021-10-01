@@ -148,7 +148,20 @@ def dateModifier(time):
 @login_required
 def profile():
     joined_date = dateModifier(current_user.account_date.strftime('%m/%Y'))
-    return render_template('users/profile.html', title='Profile', joined_date=joined_date)
+    posts = Post.query.filter_by(userId=current_user.id).order_by(Post.postDate.desc()).all()
+    return render_template('users/profile.html', title='Profile', joined_date=joined_date, posts=posts)
+
+
+
+
+@app.route('/user_profile/<int:user_id>')
+@login_required
+def user_profile(user_id):
+    user = User.query.filter_by(id=user_id).first_or_404()
+    if user == current_user: return redirect(url_for('profile'))
+    posts =Post.query.filter_by(userId=user.id).order_by(Post.postDate.desc()).all()
+    return render_template('users/userProfile.html', title=f'{user.firstname} \
+                         {user.lastname}', user=user, posts=posts)
 
 
 
@@ -213,7 +226,10 @@ def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
-    if post.postImage: delete_pic(post.postImage)
+    if post.postImage :
+        delete_pic(post.postImage)
+    for like in post.likes:
+        db.session.delete(like)
     db.session.delete(post)
     db.session.commit()
     flash('Your post has been deleted', 'info')
@@ -222,37 +238,22 @@ def delete_post(post_id):
 
 
 
-# @app.route('/follow/<username>')
-# @login_required
-# def follow(username):
-#     user = User.query.filter_by(username=username).first()
-#     if user is None:
-#         flash('No user found', 'info')
-#         return redirect(url_for('home'))
-#     if user == current_user:
-#         flash('You can not follow yourself', 'warning')
-#         return redirect(url_for('home'))
-#     current_user.follow(user)
-#     db.session.commit()
-#     flash(f'You are following {user.firstname}','info')
-#     return redirect(url_for('home'))
-
-
-
-# @app.route('/unfollow/<username>')
-# @login_required
-# def unfollow(username):
-#     user = User.query.filter_by(username=username).first()
-#     if user is None:
-#         flash('No user found', 'info')
-#         return redirect(url_for('home'))
-#     if user == current_user:
-#         flash('You can not unfollow yourself', 'warning')
-#         return redirect(url_for('home'))
-#     current_user.unfollow(user)
-#     db.session.commit()
-#     flash(f'You have unfollowed {user.firstname}','info')
-#     return redirect(url_for('home'))
+@app.route('/follow_action', methods=['POST'])
+@login_required
+def follow_action():
+    idData = request.get_json()
+    user = User.query.filter_by(id=idData.get('user_id')).first_or_404()
+    if user == current_user:
+        flash('You can not follow/unfollow yourself', 'warning')
+        return redirect(url_for('home'))
+    if current_user.is_following(user):
+        current_user.unfollow(user)
+        db.session.commit()
+        return {'follow':'follow', 'followers':user.followers.count()}
+    else: 
+        current_user.follow(user)
+        db.session.commit()
+        return {'unfollow':'following', 'followers':user.followers.count()}
 
 
 
