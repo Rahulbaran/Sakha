@@ -27,7 +27,7 @@ $ pip install -r requirements.txt
 
 ```
 
-### Mac/Linux
+#### Mac/Linux
 ```shell
 $ export FLASK_APP=run
 $ export FLASK_ENV=development
