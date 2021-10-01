@@ -100,8 +100,23 @@ class UploadAvatarForm(FlaskForm):
 
 
 
-class CreatePostForm(FlaskForm):
+class PostForm(FlaskForm):
     content=TextAreaField('Content', validators=[Length(max = 5000, message = 'Upto 5000 characters are allowed')])
     postImage = FileField('Upload Image', validators=[FileAllowed(['jpg','png','gif','svg', 'jpeg'],
                                                         message = 'Image with extension jpg/png/gif/svg is only allowed')])
     submit = SubmitField('Post')
+
+
+
+
+class RequestPasswordResetForm(FlaskForm):
+    email = StringField('Email Address', validators=[DataRequired(), Email(message='email  address should be valid')])
+    submit = SubmitField('Request Password Reset')
+
+
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=8, max=100, message='password should be atleast 8 characters long')])
+    reenter_password = PasswordField('Reenter Password', validators=[EqualTo('password', message='reentered password should be similar to password')])
+    submit = SubmitField('Create New Account') 

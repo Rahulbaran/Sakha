@@ -4,7 +4,8 @@ from flask_mail import Message
 from flask_login import login_user, logout_user, current_user, login_required
 from Sakha import app, db, mail, bcrypt
 from Sakha.form import LoginForm, RegistrationForm, NameUpdateForm, AboutUpdateForm,\
-                       UniqueDetailsUpdateForm, UploadAvatarForm, CreatePostForm
+                       UniqueDetailsUpdateForm, UploadAvatarForm, PostForm, RequestPasswordResetForm \
+                       , ResetPasswordForm
 from Sakha.models import User,Post
 
 
@@ -204,7 +205,7 @@ def avatar():
 @app.route('/create_post', methods=['GET', 'POST'])
 @login_required
 def create_post():
-    form = CreatePostForm()
+    form = PostForm()
     if form.validate_on_submit():
         if form.postImage.data:
             pic = save_pic(form.postImage.data)
@@ -215,7 +216,32 @@ def create_post():
         db.session.commit()
         flash('You have created a new post', 'info')
         return redirect(url_for('home'))
-    return render_template('users/createPost.html', title='Create Post', form=form)
+    return render_template('users/post.html', title='Create Post',\
+                                                    form=form, legend='Create Post Form')
+
+
+
+
+@app.route('/edit_post/post-<int:post_id>', methods=['GET','POST'])
+@login_required
+def edit_post(post_id):
+    form = PostForm()
+    post = Post.query.filter_by(id=post_id).first_or_404()
+    if post.author != current_user:
+        abort(403)
+    if request.method == "GET":
+        form.content.data = post.content
+    elif form.validate_on_submit():
+        if form.postImage.data:
+            delete_pic(post.postImage)
+            post.postImage = save_pic(form.postImage.data)
+            post.content = form.content.data
+        else:
+            post.content = form.content.data
+        db.session.commit()
+        flash('Your post has been updated','info')
+        return redirect(url_for('home'))
+    return render_template('users/post.html', title='Edit Post', form=form, legend='Edit Post Form')
 
 
 
@@ -270,3 +296,56 @@ def like_action():
         current_user.like_post(post)
     db.session.commit()
     return {'totalLikes' : post.likes.count()}
+
+
+
+
+def password_reset_email(user):
+    token = user.generate_token()
+    msg =f'''<h1>Password Reset Request</h1>
+<p>A request has been made to reset your account password, visit the following link \
+to reset the password:-</p>
+{url_for('resetPassword', token=token, _external=True)}
+<p>Above link is valid for 5 minutes only.</p>
+
+<p>If you have not made this request then simply ignore the mail & no changes will be made in your account'''
+    mail.send_message(subject = 'Mail for resetting password', \
+                            sender=('Team Sakha'), html=msg, recipients=[user.email])
+
+
+@app.route('/request_password_reset', methods=['GET', 'POST'])
+def requestPasswordReset():
+    if current_user.is_authenticated:
+        flash('You should logout to reset your password', 'info')
+        return redirect(url_for('home'))
+    form = RequestPasswordResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            password_reset_email(user)
+            flash('An email has been sent to reset password', 'info')
+            return redirect(url_for('home'))
+        else:
+            flash('User is not found', 'warning')
+    return render_template('users/requestPasswordReset.html', title='Request Password Reset', form=form)
+
+
+
+
+@app.route('/reset_password/<token>', methods=['GET','POST'])
+def resetPassword(token):
+    if current_user.is_authenticated:
+        flash('You should logout to reset password', 'info')
+        return redirect(url_for('home'))
+    user  = User.verify_token(token)
+    if user in None:
+        flash('The url is either expired or invalid', 'warning')
+        return redirect(url_for('home'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        hash_pw = bcrypt.generate_password_hash(form.password.data)
+        user.password = hash_pw
+        db.session.commit()
+        flash('Your password has be changed now you can login', 'info')
+        return redirect(url_for('login'))
+    return render_template('users/resetPassword.html', title='Reset Password', form=form)

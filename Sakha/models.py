@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask_login import UserMixin
-from Sakha import db, login_manager
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from Sakha import db, login_manager, app
 
 
 
@@ -16,13 +17,6 @@ followers = db.Table('followers',
             db.Column('followed_id', db.Integer, db.ForeignKey('users.id'))
         )
 
-
-  
-class PostLike(db.Model):
-    __tablename__='postlikes'
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
 
 
 
@@ -66,7 +60,7 @@ class User(UserMixin, db.Model):
                 followers.c.followed_id == user.id).count() == 1
 
 
-
+    # Methods for liking post
     def like_post(self, post):
         if not self.has_liked(post):
             like = PostLike(user_id=self.id, post_id=post.id)
@@ -80,6 +74,22 @@ class User(UserMixin, db.Model):
         return PostLike.query.filter_by(user_id=self.id, post_id=post.id).count() == 1
     
 
+    # Token generation and verification for password
+    def generate_token(self, exp_sec=300):
+        s = Serializer(app.conig['SECRET_KEY'], exp_sec)
+        token = s.dumps({'user_id':self.id}).decode('utf-8')
+        return token
+
+    @staticmethod 
+    def verify_token(token):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token)['user_id']
+        except:
+            return None
+        return User.query.get(user_id)
+
+
 
 
 
@@ -91,3 +101,13 @@ class Post(db.Model):
     postDate = db.Column(db.DateTime, default=datetime.utcnow)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     likes = db.relationship('PostLike',backref='post', lazy='dynamic')
+
+
+
+
+
+class PostLike(db.Model):
+    __tablename__='postlikes'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
