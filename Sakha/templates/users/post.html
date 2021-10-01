@@ -1,6 +1,6 @@
 {% extends 'others/layout.html' %}
 {% block stylesheet %}
-<link rel="stylesheet" href="{{url_for('static',filename='css/createPost.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/post.min.css')}}">
 {% endblock stylesheet %}
 
 {% block body %}
@@ -9,7 +9,7 @@
     <form method="post" class="form" autocomplete="off" enctype="multipart/form-data">
         {{form.hidden_tag()}}
 
-        <legend>Create New Post</legend>
+        <legend>{{legend}}</legend>
 
         <div class="form__group">
             {{form.content.label}}
