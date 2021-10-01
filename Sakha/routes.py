@@ -306,7 +306,7 @@ def password_reset_email(user):
 <p>A request has been made to reset your account password, visit the following link \
 to reset the password:-</p>
 {url_for('resetPassword', token=token, _external=True)}
-<p>Above link is valid for only 5 minutes.</p>
+<p>Above link is valid for 5 minutes only.</p>
 
 <p>If you have not made this request then simply ignore the mail & no changes will be made in your account'''
     mail.send_message(subject = 'Mail for resetting password', \
