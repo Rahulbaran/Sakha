@@ -338,7 +338,7 @@ def resetPassword(token):
         flash('You should logout to reset password', 'info')
         return redirect(url_for('home'))
     user  = User.verify_token(token)
-    if user in None:
+    if user is None:
         flash('The url is either expired or invalid', 'warning')
         return redirect(url_for('home'))
     form = ResetPasswordForm()

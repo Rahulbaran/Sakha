@@ -10,15 +10,19 @@ $font-tertiary:'Roboto',sans-serif;
 
 :root {
     --general-color:rgb(120, 73, 231);
+    --body-bg-1:rgb(193, 255, 48);
+    --body-bg-2:rgb(255, 238, 4);
+    --body-bg-3:rgb(177, 238, 10);
     --logo-color-1:hsl(199, 100%, 10%);
     --logo-color-2:orangered;
     --footer-link-color:#222;
     --warning-color:rgb(158, 0, 0);
     --info-color:rgb(0, 33, 141);
-    --nav-border-color:rgb(218, 181, 255);
+    --nav-border-color:rgb(132, 104, 163);
     --nav-heading-color:#666;
     --home-logged-bg:rgb(242, 242, 242);
     --color-white:#fff;
+    --color-yellow:yellow;
     --input-color:rgb(248, 248, 248);
     --btn-color-1:rgb(177, 24, 185);
     --btn-color-2:rgb(128, 66, 199);
@@ -27,7 +31,7 @@ $font-tertiary:'Roboto',sans-serif;
     --grad-color-1:rgb(255, 47, 0);
     --grad-color-2:rgb(131, 83, 226);
     --grad-color-3:rgb(156, 109, 250);
-    --label-color:#444;
+    --label-color:#333;
     --input-border-color:rgb(172, 172, 172);
     --btn-shadow-color:rgb(242, 0, 255);
     --h1-color:hsl(250deg, 80%, 10%);
@@ -53,8 +57,8 @@ html {
 }
 
 body {
-    background-color: #330055;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23330055' cx='50' cy='0' r='50'/%3E%3Cg fill='%233a015d' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23410165' cx='50' cy='100' r='50'/%3E%3Cg fill='%2348026e' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23500376' cx='50' cy='200' r='50'/%3E%3Cg fill='%2357047e' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%235f0587' cx='50' cy='300' r='50'/%3E%3Cg fill='%2367068f' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%236f0798' cx='50' cy='400' r='50'/%3E%3Cg fill='%237707a0' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%238008a9' cx='50' cy='500' r='50'/%3E%3Cg fill='%238909b1' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%239109ba' cx='50' cy='600' r='50'/%3E%3Cg fill='%239a09c3' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23a309cb' cx='50' cy='700' r='50'/%3E%3Cg fill='%23ad09d4' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23b608dc' cx='50' cy='800' r='50'/%3E%3Cg fill='%23c007e5' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23c905ee' cx='50' cy='900' r='50'/%3E%3Cg fill='%23d303f6' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23D0F' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+    background-color:var(--color-yellow);
+    background-image:linear-gradient(to top right, var(--body-bg-1), var(--body-bg-2), var(--body-bg-3));
     background-attachment: fixed;
     background-size: contain;
     font:400 1em/1.6 $font-tertiary;
@@ -258,33 +262,12 @@ Navigation when user is logged in
 
 }
 
-/**************************
-LINK TO REACH ON TOP OF PAGE
-**************************/
-// .top__section__link {
-//     &__container {
-//         position:fixed;
-//         bottom:1em;
-//         right:2em;
-//         background-color:rgba(255,255,255,.85);
-//         box-shadow:0 0 10px rgba(0,0,0,.7);
-//         border-radius:50%;
-//     }
-//     display:inline-block;
-//     padding:.45em .8em;
-//     font-size:1.5em;
-//     color:var(--general-color);
-// }
-
-
-
 
 /**************************
 APPLICATION FOOTER
 ***************************/ 
 .footer {
     &--section {
-        // background-color:#ffe02d;
         background-color:#cdfff6;
         padding:2em 1.5em;
     }

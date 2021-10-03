@@ -1,5 +1,5 @@
 /*************************
-LOGIN FORM SECTION
+REQUEST PASSWORD FORM SECTION
 **************************/
 .form {
   border: .12em dashed #888;
@@ -105,28 +105,6 @@ LOGIN FORM SECTION
   color: #ce2727;
 }
 
-.form__remember__group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-bottom: .8em;
-}
-
-.form__remember__group label {
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--label-color);
-  line-height: 1.35;
-  margin-left: .6em;
-  letter-spacing: .05em;
-}
-
 .form__submit__group {
   margin-bottom: 1em;
 }
@@ -154,42 +132,4 @@ LOGIN FORM SECTION
   cursor: pointer;
   background-image: -webkit-gradient(linear, left bottom, left top, from(var(--btn-hover-color-1)), to(var(--btn-hover-color-2)));
   background-image: linear-gradient(to top, var(--btn-hover-color-1), var(--btn-hover-color-2));
-}
-
-.password__field {
-  position: relative;
-  width: 100%;
-}
-
-.password__field i {
-  position: absolute;
-  right: 1em;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  color: var(--label-color);
-  cursor: pointer;
-}
-
-.register__link__section,
-.forgot__password {
-  margin-top: .5em;
-  font-family: 'Nunito',sans-serif;
-  font-size: 1.15em;
-}
-
-.register__link,
-.forgot__password {
-  text-decoration: none;
-  color: var(--general-color);
-  font-weight: 700;
-  display: inline-block;
-}
-
-.register__link:hover, .register__link:focus,
-.forgot__password:hover,
-.forgot__password:focus {
-  -webkit-text-decoration: .12em underline currentColor;
-          text-decoration: .12em underline currentColor;
-  text-underline-offset: .15em;
 }

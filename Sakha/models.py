@@ -76,7 +76,7 @@ class User(UserMixin, db.Model):
 
     # Token generation and verification for password
     def generate_token(self, exp_sec=300):
-        s = Serializer(app.conig['SECRET_KEY'], exp_sec)
+        s = Serializer(app.config['SECRET_KEY'], exp_sec)
         token = s.dumps({'user_id':self.id}).decode('utf-8')
         return token
 

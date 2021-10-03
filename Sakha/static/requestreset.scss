@@ -1,5 +1,5 @@
 /*************************
-LOGIN FORM SECTION
+REQUEST PASSWORD FORM SECTION
 **************************/
 .form {
     &--main {
@@ -88,21 +88,6 @@ LOGIN FORM SECTION
             color:rgb(206, 39, 39);
         }
     }
-    &__remember__group {
-        display:flex;
-        justify-content:flex-start;
-        align-items:center;
-        margin-bottom:.8em;
-
-        label {
-            text-transform:uppercase;
-           font-weight:500;
-           color:var(--label-color);
-           line-height:1.35;
-           margin-left:.6em;
-           letter-spacing:.05em;
-        }
-    }
     &__submit__group {
        
         margin-bottom:1em;
@@ -131,35 +116,4 @@ LOGIN FORM SECTION
         }
     }
 }
-.password__field {
-    position:relative;
-    width:100%;
 
-    i {
-        position:absolute;
-        right:1em;
-        top:50%;
-        transform:translateY(-50%);
-        color:var(--label-color);
-        cursor:pointer;
-    }
-}
-.register__link__section,
-.forgot__password {
-    margin-top:.5em;
-    font-family:'Nunito',sans-serif;
-    font-size:1.15em;
-}
-.register__link,
-.forgot__password {
-    text-decoration:none;
-    color:var(--general-color);
-    font-weight:700;
-    display:inline-block;
-
-    &:hover,
-    &:focus {
-        text-decoration:.12em underline currentColor;
-        text-underline-offset:.15em;
-    }
-}

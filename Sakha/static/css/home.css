@@ -4,6 +4,8 @@ HOMEPAGE WHEN USER IS NOT LOGGED IN
 .home--general--main {
   margin-top: 4.6em;
   background-color: var(--color-white);
+  background-image: -webkit-gradient(linear, right bottom, left top, from(#f9ffc5), to(#eaffbf));
+  background-image: linear-gradient(to top left, #f9ffc5, #eaffbf);
   width: 100%;
   display: -ms-grid;
   display: grid;
@@ -101,15 +103,14 @@ HOMEPAGE WHEN USER IS NOT LOGGED IN
 }
 
 .login__link:hover, .login__link:focus {
-  background-image: -webkit-gradient(linear, left bottom, left top, from(var(--btn-hover-color-1)), to(var(--btn-hover-color-2)));
-  background-image: linear-gradient(to top, var(--btn-hover-color-1), var(--btn-hover-color-2));
+  --btn-color-1:var(--btn-hover-color-1);
+  --btn-color-2:var(--btn-hover-color-2);
 }
 
 /******************************
 HOMEPAGE WHEN USER IS LOGGED IN
 *******************************/
 .home__logged--main {
-  background-color: var(--home-logged-bg);
   width: 100%;
   margin-top: 4.6em;
   padding: 3em 2em;
