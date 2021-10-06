@@ -79,7 +79,7 @@
 
         <div class="profile__user__posts">
         
-            {% for post in posts %}
+            {% for post in posts.items %}
             <article>
 
                 <div class="post__header">
@@ -144,6 +144,35 @@
 
     </section>
 
+    <!--___________________________PAGINTAION FOR POSTS_____________________________-->
+    {% if posts.total > 5 %}
+    <section class="pagination__section">
+        <!-- Previous Page if available -->
+        {% if posts.has_prev %}
+        <a href="{{url_for('user_profile',user_id=user.id, page=posts.prev_num)}}" class="other__page page">&lt;</a>
+        {% endif %}
+        <!-- ------------- -->
+
+        {% for page in posts.iter_pages(left_edge=1,left_current=1,right_edge=1,right_current=2) %}
+        {% if page %}
+        {% if page == posts.page %}
+        <a href="{{url_for('user_profile',user_id=user.id, page=page)}}" class="current__page page">{{page}}</a>
+        {% else %}
+        <a href="{{url_for('user_profile',user_id=user.id, page=page)}}" class="other__page page">{{page}}</a>
+        {% endif %}
+        {% else %}
+        .....
+        {% endif %}
+        {% endfor %}
+
+        <!-- Next Page if available -->
+        {% if posts.has_next %}
+        <a href="{{url_for('user_profile',user_id=user.id, page=posts.next_num)}}" class="other__page page">&gt;</a>
+        {% endif %}
+        <!-- ----------- -->
+    </section>
+    {% endif %}
+    <!-- _____________________________________________ -->
     
 </main>
 {% endblock body %}

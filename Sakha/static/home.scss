@@ -38,7 +38,7 @@ HOMEPAGE WHEN USER IS NOT LOGGED IN
             text-transform:uppercase;
             font-size:2.3em;
             color:var(--h1-color);
-            text-shadow:0 0 3px rgba(0,0,0,.35);
+            // text-shadow:0 0 3px rgba(0,0,0,.35);
         }
         p {
             color:var(--nav-heading-color);
@@ -78,10 +78,8 @@ HOMEPAGE WHEN USER IS NOT LOGGED IN
     &:focus {
         --btn-color-1:var(--btn-hover-color-1);
         --btn-color-2:var(--btn-hover-color-2);
-       // background-image:linear-gradient(to top, var(--btn-hover-color-1), var(--btn-hover-color-2));
     }
 }
-
 
 
 
@@ -118,38 +116,6 @@ HOMEPAGE WHEN USER IS LOGGED IN
     }
 }
 
-.create__post__btn {
-    &__container {
-        max-width:540px;
-        margin:2em auto 4em;
-    }
-
-    width:100%;
-    text-transform:uppercase;
-    display:block;
-    text-decoration:none;
-    background-image:linear-gradient(to top, var(--btn-color-1), var(--btn-color-2));
-    color:var(--color-white);
-    padding:1em;
-    font-weight:500;
-    font-family:'Poppins',sans-serif;
-    border:none;
-    font-size:1.2em;
-    letter-spacing:.05em;
-    box-shadow:0 0 4px var(--btn-shadow-color);
-    border-radius:.35em;
-    text-align:center;
-
-    &:hover,
-    &:focus {
-        cursor:pointer;
-        background-image:linear-gradient(to top, var(--btn-hover-color-1), var(--btn-hover-color-2));
-    }
-    
-    i {
-        margin-right:.6em;
-    }
-}
 
 
 .post {
@@ -343,6 +309,31 @@ LIKE AND COMMENT BTNS
 
 
 
+/*************************
+MEDIA QUERIES
+**************************/
+@media (min-width:769px) {
+    .home--general--main {
+        grid-template-columns:repeat(2,1fr);
+        padding:0 2em 1.5em;
+    }
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**************************
 Overlay Container
 **************************/
@@ -412,62 +403,4 @@ Overlay Container
 //     }
 // }
 
-
-
-
-
-
-
-
-
-/********************
-MEDIA QUERIES
-********************/
-@media (min-width:769px) {
-    .home--general--main {
-        grid-template-columns:repeat(2,1fr);
-        padding:0 2em 1.5em;
-    }
-}    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// .unfollow--btn,
-//         .follow--btn {
-//             margin-left:1.5em;
-//             background-color:rgb(18, 18, 24);
-//             padding:.15em .65em;
-//             border-radius:.75em;
-//             text-align:center;
-//             color:var(--color-white);
-//             font-size:.75em;
-//             letter-spacing:.03em;
-
-//             &:hover,
-//             &:focus {
-//                 opacity:.7;
-//             }
-//         }
-//         .unfollow--btn {
-//             background-color:var(--color-white);
-//             border:2px solid rgb(18, 18, 24);
-//             color:rgb(18, 18, 24);
-//             font-weight:500;
-//         }
+   

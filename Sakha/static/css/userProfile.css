@@ -5,7 +5,7 @@ PROFILE SUB SECTION 2
   width: 100%;
   max-width: 840px;
   margin: 0 auto;
-  background-color: var(--color-white);
+  background-color: var(--home-logged-bg);
   font-family: 'Poppins',sans-serif;
 }
 
@@ -59,6 +59,7 @@ PROFILE SUB SECTION 2
 
 .profile__avatar__img__container .avatar__container p {
   color: var(--general-color);
+  padding-bottom: 1em;
 }
 
 .avatar__container div {
@@ -95,6 +96,7 @@ PROFILE SUB CONTAINER TWO
           align-items: flex-start;
   gap: 2em;
   padding: 3em 1.5em;
+  background-color: var(--color-white);
   color: var(--profile-para-color);
 }
 
@@ -183,7 +185,6 @@ PROFILE USER POSTS SECTION
 }
 
 .profile__user__posts__container {
-  background-color: var(--home-logged-bg);
   padding: 2em 0;
 }
 
@@ -355,4 +356,12 @@ LIKE AND COMMENT BTNS
 
 .heart__btn__active {
   color: var(--grad-color-1);
+}
+
+/**************************
+MINOR STYLING FOR PAGINATION
+**************************/
+.pagination__section {
+  padding: 0 1em 2em 0;
+  max-width: 840px;
 }

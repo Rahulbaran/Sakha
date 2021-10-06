@@ -7,14 +7,14 @@
 /************************
 PROFILE SUB SECTION 2
 *************************/
-
 .profile {
     &--main--container {
         width:100%;
         max-width:840px;
         margin:0 auto;
-        background-color:var(--color-white);
+        background-color:var(--home-logged-bg);
         font-family:'Poppins',sans-serif;
+        
     }
 
     &__sub__container__one {
@@ -49,6 +49,7 @@ PROFILE SUB SECTION 2
             }
             p {
                 color:var(--general-color);
+                padding-bottom:1em;
             }
         }
     }
@@ -121,7 +122,7 @@ PROFILE SUB SECTION 2
         font-size:1.5em;
         padding:.25em .35em;
         color:var(--general-color);
-        background-color:rgb(248, 237, 255);
+        // background-color:rgb(248, 237, 255);
     }
     &:hover i{
         background-color:rgb(234, 230, 255);
@@ -140,6 +141,7 @@ PROFILE SUB CONTAINER TWO
     grid-row-gap:.75em;
     padding:3em 2em;
     color:var(--profile-para-color);
+    background-color:var(--color-white);
 
     i {
         margin-right:.5em;
@@ -176,7 +178,6 @@ PROFILE USER POSTS SECTION
 *************************/
 .profile__user__posts {
     &__container {
-        background-color:var(--home-logged-bg);
         padding:2em 0;
     }
 
@@ -202,38 +203,38 @@ PROFILE USER POSTS SECTION
 }
 
 
-.create__post__btn {
-    &__container {
-        width:100%;
-        max-width:540px;
-        margin:2em auto;
-    }
+// .create__post__btn {
+//     &__container {
+//         width:100%;
+//         max-width:540px;
+//         margin:2em auto;
+//     }
 
-    text-transform:uppercase;
-    display:block;
-    text-decoration:none;
-    background-image:linear-gradient(to top, var(--btn-color-1), var(--btn-color-2));
-    color:var(--color-white);
-    padding:1em;
-    font-weight:500;
-    font-family:'Poppins',sans-serif;
-    border:none;
-    font-size:1.2em;
-    letter-spacing:.05em;
-    box-shadow:0 0 4px var(--btn-shadow-color);
-    border-radius:.35em;
-    text-align:center;
+//     text-transform:uppercase;
+//     display:block;
+//     text-decoration:none;
+//     background-image:linear-gradient(to top, var(--btn-color-1), var(--btn-color-2));
+//     color:var(--color-white);
+//     padding:1em;
+//     font-weight:500;
+//     font-family:'Poppins',sans-serif;
+//     border:none;
+//     font-size:1.2em;
+//     letter-spacing:.05em;
+//     box-shadow:0 0 4px var(--btn-shadow-color);
+//     border-radius:.35em;
+//     text-align:center;
 
-    &:hover,
-    &:focus {
-        cursor:pointer;
-        background-image:linear-gradient(to top, var(--btn-hover-color-1), var(--btn-hover-color-2));
-    }
+//     &:hover,
+//     &:focus {
+//         cursor:pointer;
+//         background-image:linear-gradient(to top, var(--btn-hover-color-1), var(--btn-hover-color-2));
+//     }
 
-    i {
-        margin-right:.6em;
-    }
-}
+//     i {
+//         margin-right:.6em;
+//     }
+// }
 
 
 .post {
@@ -412,6 +413,151 @@ LIKE AND COMMENT BTNS
 .heart__btn__active {
     color:var(--grad-color-1);
 }
+
+/**************************
+MINOR STYLING FOR PAGINATION
+**************************/
+.pagination__section {
+    padding:0 1em 2em 0;
+    max-width:840px;
+}
+
+
+/***************************
+Followers Container Styling 
+**************************/
+@mixin overlay__common__style {
+    width:90%;
+    max-width:640px;
+    background-color:var(--color-white);
+    box-shadow:5px 5px 8px rgba(0,0,0,.25);
+    border-radius:10px;
+}
+
+.followers__overlay__container {
+    position:fixed;
+    top:0;
+    left:0;
+    background-color:var(--followers-bg-color);
+    height:100vh;
+    width:100%;
+    z-index:100;
+    font-family:'Poppins',sans-serif;
+    display:none;
+
+    h1{
+       @include overlay__common__style;  
+        margin:2em auto 0;
+        text-align:Center;
+        font-family:'Nunito',sans-serif;
+        text-transform:uppercase;
+        font-size:1.9em;
+        padding:.4em 0;
+        color:var(--h1-color);
+    }
+}
+
+.followers__overlay__show__container {
+    display:block;
+}
+
+.followers__wrapper {
+    overflow-y:scroll;
+    overflow-x:hidden;
+    @include overlay__common__style; 
+    margin:1em auto 2em;
+}
+
+.follower {
+    display:grid;
+    grid-template-columns:.85fr 1.5fr 1fr;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:.75em 1em;
+    border-bottom:1px solid var(--input-border-color);
+
+    &__avatar__link {
+        justify-self:center;
+        width:3em;
+        height:3em;
+        border-radius:50%;
+        display:inline-block;
+        box-shadow:0 0 4px rgba(0,0,0,.55);
+        text-decoration:none;
+
+        img {
+            width:100%;
+            height:100%;
+            border-radius:50%;
+            object-fit:cover;
+        }
+    }
+    &__name__wrapper {
+        justify-self:center;
+        @include flex(flex-start, flex-start, column);
+        font-size:.9em;
+        
+        a {
+            text-decoration:none;
+            color:var(--color-black);
+            display:inline-block;
+        }
+        h4 {
+            color:#555;
+            line-height:1.2;
+            font-weight:400;
+        }
+    }
+}
+
+.followers__list__hide__btn {
+    background-color:var(--color-white);
+    margin:1.5em 0 0 1.5em;
+    border:none;
+    border-radius:.35em;
+    box-shadow:0 0 10px rgba(0,0,0,.5);
+    cursor:pointer;
+    
+    i {
+        padding:.35em .65em;
+        font-size:1.4em;
+    }
+}
+
+.follow__btn__container {
+    justify-self:center;
+    
+   button {
+        background-color:var(--h1-color);
+        padding:.3em .8em;
+        border-radius:.6em;
+        display:block;
+        color:var(--color-white);
+        box-shadow: 0 0 4px rgba(0,0,0,.5);
+        font-size:.85em;
+        border:none;
+        font-family:inherit;
+        font-weight:500;
+   
+        &:hover,
+        &:focus {
+            opacity:.75;
+            cursor:pointer;
+        }
+   }
+}
+
+.follower:last-child {
+    border:none;
+}
+
+
+
+
+
+
+
+
 
 
 

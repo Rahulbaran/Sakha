@@ -1,21 +1,27 @@
 :root {
+  --header-color:#F3F0D7;
   --general-color:rgb(120, 73, 231);
-  --body-bg-1:rgb(193, 255, 48);
-  --body-bg-2:rgb(255, 238, 4);
-  --body-bg-3:rgb(177, 238, 10);
+  --body-bg-1:#70555c;
+  --body-bg-2:#745058;
+  --body-bg-3:#643a44;
   --logo-color-1:hsl(199, 100%, 10%);
   --logo-color-2:orangered;
   --footer-link-color:#222;
+  --footer-bg-color:#F3F0D7;
   --warning-color:rgb(158, 0, 0);
   --info-color:rgb(0, 33, 141);
   --nav-border-color:rgb(132, 104, 163);
-  --nav-heading-color:#666;
-  --home-logged-bg:rgb(242, 242, 242);
+  --nav-heading-color:#444;
+  --home-logged-bg:#CEE5D0;
   --color-white:#fff;
+  --color-black:#000;
+  --followers-bg-color:#D8B384;
   --color-yellow:yellow;
   --input-color:rgb(248, 248, 248);
   --btn-color-1:rgb(177, 24, 185);
   --btn-color-2:rgb(128, 66, 199);
+  --createPost-btn-1:#5E454B;
+  --createPost-btn-2:#5E454B;
   --btn-hover-color-1:rgb(216, 10, 226);
   --btn-hover-color-2:rgb(109, 47, 255);
   --grad-color-1:rgb(255, 47, 0);
@@ -71,7 +77,7 @@ body {
 APPLICATION HEADER
 ************************/
 .header--section {
-  background-color: var(--color-white);
+  background-color: var(--header-color);
   padding: .8em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -218,7 +224,7 @@ Navigation when user is not logged in
   top: 4.6em;
   right: 0;
   position: fixed;
-  background-color: var(--color-white);
+  background-color: var(--header-color);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -334,7 +340,7 @@ Navigation when user is logged in
 APPLICATION FOOTER
 ***************************/
 .footer--section {
-  background-color: #cdfff6;
+  background-color: var(--footer-bg-color);
   padding: 2em 1.5em;
 }
 
@@ -581,6 +587,56 @@ MESSAGE STYLING
 
 .info__hide__btn {
   color: var(--info-color);
+}
+
+/*************************
+PAGINATION SECTION STYLING
+**************************/
+.pagination__section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.page {
+  padding: .25em .75em;
+  background-color: var(--color-white);
+  color: var(--h1-color);
+  text-decoration: none;
+  display: inline-block;
+  margin: .25em;
+  font-size: 1.1em;
+  border-radius: .3em;
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 7px rgba(0, 0, 0, 0.4);
+}
+
+.current__page {
+  background-color: var(--general-color);
+  color: var(--color-white);
+}
+
+.other__page {
+  -webkit-transition: color 200ms,background-color 200ms;
+  transition: color 200ms,background-color 200ms;
+}
+
+.other__page:hover, .other__page:focus {
+  background-color: var(--general-color);
+  color: var(--color-white);
 }
 
 /***************************

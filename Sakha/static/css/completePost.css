@@ -1,133 +1,16 @@
-/***************************
-HOMEPAGE WHEN USER IS NOT LOGGED IN
-***************************/
-.home--general--main {
-  margin-top: 4.6em;
-  background-color: var(--color-white);
-  background-image: -webkit-gradient(linear, right bottom, left top, from(#f9ffc5), to(#eaffbf));
-  background-image: linear-gradient(to top left, #f9ffc5, #eaffbf);
-  width: 100%;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
-  padding: 0 1.5em 3em;
-}
-
-.home__svg__container {
-  width: 100%;
-}
-
-.home__svg__container img {
-  display: block;
-  width: 100%;
-}
-
-.home__content__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  font-family: 'Poppins',sans-serif;
-}
-
-.home__content__container h1 {
-  font-family: 'Nunito', cursive;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  margin-bottom: .35em;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  font-size: 2.3em;
-  color: var(--h1-color);
-}
-
-.home__content__container p {
-  color: var(--nav-heading-color);
-  font-size: 1em;
-}
-
-.home__content__container p a {
-  display: inline-block;
-  color: var(--general-color);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.home__content__container p a:hover, .home__content__container p a:focus {
-  -webkit-text-decoration: 2px underline currentColor;
-          text-decoration: 2px underline currentColor;
-  text-underline-offset: .15em;
-}
-
-.login__link {
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  padding: .75em 1.5em .75em 2.5em;
-  text-decoration: none;
-  background-image: -webkit-gradient(linear, left bottom, left top, from(var(--btn-color-1)), to(var(--btn-color-2)));
-  background-image: linear-gradient(to top, var(--btn-color-1), var(--btn-color-2));
-  margin-top: 2em;
-  text-transform: uppercase;
-  color: var(--color-white);
-  border-radius: .25em;
-  -webkit-box-shadow: 0 0 4px var(--btn-shadow-color);
-          box-shadow: 0 0 4px var(--btn-shadow-color);
-}
-
-.login__link i {
-  margin-left: 1em;
-}
-
-.login__link:hover, .login__link:focus {
-  --btn-color-1:var(--btn-hover-color-1);
-  --btn-color-2:var(--btn-hover-color-2);
-}
-
 /******************************
 HOMEPAGE WHEN USER IS LOGGED IN
 *******************************/
-.home__logged--main {
+.complete--post--container {
   width: 100%;
   margin-top: 4.6em;
   padding: 3em 2em;
   font-family: 'Poppins',sans-serif;
 }
 
-.home__logged__posts__container {
+.complete--post--container article {
   max-width: 540px;
   margin: 0 auto 2em;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
-  grid-row-gap: 2em;
-}
-
-.home__logged__posts__container article {
-  width: 100%;
   background-color: var(--color-white);
   -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
           box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
@@ -138,11 +21,14 @@ HOMEPAGE WHEN USER IS LOGGED IN
       grid-template-columns: 1fr;
 }
 
-.home__logged__posts__container article:hover {
+.complete--post--container article:hover {
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
 }
 
+/*************************
+COMPLETE POST
+**************************/
 .post {
   /***************************
 POST AUTHOR RELATED STYLING
@@ -335,20 +221,12 @@ POST ASSETS
   padding: 0 1em;
 }
 
-.post__content__container a {
-  text-decoration: none;
-  display: block;
+.post__content__container p {
   color: #333;
   font-family: 'Nunito',sans-serif;
   line-height: 1.5;
   font-size: 1em;
   margin-bottom: .5em;
-}
-
-.post__image__container a {
-  text-decoration: none;
-  width: 100%;
-  display: block;
 }
 
 .post__image__container img {
@@ -395,18 +273,3 @@ LIKE AND COMMENT BTNS
 .heart__btn__active {
   color: var(--grad-color-1);
 }
-
-/*************************
-MEDIA QUERIES
-**************************/
-@media (min-width: 769px) {
-  .home--general--main {
-    -ms-grid-columns: (1fr)[2];
-        grid-template-columns: repeat(2, 1fr);
-    padding: 0 2em 1.5em;
-  }
-}
-
-/**************************
-Overlay Container
-**************************/

@@ -75,8 +75,8 @@
         </div>
 
         <div class="follow__details__container">
-            <button class="followers__btn">{{current_user.followers.count()}} Followers</button>
-            <button class="following__btn">{{current_user.followed.all() | length}} Following</button>
+            <button class="followers__btn followers__list__btn">{{current_user.followers.count()}} Followers</button>
+            <button class="following__btn following__list__btn">{{current_user.followed.all() | length}} Following</button>
         </div>
 
     </section>
@@ -90,14 +90,7 @@
 
         <div class="profile__user__posts">
         
-            <div class="create__post__btn__container">
-                <a href="{{url_for('create_post')}}" class="create__post__btn">
-                    <i class="fas fa-plus-circle"></i>
-                    CREATE POST
-                </a>
-            </div>
-
-            {% for post in posts %}
+            {% for post in posts.items %}
             <article>
 
                 <div class="post__header">
@@ -151,14 +144,14 @@
                 <div class="post__body">
 
                     <div class="post__content__container">
-                        <a href="">
+                        <a href="{{url_for('complete_post',post_id=post.id)}}">
                             {{post.content | truncate(250, False, '')}}
                         </a>
                     </div>
 
                     {% if post.postImage %}
                     <div class="post__image__container">
-                        <a href="">
+                        <a href="{{url_for('complete_post',post_id=post.id)}}">
                             <img src="{{url_for('static',filename='user-images/'+post.postImage)}}" alt="Post Image">
                         </a>
                     </div>
@@ -190,8 +183,89 @@
         </div>
 
     </section>
+    <!-- _____________________________________ -->
+
+
+    <!--___________________________PAGINTAION FOR CURRENT_USER POSTS_____________________________-->
+    {% if posts.total > 5 %}
+    <section class="pagination__section">
+
+        <!-- Previous Page if available -->
+        {% if posts.has_prev %}
+        <a href="{{url_for('profile', page=posts.prev_num)}}" class="other__page page">&lt;</a>
+        {% endif %}
+        <!-- ------------- -->
+
+        {% for page in posts.iter_pages(left_edge=1,left_current=1,right_edge=1,right_current=2) %}
+        {% if page %}
+        {% if page == posts.page %}
+        <a href="{{url_for('profile', page=page)}}" class="current__page page">{{page}}</a>
+        {% else %}
+        <a href="{{url_for('profile', page=page)}}" class="other__page page">{{page}}</a>
+        {% endif %}
+        {% else %}
+        .....
+        {% endif %}
+        {% endfor %}
+
+        <!-- Next Page if available -->
+        {% if posts.has_next %}
+        <a href="{{url_for('profile', page=posts.next_num)}}" class="other__page page">&gt;</a>
+        {% endif %}
+        <!-- ----------- -->
+
+    </section>
+    {% endif %}
+    <!-- _____________________________________________ -->
+
 
 </main>
+
+
+<!---------------------------- Followers Section ------------------------ -->
+<section class="followers__overlay__container">
+
+    <!------- Followers list hide button ------->
+    <button class="followers__list__hide__btn">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <h1>Followers List</h1>
+
+    <div class="followers__wrapper">
+
+        {% for follower in current_user.followers %}
+        <div class="follower">
+
+            <a class="follower__avatar__link" href="{{url_for('user_profile',user_id=follower.id)}}">
+                <img src="{{url_for('static',filename='user-images/'+follower.profile_pic)}}" alt="">
+            </a>
+
+            <div class="follower__name__wrapper">
+                <a href="{{url_for('user_profile',user_id=follower.id)}}">{{follower.firstname}} {{follower.lastname}}</a>
+                <h4>@{{follower.username}}</h4>
+            </div>
+
+            <div class="follow__btn__container">
+                {% if current_user.is_following(follower) %}
+                <button class="follow__btn " data-userid="{{follower.id}}">
+                    following
+                </button>
+    
+                {% else %}
+                <button class="follow__btn" data-userid="{{follower.id}}">
+                    follow
+                </button>
+                {% endif %}
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+</section>
+
 {% endblock body %}
 
 

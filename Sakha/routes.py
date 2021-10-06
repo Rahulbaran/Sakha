@@ -16,7 +16,8 @@ from Sakha.models import User,Post
 @app.route('/')
 @app.route('/home')
 def home():
-    posts = Post.query.order_by(Post.postDate.desc()).all()
+    page = request.args.get('page',1,type=int)
+    posts = Post.query.order_by(Post.postDate.desc()).paginate(per_page=5,page=page)
     return render_template('sites/home.html', title='Home', posts=posts)
 
 
@@ -136,6 +137,7 @@ def updateAboutUser():
 
 
 
+
 def dateModifier(time):
     months = [
             'Jan','Feb','March','April','May','June',
@@ -149,7 +151,8 @@ def dateModifier(time):
 @login_required
 def profile():
     joined_date = dateModifier(current_user.account_date.strftime('%m/%Y'))
-    posts = Post.query.filter_by(userId=current_user.id).order_by(Post.postDate.desc()).all()
+    page = request.args.get('page',1,type=int)
+    posts = Post.query.filter_by(userId=current_user.id).order_by(Post.postDate.desc()).paginate(page=page,per_page=5)
     return render_template('users/profile.html', title='Profile', joined_date=joined_date, posts=posts)
 
 
@@ -160,7 +163,8 @@ def profile():
 def user_profile(user_id):
     user = User.query.filter_by(id=user_id).first_or_404()
     if user == current_user: return redirect(url_for('profile'))
-    posts =Post.query.filter_by(userId=user.id).order_by(Post.postDate.desc()).all()
+    page = request.args.get('page',1,type=int)
+    posts =Post.query.filter_by(userId=user.id).order_by(Post.postDate.desc()).paginate(page=page,per_page=5)
     return render_template('users/userProfile.html', title=f'{user.firstname} \
                          {user.lastname}', user=user, posts=posts)
 
@@ -260,6 +264,16 @@ def delete_post(post_id):
     db.session.commit()
     flash('Your post has been deleted', 'info')
     return redirect(url_for('home'))
+
+
+
+
+
+@app.route('/complete_post/post-<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def complete_post(post_id):
+    post = Post.query.filter_by(id=post_id).first()
+    return render_template('users/completePost.html', title='Complete Post', post=post)
 
 
 

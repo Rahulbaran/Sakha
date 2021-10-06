@@ -9,16 +9,17 @@
 {% if current_user.is_authenticated %}
 <main class="home__logged--main">
 
-    <div class="create__post__btn__container">
+    <!-- <div class="create__post__btn__container">
         <a href="{{url_for('create_post')}}" class="create__post__btn">
             <i class="fas fa-plus-circle"></i>
             CREATE POST
         </a>
-    </div>
+    </div> -->
 
+    <!-- ____________________________ALL POSTS_________________________________ -->
     <section class="home__logged__posts__container">
 
-        {% for post in posts %}
+        {% for post in posts.items %}
         <article>
 
             <div class="post__header">
@@ -77,14 +78,14 @@
             <div class="post__body">
 
                 <div class="post__content__container">
-                    <a href="">
+                    <a href="{{url_for('complete_post',post_id=post.id)}}">
                         {{post.content | truncate(250, False, '')}}
                     </a>
                 </div>
 
                 {% if post.postImage %}
                 <div class="post__image__container">
-                    <a href="">
+                    <a href="{{url_for('complete_post',post_id=post.id)}}">
                         <img src="{{url_for('static',filename='user-images/'+post.postImage)}}" alt="Post Image">
                     </a>
                 </div>
@@ -113,8 +114,42 @@
         {% endfor %}
 
     </section>
+    <!-- _________________________________________ -->
+
+
+    <!--___________________________PAGINTAION FOR POSTS_____________________________-->
+    {% if posts.total > 5 %}
+    <section class="pagination__section">
+        <!-- Previous Page if available -->
+        {% if posts.has_prev %}
+        <a href="{{url_for('home', page=posts.prev_num)}}" class="other__page page">&lt;</a>
+        {% endif %}
+        <!-- ------------- -->
+
+        {% for page in posts.iter_pages(left_edge=1,left_current=1,right_edge=1,right_current=2) %}
+        {% if page %}
+        {% if page == posts.page %}
+        <a href="{{url_for('home', page=page)}}" class="current__page page">{{page}}</a>
+        {% else %}
+        <a href="{{url_for('home', page=page)}}" class="other__page page">{{page}}</a>
+        {% endif %}
+        {% else %}
+        .....
+        {% endif %}
+        {% endfor %}
+
+        <!-- Next Page if available -->
+        {% if posts.has_next %}
+        <a href="{{url_for('home', page=posts.next_num)}}" class="other__page page">&gt;</a>
+        {% endif %}
+        <!-- ----------- -->
+    </section>
+    {% endif %}
+    <!-- _____________________________________________ -->
+
 
 </main>
+
 
 
 <!--_____________________________Homepage when user has not logged in_____________________________-->
