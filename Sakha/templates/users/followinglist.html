@@ -1,0 +1,41 @@
+{% extends 'others/layout.html' %}
+{% block body %}
+<!--------------------------------- Following Section ------------------------------- -->
+<section class="following__container">
+
+    <!------- Following list hide button ------->
+    <button class="following__list__hide__btn">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <h1>Following List</h1>
+
+    <div class="following__wrapper">
+
+        {% for following in current_user.followed %}
+        <div class="following">
+
+            <a class="following__avatar__link" href="{{url_for('user_profile',user_id=following.id)}}">
+                <img src="{{url_for('static',filename='user-images/'+following.profile_pic)}}" alt="">
+            </a>
+
+            <div class="following__name__wrapper">
+                <a href="{{url_for('user_profile',user_id=following.id)}}">{{following.firstname}} {{following.lastname}}</a>
+                <h4>@{{following.username}}</h4>
+            </div>
+
+            <div class="following__btn__container">
+                <button class="follow__btn" data-userid="{{following.id}}">
+                    following
+                </button>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+</section>
+<!-- _______________________________________________ -->
+
+{% endblock %}

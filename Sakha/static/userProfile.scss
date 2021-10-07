@@ -130,14 +130,12 @@ PROFILE SUB CONTAINER TWO
     .followers__btn {
         margin-right:1em;
     }
-    button {
+    a {
         color:var(--h1-color);
-        background:transparent;
+        text-decoration:none;
         display:block;
         font-weight:700;
-        border:none;
         font-size:1em;
-        font-family:inherit;
 
         &:hover,
         &:focus {

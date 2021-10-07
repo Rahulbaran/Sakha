@@ -171,6 +171,61 @@ def user_profile(user_id):
 
 
 
+
+@app.route('/follow_action', methods=['POST'])
+@login_required
+def follow_action():
+    idData = request.get_json()
+    user = User.query.filter_by(id=idData.get('user_id')).first_or_404()
+    if user == current_user:
+        flash('You can not follow/unfollow yourself', 'warning')
+        return redirect(url_for('home'))
+    if current_user.is_following(user):
+        current_user.unfollow(user)
+        db.session.commit()
+        return {'follow':'follow'}
+    else: 
+        current_user.follow(user)
+        db.session.commit()
+        return {'unfollow':'following'}
+
+
+
+
+@app.route('/followers_list')
+@login_required
+def followers_list():
+    return render_template('users/followerslist.html', title='Followers List')
+
+
+
+
+@app.route('/following_list')
+@login_required
+def following_list():
+    return render_template('users/followinglist.html', title='Following List')
+
+
+
+
+@app.route('/user_followers/<int:user_id>')
+@login_required
+def user_followers(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    return render_template('users/userFollowers.html', title=f'{user.firstname} {user.lastname} Followers List', user=user)
+
+
+
+
+@app.route('/user_following/<int:user_id>')
+@login_required
+def user_following(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    return render_template('users/userFollowing.html', title=f'{user.firstname} {user.lastname} Following List', user=user)
+
+
+
+
 def save_pic(pic):
     random_hex = secrets.token_hex(16)
     _, ext = os.path.splitext(pic.filename)
@@ -268,32 +323,12 @@ def delete_post(post_id):
 
 
 
-
 @app.route('/complete_post/post-<int:post_id>', methods=['GET', 'POST'])
 @login_required
 def complete_post(post_id):
     post = Post.query.filter_by(id=post_id).first()
     return render_template('users/completePost.html', title='Complete Post', post=post)
 
-
-
-
-@app.route('/follow_action', methods=['POST'])
-@login_required
-def follow_action():
-    idData = request.get_json()
-    user = User.query.filter_by(id=idData.get('user_id')).first_or_404()
-    if user == current_user:
-        flash('You can not follow/unfollow yourself', 'warning')
-        return redirect(url_for('home'))
-    if current_user.is_following(user):
-        current_user.unfollow(user)
-        db.session.commit()
-        return {'follow':'follow', 'followers':user.followers.count()}
-    else: 
-        current_user.follow(user)
-        db.session.commit()
-        return {'unfollow':'following', 'followers':user.followers.count()}
 
 
 

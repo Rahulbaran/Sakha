@@ -48,8 +48,8 @@
             {% endif %}
 
             <div class="follow__details__container">
-                <button class="followers__btn">{{user.followers.count()}} Followers</button>
-                <button class="following__btn">{{user.followed.count()}} Following</button>
+                <a class="followers__btn" href="{{url_for('user_followers',user_id=user.id)}}">{{user.followers.count()}} Followers</a>
+                <a class="following__btn" href="{{url_for('user_following',user_id=user.id)}}">{{user.followed.count()}} Following</a>
             </div>
         </div>
 

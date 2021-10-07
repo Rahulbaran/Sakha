@@ -75,8 +75,8 @@
         </div>
 
         <div class="follow__details__container">
-            <button class="followers__btn followers__list__btn">{{current_user.followers.count()}} Followers</button>
-            <button class="following__btn following__list__btn">{{current_user.followed.all() | length}} Following</button>
+            <a href="{{url_for('followers_list')}}" class="followers__btn">{{current_user.followers.count()}} Followers</a>
+            <a href="{{url_for('following_list')}}" class="following__btn">{{current_user.followed.all() | length}} Following</a>
         </div>
 
     </section>
@@ -218,53 +218,8 @@
     {% endif %}
     <!-- _____________________________________________ -->
 
-
 </main>
 
-
-<!---------------------------- Followers Section ------------------------ -->
-<section class="followers__overlay__container">
-
-    <!------- Followers list hide button ------->
-    <button class="followers__list__hide__btn">
-        <i class="fas fa-arrow-left"></i>
-    </button>
-
-    <h1>Followers List</h1>
-
-    <div class="followers__wrapper">
-
-        {% for follower in current_user.followers %}
-        <div class="follower">
-
-            <a class="follower__avatar__link" href="{{url_for('user_profile',user_id=follower.id)}}">
-                <img src="{{url_for('static',filename='user-images/'+follower.profile_pic)}}" alt="">
-            </a>
-
-            <div class="follower__name__wrapper">
-                <a href="{{url_for('user_profile',user_id=follower.id)}}">{{follower.firstname}} {{follower.lastname}}</a>
-                <h4>@{{follower.username}}</h4>
-            </div>
-
-            <div class="follow__btn__container">
-                {% if current_user.is_following(follower) %}
-                <button class="follow__btn " data-userid="{{follower.id}}">
-                    following
-                </button>
-    
-                {% else %}
-                <button class="follow__btn" data-userid="{{follower.id}}">
-                    follow
-                </button>
-                {% endif %}
-            </div>
-
-        </div>
-        {% endfor %}
-
-    </div>
-
-</section>
 
 {% endblock body %}
 

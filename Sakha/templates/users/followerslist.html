@@ -1,0 +1,44 @@
+{% extends 'others/layout.html' %}
+{% block body %}
+<!--------------------------------- Followers Section ------------------------------- -->
+<section class="followers__container">
+
+
+    <h1>Followers List</h1>
+
+    <div class="followers__wrapper">
+
+        {% for follower in current_user.followers %}
+        <div class="follower">
+
+            <a class="follower__avatar__link" href="{{url_for('user_profile',user_id=follower.id)}}">
+                <img src="{{url_for('static',filename='user-images/'+follower.profile_pic)}}" alt="">
+            </a>
+
+            <div class="follower__name__wrapper">
+                <a href="{{url_for('user_profile',user_id=follower.id)}}">{{follower.firstname}} {{follower.lastname}}</a>
+                <h4>@{{follower.username}}</h4>
+            </div>
+
+            <div class="follow__btn__container">
+                {% if current_user.is_following(follower) %}
+                <button class="follow__btn " data-userid="{{follower.id}}">
+                    following
+                </button>
+    
+                {% else %}
+                <button class="follow__btn" data-userid="{{follower.id}}">
+                    follow
+                </button>
+                {% endif %}
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+</section>
+<!-- _______________________________________________ -->
+
+{% endblock %}

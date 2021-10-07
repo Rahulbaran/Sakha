@@ -8,54 +8,7 @@ profileBtn.addEventListener('click', () => {
     profileNavigation.classList.toggle('profile__navigation__hidden');
 });
 
-
-
-/*----------------------------------
-Followers list button related functionality
------------------------------------*/
-const followersListShowBtn = document.querySelector('.followers__list__btn');
-const followersContainer = document.querySelector('.followers__overlay__container');
-const followersListHideBtn = document.querySelector('.followers__list__hide__btn');
-
-
-followersListShowBtn.addEventListener('click',function () {
-    followersContainer.classList.add('followers__overlay__show__container');
-    document.body.style.position = "fixed";
-});
-
-
-followersListHideBtn.addEventListener('click',function () {
-    followersContainer.classList.remove('followers__overlay__show__container');
-    document.body.style.position = "relative";
-});
-
-
-
-/*------------------------------
-Follow button related functionality
----------------------------------*/
-// const followBtn = document.querySelector('.follow__btn');
-
-
-// if(followBtn) {
-
-//     followBtn.addEventListener('click',function(e) {
-//         e.preventDefault();
     
-//         fetch('/follow_action', {
-//             headers : {
-//                 'Content-Type' : 'application/json'
-//             },
-//             method : 'POST',
-//             body : JSON.stringify( {
-//                 'user_id': Number(this.dataset.userid)
-//             })
-//         })
-//         .then(res => res.json()).then(res =>{
-//             this.textContent = (res['follow'] ? res['follow'] : res['unfollow']);0
-//         })
-//     });
-// }
 
 
 
@@ -77,6 +30,7 @@ sideNavHideBtns.forEach((btn, index) => {
         sideNavs[index].classList.remove('show__post__sidenav');
     });
 });
+
 
 
 
