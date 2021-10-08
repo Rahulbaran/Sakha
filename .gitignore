@@ -19,3 +19,5 @@ Database
 migrations
 
 
+# javascript related
+node_modules

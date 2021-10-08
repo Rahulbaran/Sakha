@@ -1,0 +1,24 @@
+{
+  "name": "sakha",
+  "version": "1.0.0",
+  "description": "Sakha is a social network application created using Flask and JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rahulbaran/Sakha.git"
+  },
+  "author": "Rahul Baran <rahulkumar109422@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rahulbaran/Sakha/issues"
+  },
+  "homepage": "https://github.com/Rahulbaran/Sakha#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
+    "minify": "^8.0.2"
+  }
+}
