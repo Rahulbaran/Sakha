@@ -3,9 +3,7 @@ HOMEPAGE WHEN USER IS NOT LOGGED IN
 ***************************/
 .home--general--main {
   margin-top: 4.6em;
-  background-color: var(--color-white);
-  background-image: -webkit-gradient(linear, right bottom, left top, from(#f9ffc5), to(#eaffbf));
-  background-image: linear-gradient(to top left, #f9ffc5, #eaffbf);
+  background-color: var(--home-logged-bg);
   width: 100%;
   display: -ms-grid;
   display: grid;

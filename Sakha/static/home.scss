@@ -11,8 +11,8 @@ HOMEPAGE WHEN USER IS NOT LOGGED IN
 .home {
     &--general--main {
         margin-top:4.6em;
-        background-color:var(--color-white);
-        background-image:linear-gradient(to top left,rgb(249, 255, 197), rgb(234, 255, 191));
+        background-color:var(--home-logged-bg);
+        //background-image:linear-gradient(to top left,rgb(249, 255, 197), rgb(234, 255, 191));
         width:100%;
         display:grid;
         grid-template-columns:1fr;

@@ -1,4 +1,5 @@
 import secrets, os
+from PIL import Image
 from flask import render_template, url_for, redirect, flash, request, abort
 from flask_mail import Message
 from flask_login import login_user, logout_user, current_user, login_required
@@ -226,12 +227,16 @@ def user_following(user_id):
 
 
 
-def save_pic(pic):
+def save_avatar(pic):
     random_hex = secrets.token_hex(16)
     _, ext = os.path.splitext(pic.filename)
     mod_pic = random_hex + ext
     path = os.path.join(app.config['UPLOAD_PATH'], 'static', 'user-images', mod_pic)
-    pic.save(path)
+
+    img_size = (200,200)
+    img = Image.open(pic)
+    img.thumbnail(img_size)
+    img.save(path)
     return mod_pic
 
 def delete_pic(file):
@@ -249,10 +254,10 @@ def avatar():
     if form.validate_on_submit():
         if form.profile_pic.data:
             delete_pic(current_user.profile_pic)
-            current_user.profile_pic = save_pic(form.profile_pic.data)
+            current_user.profile_pic = save_avatar(form.profile_pic.data)
         if form.header_pic.data:
             delete_pic(current_user.header_pic)
-            current_user.header_pic = save_pic(form.header_pic.data)
+            current_user.header_pic = save_avatar(form.header_pic.data)
         db.session.commit()
         flash('Your account details has been updated', 'info')
         return redirect(url_for('avatar'))
@@ -261,13 +266,25 @@ def avatar():
 
 
 
+def save_post_pic(pic):
+    random_hex = secrets.token_hex(16)
+    _, ext = os.path.splitext(pic.filename)
+    mod_pic = random_hex + ext
+    path = os.path.join(app.config['UPLOAD_PATH'], 'static', 'user-images', mod_pic)
+
+    img_size = (800, 800)
+    img = Image.open(pic)
+    img.thumbnail(img_size)
+    img.save(path)
+    return mod_pic
+
 @app.route('/create_post', methods=['GET', 'POST'])
 @login_required
 def create_post():
     form = PostForm()
     if form.validate_on_submit():
         if form.postImage.data:
-            pic = save_pic(form.postImage.data)
+            pic = save_post_pic(form.postImage.data)
             post = Post(content=form.content.data, postImage=pic, author=current_user)
         else:
             post = Post(content=form.content.data, author=current_user)
@@ -293,7 +310,7 @@ def edit_post(post_id):
     elif form.validate_on_submit():
         if form.postImage.data:
             delete_pic(post.postImage)
-            post.postImage = save_pic(form.postImage.data)
+            post.postImage = save_post_pic(form.postImage.data)
             post.content = form.content.data
         else:
             post.content = form.content.data

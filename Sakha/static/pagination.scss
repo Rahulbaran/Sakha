@@ -1,0 +1,39 @@
+/*************************
+PAGINATION SECTION STYLING
+**************************/
+@mixin flex($just,$align,$dir:row) {
+    display:flex;
+    justify-content:$just;
+    align-items:$align;
+    flex-direction:$dir;
+}
+
+.pagination__section {
+    @include flex(flex-end, center);
+    width:100%;
+    max-width:720px;
+    margin:0 auto;
+}
+.page {
+    padding:.25em .75em;
+    background-color:var(--color-white);
+    color:var(--h1-color);
+    text-decoration:none;
+    display:inline-block;
+    margin:.25em;
+    font-size:1.1em;
+    border-radius:.3em;
+    box-shadow: 0 0 7px rgba(0,0,0,.4);
+}
+.current__page {
+    background-color:var(--general-color);
+    color:var(--color-white);
+}
+.other__page {  
+    transition:color 200ms,background-color 200ms;
+    &:hover,
+    &:focus {
+        background-color:var(--general-color);
+        color:var(--color-white);
+    }
+}

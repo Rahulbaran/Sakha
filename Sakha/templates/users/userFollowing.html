@@ -1,4 +1,7 @@
 {% extends 'others/layout.html' %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/followStuffs.min.css')}}">
+{% endblock %}
 {% block body %}
 <!--------------------------------- Following Section ------------------------------- -->
 <section class="following__container">
@@ -46,3 +49,8 @@
 <!-- _______________________________________________ -->
 
 {% endblock %}
+
+{% block script %}
+<script src="{{url_for('static', filename='js/followers.js')}}"></script>
+{% endblock %}
+

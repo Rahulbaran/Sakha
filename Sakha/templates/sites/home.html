@@ -1,6 +1,7 @@
 {% extends 'others/layout.html' %}
 {% block stylesheet %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/home.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/pagination.min.css')}}">
 {% endblock stylesheet %}
 
 {% block body %}
@@ -8,13 +9,6 @@
 <!--____________________________Homepage when user has logged in___________________________-->
 {% if current_user.is_authenticated %}
 <main class="home__logged--main">
-
-    <!-- <div class="create__post__btn__container">
-        <a href="{{url_for('create_post')}}" class="create__post__btn">
-            <i class="fas fa-plus-circle"></i>
-            CREATE POST
-        </a>
-    </div> -->
 
     <!-- ____________________________ALL POSTS_________________________________ -->
     <section class="home__logged__posts__container">
@@ -28,7 +22,7 @@
 
                     <div class="post__author__img__wrapper">
                         <a href="{{url_for('user_profile',user_id=post.author.id)}}" class="img__link" title='Post Author'>
-                            <img src="{{url_for('static',filename='user-images/'+post.author.profile_pic)}}" alt="">
+                            <img src="{{url_for('static',filename='user-images/'+post.author.profile_pic)}}" alt="Post Author Profile Picture" loading="lazy">
                         </a>
                     </div>
 
@@ -86,7 +80,7 @@
                 {% if post.postImage %}
                 <div class="post__image__container">
                     <a href="{{url_for('complete_post',post_id=post.id)}}">
-                        <img src="{{url_for('static',filename='user-images/'+post.postImage)}}" alt="Post Image">
+                        <img src="{{url_for('static',filename='user-images/'+post.postImage)}}" alt="Post Image" loading="lazy">
                     </a>
                 </div>
                 {% endif %}
@@ -157,7 +151,7 @@
 <main class="home--general--main">
 
     <div class="home__svg__container">
-        <img src="{{url_for('static',filename='site-images/home-svg.svg')}}" class="home__svg">
+        <img src="{{url_for('static',filename='site-images/home-svg.svg')}}" class="home__svg" alt="Homepage SVG Image">
     </div>
 
     <div class="home__content__container">
