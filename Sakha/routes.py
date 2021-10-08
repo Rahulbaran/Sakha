@@ -179,16 +179,15 @@ def follow_action():
     idData = request.get_json()
     user = User.query.filter_by(id=idData.get('user_id')).first_or_404()
     if user == current_user:
-        flash('You can not follow/unfollow yourself', 'warning')
         return redirect(url_for('home'))
     if current_user.is_following(user):
         current_user.unfollow(user)
         db.session.commit()
-        return {'follow':'follow'}
+        return {'follow':'follow', 'followers':user.followers.count()}
     else: 
         current_user.follow(user)
         db.session.commit()
-        return {'unfollow':'following'}
+        return {'unfollow':'following', 'followers':user.followers.count()}
 
 
 

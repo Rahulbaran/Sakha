@@ -21,7 +21,7 @@ if(followBtn) {
         })
         .then(res => res.json()).then(res =>{
             this.textContent = (res['follow'] ? res['follow'] : res['unfollow']);
-            followersBtn.textContent = `${res['followers']} followers`;
+            followersBtn.textContent = `${res['followers']} Followers`;
         })
     });
 }

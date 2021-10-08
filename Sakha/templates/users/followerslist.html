@@ -1,6 +1,6 @@
 {% extends 'others/layout.html' %}
 {% block stylesheet %}
-<link rel="stylesheet" href="{{url_for('static',filename='css/followStuffs.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/followStuffs.css')}}">
 {% endblock %}
 {% block body %}
 <!--------------------------------- Followers Section ------------------------------- -->
@@ -47,6 +47,6 @@
 {% endblock %}
 
 {% block script %}
-<script src="{{url_for('static', filename='js/followers.js')}}"></script>
+<script src="{{url_for('static', filename='minjs/followers.js')}}"></script>
 {% endblock %}
 

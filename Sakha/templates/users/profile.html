@@ -1,7 +1,7 @@
 {% extends 'others/layout.html' %}
 {% block stylesheet %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/profile.min.css')}}">
-<link rel="stylesheet" href="{{url_for('static', filename='css/pagination.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/profile.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/pagination.css')}}">
 {% endblock stylesheet %}
 
 {% block body %}
@@ -226,5 +226,5 @@
 
 
 {% block script %}
-<script src="{{url_for('static',filename='js/profile.js')}}"></script>
+<script src="{{url_for('static',filename='minjs/profile.js')}}"></script>
 {% endblock %}

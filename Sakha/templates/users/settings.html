@@ -1,6 +1,6 @@
 {% extends 'others/layout.html' %}
 {% block stylesheet %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/settings.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/settings.css')}}">
 {% endblock %}
 
 {% block body %}
@@ -104,5 +104,5 @@
 {% endblock %}
 
 {% block script %}
-<script src="{{url_for('static', filename='js/settings.js')}}"></script>
+<script src="{{url_for('static', filename='minjs/settings.js')}}"></script>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'others/layout.html' %}
 {% block stylesheet %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/userProfile.min.css')}}">
-<link rel="stylesheet" href="{{url_for('static', filename='css/pagination.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/userProfile.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/pagination.css')}}">
 {% endblock stylesheet %}
 
 {% block body %}
@@ -57,7 +57,7 @@
         <div class="follow__btn__container">
 
             {% if current_user.is_following(user) %}
-            <button class="follow__btn " data-userid="{{user.id}}">
+            <button class="follow__btn" data-userid="{{user.id}}">
                 following
             </button>
 
@@ -180,5 +180,5 @@
 
 
 {% block script %}
-<script src="{{url_for('static',filename='js/userProfile.js')}}"></script>
+<script src="{{url_for('static',filename='minjs/userProfile.js')}}"></script>
 {% endblock %}

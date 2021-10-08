@@ -2,7 +2,7 @@
   "name": "sakha",
   "version": "1.0.0",
   "description": "Sakha is a social network application created using Flask and JavaScript",
-  "main": "index.js",
+  "main": "home.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,8 +17,13 @@
   },
   "homepage": "https://github.com/Rahulbaran/Sakha#readme",
   "devDependencies": {
+    "browser-sync": "^2.27.5",
+    "cssnano": "^5.0.8",
     "gulp": "^4.0.2",
-    "gulp-cli": "^2.3.0",
-    "minify": "^8.0.2"
+    "gulp-postcss": "^9.0.1",
+    "gulp-sass": "^5.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser": "^2.1.0",
+    "sass": "^1.42.1"
   }
 }

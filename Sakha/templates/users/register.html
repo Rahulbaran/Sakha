@@ -1,6 +1,6 @@
 {% extends 'others/layout.html' %}
 {% block stylesheet %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/register.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/register.css')}}">
 {% endblock stylesheet %}
 
 {% block body %}
@@ -122,10 +122,6 @@
             tracker = true;
         }
     });
-
-    /********************To prevent default refreshing when client submit the form********************/
-    // const form = document.querySelector('.form');
-    // form.addEventListener('submit', e => e.preventDefault());
-
+    
 </script>
 {% endblock %}
