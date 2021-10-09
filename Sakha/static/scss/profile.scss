@@ -14,7 +14,6 @@ PROFILE SUB SECTION 2
         margin:0 auto;
         background-color:var(--home-logged-bg);
         font-family:'Poppins',sans-serif;
-        
     }
 
     &__sub__container__one {
@@ -112,7 +111,7 @@ PROFILE SUB SECTION 2
 .profile__btn {
     position:absolute;
     top:1em;
-    right:-7.5em;
+    right:-8.5em;
     background-color:transparent;
     outline:none;
     border:none;
@@ -122,7 +121,6 @@ PROFILE SUB SECTION 2
         font-size:1.5em;
         padding:.25em .35em;
         color:var(--general-color);
-        // background-color:rgb(248, 237, 255);
     }
     &:hover i{
         background-color:rgb(234, 230, 255);
