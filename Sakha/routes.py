@@ -139,22 +139,13 @@ def updateAboutUser():
 
 
 
-def dateModifier(time):
-    months = [
-            'Jan','Feb','March','April','May','June',
-            'July','Aug','Sep', 'Oct','Nov','Dec'
-            ]
-    dateArray = time.split('/')
-    mod_date = months[int(dateArray[0]) - 1] + ' ' + dateArray[1]
-    return mod_date
 
 @app.route('/profile')
 @login_required
 def profile():
-    joined_date = dateModifier(current_user.account_date.strftime('%m/%Y'))
     page = request.args.get('page',1,type=int)
     posts = Post.query.filter_by(userId=current_user.id).order_by(Post.postDate.desc()).paginate(page=page,per_page=5)
-    return render_template('users/profile.html', title='Profile', joined_date=joined_date, posts=posts)
+    return render_template('users/profile.html', title='Profile', posts=posts)
 
 
 
@@ -232,7 +223,7 @@ def save_avatar(pic):
     mod_pic = random_hex + ext
     path = os.path.join(app.config['UPLOAD_PATH'], 'static', 'user-images', mod_pic)
 
-    img_size = (200,200)
+    img_size = (250,250)
     img = Image.open(pic)
     img.thumbnail(img_size)
     img.save(path)

@@ -34,7 +34,7 @@
                             {% endif %}
                         </div>
 
-                        <span>{{post.postDate.strftime('%d/%m/%Y')}}</span>
+                        <span>{{post.postDate.strftime('%I:%M %p')}}&nbsp;&nbsp;{{post.postDate.strftime(' %d %b %y')}}</span>
                     </div>
 
                 </div>
@@ -99,7 +99,7 @@
                 </button>
 
                 <a href="" class="comment__btn" title='Comment'>
-                    <i class="fas fa-comment-alt"></i>
+                    <i class="far fa-comment"></i>
                     <span>10</span>
                 </a>
             </div>

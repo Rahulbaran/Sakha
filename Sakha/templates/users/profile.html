@@ -60,7 +60,7 @@
 
         <div class="join__date__container">
             <i class="fas fa-calendar-alt"></i>
-            <span>Joined on {{joined_date}}</span>
+            <span>Joined on {{current_user.account_date.strftime('%b %Y')}}</span>
         </div>
 
         {% if current_user.address %}
@@ -109,7 +109,7 @@
                                 <a href="" class="author__name" title='Post Author'>{{current_user.firstname}}</a>
                             </div>
 
-                            <span>{{post.postDate.strftime('%d/%m/%Y')}}</span>
+                            <span>{{post.postDate.strftime('%I:%M %p')}}&nbsp;&nbsp;{{post.postDate.strftime(' %d %b %y')}}</span>
                         </div>
 
                     </div>

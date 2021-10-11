@@ -98,10 +98,9 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text)
     postImage = db.Column(db.String(100))
-    postDate = db.Column(db.DateTime, default=datetime.utcnow)
+    postDate = db.Column(db.DateTime, default=datetime.today)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     likes = db.relationship('PostLike',backref='post', lazy='dynamic')
-
 
 
 
@@ -111,3 +110,5 @@ class PostLike(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+
+

@@ -23,9 +23,8 @@ class BaseConfig:
 
     # Configuration applicable for all type of environments
     SECRET_KEY=os.getenv('SECRET_KEY')
-
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    MAX_CONTENT_LENGTH = 3*1024*1024
+    MAX_CONTENT_LENGTH = 5*1024*1024
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True
@@ -34,6 +33,7 @@ class BaseConfig:
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
     MAIL_DEFAULT_SENDER = os.getenv('MAIL_USERNAME')
     UPLOAD_PATH = basedir
+    MYSQL_DATABASE_CHARSET = 'utf8mb4'
 
 
 

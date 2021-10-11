@@ -11,7 +11,7 @@ HOMEPAGE WHEN USER IS LOGGED IN
         width:100%;  
         margin-top:4.6em;
         padding:3em 2em;   
-        font-family:'Poppins',sans-serif;
+        font-family:inherit;
 
     article {
         max-width:540px;
@@ -27,7 +27,6 @@ HOMEPAGE WHEN USER IS LOGGED IN
         }
     }
 }
-
 
 /*************************
 COMPLETE POST
@@ -93,10 +92,10 @@ POST AUTHOR RELATED STYLING
         }
         span {
             line-height:1.2;
-            font-size:.75em;
+            font-size:.7em;
             display:block;
-            color:rgb(99, 97, 102);
-            font-weight:600;
+            color:rgb(73, 76, 89);
+            font-family:'Ubuntu',sans-serif;
         }
     }
 
@@ -170,10 +169,10 @@ POST ASSETS
         padding:0 1em;
 
         p {
-            color:#333;
-            font-family:'Nunito',sans-serif;
+            color:var(--label-color);
+            font-family:'Noto Sans',sans-serif;
             line-height:1.5;
-            font-size:1em;
+            font-size:1.1em;
             margin-bottom:.5em;
         }
     }
@@ -205,6 +204,7 @@ LIKE AND COMMENT BTNS
 
     span {
         font-size:.85em;
+        font-family:'Noto Sans',sans-serif;
     }
 }
 

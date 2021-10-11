@@ -1,6 +1,6 @@
 $font-primary:'Lora',sans-serif;
 $font-secondary:'Poppins',sans-serif;
-$font-tertiary:'Roboto',sans-serif;
+$font-tertiary:'Poppins',sans-serif;
 @mixin flex($just,$align,$dir:row) {
     display:flex;
     justify-content:$just;
@@ -37,7 +37,7 @@ $font-tertiary:'Roboto',sans-serif;
     --grad-color-1:rgb(255, 47, 0);
     --grad-color-2:rgb(131, 83, 226);
     --grad-color-3:rgb(156, 109, 250);
-    --label-color:#333;
+    --label-color:rgb(56, 55, 63);
     --input-border-color:rgb(172, 172, 172);
     --btn-shadow-color:rgb(242, 0, 255);
     --h1-color:hsl(250deg, 80%, 10%);
@@ -67,7 +67,7 @@ body {
     background-image:linear-gradient(to top right, var(--body-bg-1), var(--body-bg-2), var(--body-bg-3));
     background-attachment: fixed;
     background-size: contain;
-    font:400 1em/1.6 $font-tertiary;
+    font:500 1em/1.6 $font-tertiary;
 }
 
 ::selection {
@@ -338,7 +338,7 @@ APPLICATION FOOTER
     &__navigation__link {
         text-decoration:none;
         text-transform:uppercase;
-        font-family:$font-secondary;
+        font-family:inherit;
         font-size:1em;
         color:var(--footer-link-color);
         margin:.25em 0;
@@ -390,8 +390,7 @@ APPLICATION FOOTER
 }
 
 .need__help__wrapper {
-    font-family:$font-secondary;
-    font-weight:500;
+    font-family:inherit;
     font-size:1.15em;
     margin-bottom:1.5em;
 
@@ -414,11 +413,11 @@ APPLICATION FOOTER
 
 .copyright__wrapper {
     h3 {
-        font-weight:500;
-        font-family:$font-secondary;
-        color:#333;
+        font-family:inherit;
+        color:var(--label-color);
         font-size:1.1em;
         text-align:center;
+        font-weight:600;
     }
 }
 
@@ -432,7 +431,6 @@ MESSAGE STYLING
         top:4.7em;
         left:0;
         right:0;
-        font-family:$font-secondary;
     }
     &--container {
         padding:.35em 1em;
@@ -454,7 +452,7 @@ MESSAGE STYLING
         border:none;
         font-size:1.4em;
         font-weight:500;
-        font-family:$font-secondary;
+        font-family:inherit;
         padding:.2em; 
 
         &:hover,
@@ -490,7 +488,7 @@ MEDIA QUERIES FOR RESPONSIVE DESIGN
 
 @media (max-width:480px) {
     body {
-        font-size:.9em;
+        font-size:.85em;
     }
     .navigation__application__stuffs {
        top:4.7em;
@@ -504,13 +502,13 @@ MEDIA QUERIES FOR RESPONSIVE DESIGN
 
 @media (min-width:481px) and (max-width:768px) {
     body {
-        font-size:.95em;
+        font-size:.9em;
     }
 }
 
 @media (min-width:769px) {
     body {
-        font-size:1.05em;
+        font-size:1em;
     }
     .header--section {
         padding:.8em 2em;
@@ -529,7 +527,7 @@ MEDIA QUERIES FOR RESPONSIVE DESIGN
 
 @media (min-width:1280px) {
     body {
-        font-size:1.1em;
+        font-size:1.05em;
     }
     .footer--section {
         padding:2.5em 3em;

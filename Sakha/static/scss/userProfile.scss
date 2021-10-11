@@ -133,6 +133,7 @@ PROFILE SUB CONTAINER TWO
     a {
         color:var(--h1-color);
         text-decoration:none;
+        font-family:'Poppins',sans-serif;
         display:block;
         font-weight:700;
         font-size:1em;
@@ -175,7 +176,6 @@ PROFILE USER POSTS SECTION
 }
 
 
-
 .post {
     &__header {
         @include flex(space-between, flex-start);
@@ -213,10 +213,10 @@ POST AUTHOR RELATED STYLING
         }
         span {
             line-height:1.2;
-            font-size:.75em;
+            font-size:.7em;
             display:block;
-            color:rgb(99, 97, 102);
-            font-weight:600;
+            color:rgb(73, 76, 89);
+            font-family:'Ubuntu',sans-serif;
         }
     }
 }
@@ -231,8 +231,8 @@ POST ASSETS
         a {
             text-decoration:none;
             display:block;
-            color:#333;
-            font-family:'Nunito',sans-serif;
+            color:var(--label-color);
+            font-family:'Noto Sans',sans-serif;
             line-height:1.5;
             font-size:1em;
             margin-bottom:.5em;
@@ -271,6 +271,7 @@ LIKE AND COMMENT BTNS
 
     span {
         font-size:.85em;
+        font-family:'Noto Sans',sans-serif;
     }
 }
 

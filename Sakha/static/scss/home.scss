@@ -12,7 +12,6 @@ HOMEPAGE WHEN USER IS NOT LOGGED IN
     &--general--main {
         margin-top:4.6em;
         background-color:var(--home-logged-bg);
-        //background-image:linear-gradient(to top left,rgb(249, 255, 197), rgb(234, 255, 191));
         width:100%;
         display:grid;
         grid-template-columns:1fr;
@@ -38,7 +37,6 @@ HOMEPAGE WHEN USER IS NOT LOGGED IN
             text-transform:uppercase;
             font-size:2.3em;
             color:var(--h1-color);
-            // text-shadow:0 0 3px rgba(0,0,0,.35);
         }
         p {
             color:var(--nav-heading-color);
@@ -179,10 +177,10 @@ POST AUTHOR RELATED STYLING
         }
         span {
             line-height:1.2;
-            font-size:.75em;
+            font-size:.7em;
             display:block;
-            color:rgb(99, 97, 102);
-            font-weight:600;
+            color:rgb(73, 76, 89);
+            font-family:'Ubuntu',sans-serif;
         }
     }
 
@@ -258,10 +256,10 @@ POST ASSETS
         a {
             text-decoration:none;
             display:block;
-            color:#333;
-            font-family:'Nunito',sans-serif;
+            color:var(--label-color);
+            font-family:'Noto Sans',sans-serif;
             line-height:1.5;
-            font-size:1em;
+            font-size:1.1em;
             margin-bottom:.5em;
         }
     }
@@ -299,6 +297,7 @@ LIKE AND COMMENT BTNS
 
     span {
         font-size:.85em;
+        font-family:'Noto Sans',sans-serif;
     }
 }
 

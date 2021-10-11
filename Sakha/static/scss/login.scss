@@ -56,16 +56,16 @@ LOGIN FORM SECTION
         margin-bottom:1em;
 
        label {
-           text-transform:uppercase;
-           font-weight:500;
+           text-transform:capitalize;
            color:var(--label-color);
            line-height:1.35;
            letter-spacing:.05em;
+           font-size:1.2rem;
         }
        input {
            width:100%;
            padding:.6em .7em;
-           font-family:'Roboto',sans-serif;
+           font-family:'Noto Sans',sans-serif;
            letter-spacing:.75px;
            font-size:1em;
            font-weight:400;
@@ -81,9 +81,7 @@ LOGIN FORM SECTION
            }
         }
        span{
-            font-family:'Poppins',sans-serif;
             font-size:.7em;
-            font-weight:600;
             letter-spacing:.02em;
             color:rgb(206, 39, 39);
         }
@@ -95,8 +93,7 @@ LOGIN FORM SECTION
         margin-bottom:.8em;
 
         label {
-            text-transform:uppercase;
-           font-weight:500;
+            text-transform:capitalize;
            color:var(--label-color);
            line-height:1.35;
            margin-left:.6em;
@@ -115,7 +112,7 @@ LOGIN FORM SECTION
             width:100%;
             padding:.75em;
             font-weight:500;
-            font-family:'Poppins',sans-serif;
+            font-family:inherit;
             border:none;
             font-size:1em;
             letter-spacing:.05em;
@@ -154,7 +151,7 @@ LOGIN FORM SECTION
 .forgot__password {
     text-decoration:none;
     color:var(--general-color);
-    font-weight:700;
+    font-weight:600;
     display:inline-block;
 
     &:hover,
