@@ -121,6 +121,7 @@
 
 
                 <div class="post__footer">
+                    
                     {% if current_user.has_liked(post) %}
                     <button class="heart__btn heart__btn__active" data-postid = {{post.id}}>
                         <i class="fas fa-heart"></i>
@@ -128,13 +129,12 @@
                     <button class="heart__btn" data-postid = {{post.id}}>
                         <i class="far fa-heart"></i>
                     {% endif %}
-
                         <span style="color:rgb(63, 61, 79)">{{post.likes.count()}}</span>
                     </button>
 
-                    <a href="" class="comment__btn" title='Comment'>
-                        <i class="fas fa-comment-alt"></i>
-                        <span>10</span>
+                    <a href="{{url_for('complete_post',post_id=post.id)}}" class="comment__btn" title='Comment'>
+                        <i class="far fa-comment"></i>
+                        <span>{{post.comments.count()}}</span>
                     </a>
                 </div>
 

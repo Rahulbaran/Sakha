@@ -41,6 +41,7 @@ class User(UserMixin, db.Model):
                             secondaryjoin = (followers.c.followed_id == id),
                             backref = db.backref('followers', lazy='dynamic'), lazy='dynamic')
     liked = db.relationship('PostLike', backref='user', lazy='dynamic')
+    commenter = db.relationship('Comment', backref="commented_user", lazy="dynamic")
 
 
     def __repr__(self):
@@ -98,9 +99,10 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text)
     postImage = db.Column(db.String(100))
-    postDate = db.Column(db.DateTime, default=datetime.today)
+    postDate = db.Column(db.DateTime, default=datetime.utcnow)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     likes = db.relationship('PostLike',backref='post', lazy='dynamic')
+    comments = db.relationship('Comment', backref="commented_post", lazy='dynamic')
 
 
 
@@ -112,3 +114,12 @@ class PostLike(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
 
 
+
+
+class Comment(db.Model):
+    __tablename__ = "comments"
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'),nullable=False)
+    commenter_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)

@@ -6,8 +6,8 @@ from flask_login import login_user, logout_user, current_user, login_required
 from Sakha import app, db, mail, bcrypt
 from Sakha.form import LoginForm, RegistrationForm, NameUpdateForm, AboutUpdateForm,\
                        UniqueDetailsUpdateForm, UploadAvatarForm, PostForm, RequestPasswordResetForm \
-                       , ResetPasswordForm
-from Sakha.models import User,Post
+                       , ResetPasswordForm, CommentForm
+from Sakha.models import User, Post, Comment
 
 
 
@@ -333,9 +333,16 @@ def delete_post(post_id):
 @app.route('/complete_post/post-<int:post_id>', methods=['GET', 'POST'])
 @login_required
 def complete_post(post_id):
-    post = Post.query.filter_by(id=post_id).first()
-    return render_template('users/completePost.html', title='Complete Post', post=post)
-
+    post = Post.query.filter_by(id=post_id).first_or_404()
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = Comment(body = form.body.data, post_id=post.id, commenter_id=current_user.id)
+        db.session.add(comment)
+        db.session.commit()
+        return redirect(url_for('complete_post',post_id=post.id))
+    comments = Comment.query.filter_by(post_id=post.id).all()
+    return render_template('users/completePost.html', title='Complete Post', 
+                                                      post=post, form=form, comments=comments)
 
 
 
@@ -352,6 +359,7 @@ def like_action():
         current_user.like_post(post)
     db.session.commit()
     return {'totalLikes' : post.likes.count()}
+
 
 
 

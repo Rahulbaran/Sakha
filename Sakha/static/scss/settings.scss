@@ -121,7 +121,7 @@ FORMS STYLING
         span {
             font-size:.7em;
             letter-spacing:.02em;
-            color:rgb(206, 39, 39);
+            color:rgb(226, 21, 21);
         }
     }
    
@@ -150,9 +150,6 @@ FORMS STYLING
                 background-image:linear-gradient(to top, var(--btn-hover-color-1), var(--btn-hover-color-2));
             }
         }
-    }
-    ::placeholder {
-        font-style:italic;
     }
 }
 

@@ -1,4 +1,5 @@
 {% extends 'others/layout.html' %}
+
 {% block stylesheet %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/settings.css')}}">
 {% endblock %}
@@ -20,21 +21,22 @@
     </div>
 
 
+
     <!----------------------- Form for modifying firstname and lastname -------------------------->
-    <form method="post" class="nameForm form">
+    <form method="post" class="nameForm form" autocomplete="off">
         {{nameForm.hidden_tag()}}
 
         <div class="nameForm__name__group form__name__group">
             <div class="form__group">
                 {{nameForm.firstname.label}}
                 {{nameForm.firstname(placeholder="Enter your firstname", class="firstname__field")}}
-                <span class="field__error"></span>
+                <span class="firstname__error"></span>
             </div>
 
             <div class="form__group">
                 {{nameForm.lastname.label}}
                 {{nameForm.lastname(placeholder="Enter your lasttname", class="lastname__field")}}
-                <span class="field__error"></span>
+                <span class="lastname__error"></span>
             </div>
             
         </div>
@@ -46,18 +48,21 @@
     <!-- ___________________________________________________ -->
 
 
+
     <!----------------------- Form for modifying about_user details  -------------------------->
-    <form method="post" class="aboutForm form">
+    <form method="post" class="aboutForm form" autocomplete="off">
         {{aboutForm.hidden_tag()}}
 
         <div class="form__group">
             {{aboutForm.address.label}}
             {{aboutForm.address(class="address")}}
+            <span class="address__error"></span>
         </div>
 
         <div class="form__group">
             {{aboutForm.about_user.label}}
             {{aboutForm.about_user(class="about_user")}}
+            <span class="about__error"></span>
         </div>
 
 
@@ -68,8 +73,9 @@
     <!-- ___________________________________________________ -->
 
 
+
     <!-------------------------Form for modifying email id and username----------------------->
-    <form method="post" class="uniqueForm form">
+    <form method="post" class="uniqueForm form" autocomplete="off">
         {{uniqueForm.hidden_tag()}}
 
         <div class="form__group">

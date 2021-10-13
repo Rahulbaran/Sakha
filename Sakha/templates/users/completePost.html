@@ -9,7 +9,7 @@
 
     <article>
 
-        <div class="post__header">
+        <section class="post__header">
 
             <div class="post__author__container">
 
@@ -60,9 +60,9 @@
             </div>
             {% endif %}
 
-        </div>
+        </section>
 
-        <div class="post__body">
+        <section class="post__body">
 
             <div class="post__content__container">
                 <p>
@@ -76,9 +76,9 @@
             </div>
             {% endif %}
 
-        </div>
+        </section>
 
-        <div class="post__footer">
+        <section class="post__footer">
 
             {% if current_user.has_liked(post) %}
             <button class="heart__btn heart__btn__active" data-postid = {{post.id}}>
@@ -92,12 +92,74 @@
                 <span style="color:rgb(63, 61, 79)">{{post.likes.count()}}</span>
             </button>
 
-            <a href="" class="comment__btn" title='Comment'>
-                <i class="fas fa-comment-alt"></i>
-                <span>10</span>
-            </a>
+            <button class="comment__btn" title='Comment'>
+                <i class="far fa-comment"></i>
+                <span>{{post.comments.count()}}</span>
+            </button>
 
-        </div>
+        </section>
+
+
+        <section class="comments__container">
+
+            <!-------------- Current User Comment Form --------------->
+            <div class="current__user__comment__container">
+
+                <div class="current__user__avatar">
+                    <img src="{{url_for('static',filename='user-images/'+current_user.profile_pic)}}" alt="Your Profile Picture">
+                </div>
+
+                <form class="comment__form" method="POST" autocomplete="off">
+                    {{form.hidden_tag()}}
+                    {{form.body(placeholder="Write your comment")}}
+                    {{form.submit}}
+                </form>
+
+            </div>
+
+            <!-------------------- All Comments ----------------------->
+            <div class="user__comments___container">
+
+                {% for comment in comments %}
+                <div class="user__comment__wrapper">
+
+                    <div class="commented__user__section">
+
+                        <div class="user__info__section">
+                            <div class="user__image__wrapper">
+                                <img src="{{url_for('static',filename='user-images/'+comment.commented_user.profile_pic)}}" alt="Commentor">
+                            </div>
+
+                            <div class="commented__user__info">
+                                <a href="{{url_for('user_profile', user_id=comment.commenter_id)}}">{{comment.commented_user.firstname}}</a>
+                                <span>{{comment.timestamp.strftime('%d %b %Y')}}</span>
+                            </div>
+                        </div>
+                        
+                        {% if current_user == comment.commented_user %}
+                        <div class="comment__control__btns"> 
+                            <a href="" class="edit__comment__btn" title='Edit Comment'>
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form method="post" action="">
+                                <button type="submit" title="delete Comment" class="delete__comment__btn">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="commented__text">
+                        <p>{{comment.body}}</p>
+                    </div>
+
+                </div>
+                {% endfor %}
+
+            </div>
+
+        </section>
 
     </article>
 

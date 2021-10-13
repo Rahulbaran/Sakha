@@ -109,6 +109,13 @@ class PostForm(FlaskForm):
 
 
 
+class CommentForm(FlaskForm):
+    body = TextAreaField(validators=[Length(max = 1000, message = 'Upto 1000 characters are allowed')])
+    submit = SubmitField('Comment')
+
+
+
+
 class RequestPasswordResetForm(FlaskForm):
     email = StringField('Email Address', validators=[DataRequired(), Email(message='email  address should be valid')])
     submit = SubmitField('Request Password Reset')

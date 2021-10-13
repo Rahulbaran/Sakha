@@ -91,7 +91,7 @@ POST AUTHOR RELATED STYLING
             background-color:rgb(54, 179, 54);
         }
         span {
-            line-height:1.2;
+            line-height:1;
             font-size:.7em;
             display:block;
             color:rgb(73, 76, 89);
@@ -200,14 +200,163 @@ LIKE AND COMMENT BTNS
     border:none;
     background-color:transparent;
     font-size:1.5em;
-    cursor:pointer;
 
     span {
         font-size:.85em;
         font-family:'Noto Sans',sans-serif;
     }
 }
+.heart__btn {
+    cursor:pointer;
+}
 
 .heart__btn__active {
     color:var(--grad-color-1);
+}
+
+
+/**************************
+COMMENT ACTION STYLING
+************************/
+.current__user__comment__container {
+    @include flex(flex-start,flex-start);
+    border-top:1px solid #999;
+    border-bottom:1px solid #999;
+    padding:.75em 1em;
+}
+
+.current__user__avatar {
+    width:2.75em;
+    height:2.5em;
+    border-radius:50%;
+
+    img {
+        width:100%;
+        height:100%;
+        border-radius:50%;
+        object-fit:cover;
+        border:2px solid var(--general-color);
+    }
+}
+
+.comment__form {
+    width:100%;
+    margin-left:1em;
+    @include flex(flex-start,flex-start,column);
+
+    textarea {
+        width:100%;
+        resize:none;
+        border:none;
+        font-family:inherit;
+        outline:none;
+        font-size:.95em;
+        height:70px;
+    }
+    
+    input[type="submit"] {
+        align-self:flex-end;
+        font-family:inherit;
+        font-size:.85em;
+        padding:.4em .6em;
+        font-size:1em;
+        border-radius:.5em;
+        border:none;
+        background-color:var(--btn-color-2);
+        color:var(--color-white);
+        transition:box-shadow 200ms,transform 200ms;
+        
+        
+        &:hover,
+        &:focus {
+            box-shadow:7px 7px 10px -2px rgba(0,0,0,.6);
+            transform:translateY(-3px);
+            cursor:pointer;
+        }
+        &:active {
+            box-shadow:3px 3px 5px rgba(0,0,0,.4);
+            transform:translateY(-2px);
+        }
+    }
+}
+
+.user__comment__wrapper {
+    padding:.65em 1em;
+}
+.user__comment__wrapper:not(.user__comment__wrapper:last-child) {
+    border-bottom:1px solid #999;
+}
+
+.commented__user__section {
+    @include flex(space-between,flex-start);
+    margin-bottom:.5em;
+}
+
+.user__info__section {
+    @include flex(flex-start,flex-start);
+
+    a {
+        text-decoration:none;
+        font-size:.85em;
+        color:var(--h1-color);
+        line-height:1.3;
+        display:block;
+    
+        &:hover,
+        &:focus {
+            opacity:.65;
+        }
+    }
+    span {
+        line-height:1.3;
+        font-size:.7em;
+        display:block;
+        color:rgb(73, 76, 89);
+        font-family:'Ubuntu',sans-serif;
+    }
+}
+
+.user__image__wrapper {
+    width:2.5em;
+    height:2.5em;
+    border-radius:50%;
+    margin-right:.75em;
+
+    img {
+        width:100%;
+        height:100%;
+        border-radius:50%;
+        object-fit:cover;
+        border:2px solid var(--general-color);
+    }
+}
+
+.comment__control__btns {
+    @include flex(flex-end,flex-start);
+
+    a,
+    button {
+        color:#666;
+
+        &:hover,
+        &:focus {
+            color:#333;
+        }
+    }
+
+    button {
+        border:none;
+        background:transparent;
+        margin-left:.5em;
+        cursor:pointer;
+    }
+
+    a {
+        display:inline-block;
+    }
+}
+
+.commented__text p {
+    font-family:'Noto Sans',sans-serif;
+    line-height:1;
 }
