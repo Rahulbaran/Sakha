@@ -17,12 +17,12 @@
         {% if follower == current_user %}
         <div class="follower" style="grid-template-columns:1fr 2fr 1fr;">
 
-            <a class="follower__avatar__link" href="{{url_for('user_profile',user_id=follower.id)}}">
+            <a class="follower__avatar__link" href="{{url_for('usersbp.user_profile',user_id=follower.id)}}">
                 <img src="{{url_for('static',filename='user-images/'+follower.profile_pic)}}" alt="">
             </a>
 
             <div class="follower__name__wrapper">
-                <a href="{{url_for('user_profile',user_id=follower.id)}}">{{follower.firstname}} {{follower.lastname}}</a>
+                <a href="{{url_for('usersbp.user_profile',user_id=follower.id)}}">{{follower.firstname}} {{follower.lastname}}</a>
                 <h4>@{{follower.username}}</h4>
             </div>
 
@@ -32,12 +32,12 @@
         {% else %}
         <div class="follower">
 
-            <a class="follower__avatar__link" href="{{url_for('user_profile',user_id=follower.id)}}">
+            <a class="follower__avatar__link" href="{{url_for('usersbp.user_profile',user_id=follower.id)}}">
                 <img src="{{url_for('static',filename='user-images/'+follower.profile_pic)}}" alt="">
             </a>
 
             <div class="follower__name__wrapper">
-                <a href="{{url_for('user_profile',user_id=follower.id)}}">{{follower.firstname}} {{follower.lastname}}</a>
+                <a href="{{url_for('usersbp.user_profile',user_id=follower.id)}}">{{follower.firstname}} {{follower.lastname}}</a>
                 <h4>@{{follower.username}}</h4>
             </div>
 

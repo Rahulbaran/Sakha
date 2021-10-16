@@ -50,7 +50,7 @@
     <!--___________________Header of the application(includes logo and navigation bar)___________________-->
     <header class="header--section header--fixed">
 
-        <a href="{{url_for('home')}}" class="logo__link" title="Sakha logo">
+        <a href="{{url_for('mainbp.home')}}" class="logo__link" title="Sakha logo">
             <img src="{{url_for('static', filename='site-images/logo.png')}}" alt="Sakha Logo" class="logo__image">
             <p>Sa<span>kh</span>a</p>
         </a>
@@ -60,7 +60,7 @@
         <nav class="navigation">
 
             <div class="navigation__wrapper">
-                <a href="{{url_for('home')}}" class="navigation__link navigation__home__link" title="Home">
+                <a href="{{url_for('mainbp.home')}}" class="navigation__link navigation__home__link" title="Home">
                     <i class="fa fa-home"></i>
                 </a>
 
@@ -75,22 +75,22 @@
                 <h4>User Stuffs</h4>
 
 
-                <a href="{{url_for('profile')}}" class="navigation__link navigation__application__link">
+                <a href="{{url_for('usersbp.profile')}}" class="navigation__link navigation__application__link">
                     <i class="fas fa-user"></i>
                     <span>Profile</span>
                 </a>
 
-                <a href="{{url_for('create_post')}}" class="navigation__link navigation__application__link">
+                <a href="{{url_for('postsbp.create_post')}}" class="navigation__link navigation__application__link">
                     <i class="fas fa-plus-circle"></i>
                     <span>Create Post</span>
                 </a>
 
-                <a href="{{url_for('settings')}}" class="navigation__link navigation__application__link">
+                <a href="{{url_for('usersbp.settings')}}" class="navigation__link navigation__application__link">
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>
                 </a>
 
-                <a href="{{url_for('avatar')}}" class="navigation__link navigation__application__link"  style="margin-bottom:1em;">
+                <a href="{{url_for('usersbp.avatar')}}" class="navigation__link navigation__application__link"  style="margin-bottom:1em;">
                     <i class="fas fa-tshirt"></i>
                     <span>Avatar</span>
                 </a>
@@ -103,17 +103,17 @@
                     <span>Our Policies</span>
                 </a>
 
-                <a href="{{url_for('about_us')}}" class="navigation__link navigation__application__link">
+                <a href="{{url_for('mainbp.about_us')}}" class="navigation__link navigation__application__link">
                     <i class="fas fa-address-book"></i>
                     <span>About Us</span>
                 </a>
 
-                <a href="{{url_for('contact_us')}}" class="navigation__link navigation__application__link">
+                <a href="{{url_for('mainbp.contact_us')}}" class="navigation__link navigation__application__link">
                     <i class="fas fa-phone-alt"></i>
                     <span>Contact Us</span>
                 </a>
 
-                <a href="{{url_for('logout')}}" class="navigation__link navigation__application__link" 
+                <a href="{{url_for('usersbp.logout')}}" class="navigation__link navigation__application__link" 
                 style="border-top:.1em solid #666;width:100%;padding-top:.8em;margin-top:1em;">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
@@ -130,17 +130,17 @@
         <nav class="navigation">
 
             <div class="navigation__wrapper">
-                <a href="{{url_for('home')}}" class="navigation__link navigation__home__link" title="Home">
+                <a href="{{url_for('mainbp.home')}}" class="navigation__link navigation__home__link" title="Home">
                     <i class="fa fa-home"></i>
                 </a>
 
                 <div class="navigation__user__wrapper">
-                    <a href="{{url_for('register')}}" class="navigation__link navigation__user__link" title="Register">
+                    <a href="{{url_for('usersbp.register')}}" class="navigation__link navigation__user__link" title="Register">
                         <i class="fa fa-user-plus"></i>
                         <span>Register</span>
                     </a>
 
-                    <a href="{{url_for('login')}}" class="navigation__link navigation__user__link" title="Login">
+                    <a href="{{url_for('usersbp.login')}}" class="navigation__link navigation__user__link" title="Login">
                         <i class="fa fa-sign-in-alt"></i>
                         <span>Login</span>
                     </a>
@@ -160,12 +160,12 @@
                     <span>Our Policies</span>
                 </a>
 
-                <a href="{{url_for('about_us')}}" class="navigation__link navigation__application__link">
+                <a href="{{url_for('mainbp.about_us')}}" class="navigation__link navigation__application__link">
                     <i class="fas fa-address-book"></i>
                     <span>About Us</span>
                 </a>
 
-                <a href="{{url_for('contact_us')}}" class="navigation__link navigation__application__link">
+                <a href="{{url_for('mainbp.contact_us')}}" class="navigation__link navigation__application__link">
                     <i class="fas fa-phone-alt"></i>
                     <span>Contact Us</span>
                 </a>
@@ -208,7 +208,7 @@
     <footer class="footer--section">
 
         <div class="logo__wrapper">
-            <a href="{{url_for('home')}}" class="footer__logo__link" title="Sakha logo">
+            <a href="{{url_for('mainbp.home')}}" class="footer__logo__link" title="Sakha logo">
                 <img src="{{url_for('static', filename='site-images/logo.png')}}" alt="Sakha Logo" class="footer__logo__image">
                 <p>Sa<span>kh</span>a</p>
             </a>
@@ -222,41 +222,41 @@
                 <div class="footer__navigation">
 
                     <div class="footer__navigation__first">
-                        <a href="{{url_for('home')}}" class="footer__navigation__link" title="Home">
+                        <a href="{{url_for('mainbp.home')}}" class="footer__navigation__link" title="Home">
                             <i class="fa fa-home"></i>
                             <span>Home</span>
                         </a>
                         
                         {% if current_user.is_authenticated %}
-                            <a href="{{url_for('settings')}}" class="footer__navigation__link" title="Settings">
+                            <a href="{{url_for('usersbp.settings')}}" class="footer__navigation__link" title="Settings">
                                 <i class="fa fa-cog"></i>
                                 <span>Settings</span>
                             </a>
 
-                            <a href="{{url_for('profile')}}" class="footer__navigation__link" title="User Profile">
+                            <a href="{{url_for('usersbp.profile')}}" class="footer__navigation__link" title="User Profile">
                                 <i class="fa fa-user"></i>
                                 <span>Profile</span>
                             </a>
                         {% else %}
-                            <a href="{{url_for('register')}}" class="footer__navigation__link" title="Register">
+                            <a href="{{url_for('usersbp.register')}}" class="footer__navigation__link" title="Register">
                                 <i class="fa fa-user-plus"></i>
                                 <span>Register</span>
                             </a>
 
-                            <a href="{{url_for('login')}}" class="footer__navigation__link" title="Login">
+                            <a href="{{url_for('usersbp.login')}}" class="footer__navigation__link" title="Login">
                                 <i class="fa fa-sign-in-alt"></i>
                                 <span>Login</span>
                             </a>
                         {% endif %}
 
-                        <a href="{{url_for('about_us')}}" class="footer__navigation__link">
+                        <a href="{{url_for('mainbp.about_us')}}" class="footer__navigation__link">
                             <i class="fas fa-address-book"></i>
                             <span>About Us</span>
                         </a>
                     </div>
 
                     <div class="footer__navigation__second">
-                        <a href="{{url_for('contact_us')}}" class="footer__navigation__link">
+                        <a href="{{url_for('mainbp.contact_us')}}" class="footer__navigation__link">
                             <i class="fas fa-phone-alt"></i>
                             <span>Contact Us</span>
                         </a>

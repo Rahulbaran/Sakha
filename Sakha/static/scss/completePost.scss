@@ -122,11 +122,12 @@ POST BUTTONS RELATED STYLING
             top:-1em;
             right:-1em;
             width:8em;
-            background-color:rgb(243, 236, 255);
             padding:2em .75em 1em;
-            clip-path:polygon(var(--x, 100%) 0,100% 0,100% 100%,var(--x,100%) 100%);
-            transition:clip-path 200ms ease-in-out;
-    
+            display:none;
+            background-color:var(--color-white);
+            border-radius:.3em;
+            box-shadow:-4px 4px 6px rgba(0,0,0,.3);
+
             a {
                 font-size:.9em;
                 text-decoration:none;
@@ -157,9 +158,7 @@ POST BUTTONS RELATED STYLING
     }
 }
 
-.show__post__sidenav {
-    --x:0;
-}
+
 
 /***************************
 POST ASSETS
@@ -172,7 +171,7 @@ POST ASSETS
             color:var(--label-color);
             font-family:'Noto Sans',sans-serif;
             line-height:1.5;
-            font-size:1.1em;
+            font-size:1em;
             margin-bottom:.5em;
         }
     }
@@ -252,6 +251,12 @@ COMMENT ACTION STYLING
         outline:none;
         font-size:.95em;
         height:70px;
+    }
+
+    span{
+        font-size:.7em;
+        letter-spacing:.02em;
+        color:rgb(206, 39, 39);
     }
     
     input[type="submit"] {

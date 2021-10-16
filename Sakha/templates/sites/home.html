@@ -8,7 +8,17 @@
 
 <!--____________________________Homepage when user has logged in___________________________-->
 {% if current_user.is_authenticated %}
+
+<!------------- Create Post Button ------------------>
+<div class="create__post__link__container">
+    <a href="{{url_for('postsbp.create_post')}}" title="Create Post">
+        <i class="fas fa-plus"></i>
+    </a>
+</div>
+
+
 <main class="home__logged--main">
+
 
     <!-- ____________________________ALL POSTS_________________________________ -->
     <section class="home__logged__posts__container">
@@ -21,14 +31,14 @@
                 <div class="post__author__container">
 
                     <div class="post__author__img__wrapper">
-                        <a href="{{url_for('user_profile',user_id=post.author.id)}}" class="img__link" title='Post Author'>
+                        <a href="{{url_for('usersbp.user_profile',user_id=post.author.id)}}" title='Post Author'>
                             <img src="{{url_for('static',filename='user-images/'+post.author.profile_pic)}}" alt="Post Author Profile Picture" loading="lazy">
                         </a>
                     </div>
 
                     <div class="post__author__name__container">
                         <div>
-                            <a href="{{url_for('user_profile',user_id=post.author.id)}}" class="author__name" title='Post Author'>{{post.author.firstname}}</a>
+                            <a href="{{url_for('usersbp.user_profile',user_id=post.author.id)}}" class="author__name" title='Post Author'>{{post.author.firstname}}</a>
                             {% if post.author == current_user %}
                             <p class="current__user">You</p>
                             {% endif %}
@@ -52,12 +62,12 @@
                             <i class="fas fa-times"></i>
                         </button>
                         
-                        <a href="{{url_for('edit_post',post_id=post.id)}}" title='Edit Post'>
+                        <a href="{{url_for('postsbp.edit_post',post_id=post.id)}}" title='Edit Post'>
                             <i class="fas fa-edit"></i>
                             <span>Edit Post</span>
                         </a>
 
-                        <a href="{{url_for('delete_post',post_id=post.id)}}" title='Delete Post'>
+                        <a href="{{url_for('postsbp.delete_post',post_id=post.id)}}" title='Delete Post'>
                             <i class="fas fa-trash"></i>
                             <span>Delete Post</span>
                         </a>
@@ -72,14 +82,14 @@
             <div class="post__body">
 
                 <div class="post__content__container">
-                    <a href="{{url_for('complete_post',post_id=post.id)}}">
+                    <a href="{{url_for('postsbp.complete_post',post_id=post.id)}}">
                         {{post.content | truncate(250, False, '')}}
                     </a>
                 </div>
 
                 {% if post.postImage %}
                 <div class="post__image__container">
-                    <a href="{{url_for('complete_post',post_id=post.id)}}">
+                    <a href="{{url_for('postsbp.complete_post',post_id=post.id)}}">
                         <img src="{{url_for('static',filename='user-images/'+post.postImage)}}" alt="Post Image" loading="lazy">
                     </a>
                 </div>
@@ -98,7 +108,7 @@
                     <span style="color:rgb(63, 61, 79)">{{post.likes.count()}}</span>
                 </button>
 
-                <a href="{{url_for('complete_post', post_id=post.id)}}" class="comment__btn" title='Comment'>
+                <a href="{{url_for('postsbp.complete_post', post_id=post.id)}}" class="comment__btn" title='Comment'>
                     <i class="far fa-comment"></i>
                     <span>{{post.comments.count()}}</span>
                 </a>
@@ -116,16 +126,16 @@
     <section class="pagination__section">
         <!-- Previous Page if available -->
         {% if posts.has_prev %}
-        <a href="{{url_for('home', page=posts.prev_num)}}" class="other__page page">&lt;</a>
+        <a href="{{url_for('mainbp.home', page=posts.prev_num)}}" class="other__page page">&lt;</a>
         {% endif %}
         <!-- ------------- -->
 
         {% for page in posts.iter_pages(left_edge=1,left_current=1,right_edge=1,right_current=2) %}
         {% if page %}
         {% if page == posts.page %}
-        <a href="{{url_for('home', page=page)}}" class="current__page page">{{page}}</a>
+        <a href="{{url_for('mainbp.home', page=page)}}" class="current__page page">{{page}}</a>
         {% else %}
-        <a href="{{url_for('home', page=page)}}" class="other__page page">{{page}}</a>
+        <a href="{{url_for('mainbp.home', page=page)}}" class="other__page page">{{page}}</a>
         {% endif %}
         {% else %}
         .....
@@ -134,7 +144,7 @@
 
         <!-- Next Page if available -->
         {% if posts.has_next %}
-        <a href="{{url_for('home', page=posts.next_num)}}" class="other__page page">&gt;</a>
+        <a href="{{url_for('mainbp.home', page=posts.next_num)}}" class="other__page page">&gt;</a>
         {% endif %}
         <!-- ----------- -->
     </section>
@@ -158,9 +168,9 @@
         <h1>Welcome Folk</h1>
         <p>
             Sakha is a social network application which provides a completely new & unique experience about a social application.
-            You can checkout more about the application in <a href="{{url_for('about_us')}}" title="About Us">about us</a> section.
+            You can checkout more about the application in <a href="{{url_for('mainbp.about_us')}}" title="About Us">about us</a> section.
         </p>
-        <a href="{{url_for('login')}}" class="login__link">
+        <a href="{{url_for('usersbp.login')}}" class="login__link">
             <span>Get Started</span>
             <i class="fas fa-angle-double-right"></i>
         </a>

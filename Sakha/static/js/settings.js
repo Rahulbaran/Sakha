@@ -84,7 +84,7 @@ aboutForm.addEventListener('submit', e => {
     else {
         
         addressError.textContent = "";
-        aboutError.textContent = '';
+        aboutError.textContent = "";
 
         fetch('/updateAboutUser', {
             headers : {

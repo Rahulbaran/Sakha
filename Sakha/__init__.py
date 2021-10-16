@@ -21,10 +21,21 @@ bcrypt = Bcrypt(app)
 mail = Mail(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
-login_manager.login_view='login'
+login_manager.login_view='usersbp.login'
 login_manager.login_message = 'You should login to access the requested page'
 login_manager.login_message_category = 'info'
 
 
 
-from Sakha import routes
+
+
+
+# Register BluePrint
+from Sakha.mainbp.routes import mainbp
+from Sakha.usersbp.routes import usersbp
+from Sakha.postsbp.routes import postsbp
+from Sakha.errorsbp.handlers import handlers
+app.register_blueprint(mainbp)
+app.register_blueprint(usersbp)
+app.register_blueprint(postsbp)
+app.register_blueprint(handlers)

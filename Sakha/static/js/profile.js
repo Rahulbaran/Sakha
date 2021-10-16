@@ -21,13 +21,13 @@ const sideNavs = document.querySelectorAll('.post__related__btn__links');
 
 sideNavShowBtns.forEach((btn, index) => {
         btn.addEventListener('click',() => {
-        sideNavs[index].classList.add('show__post__sidenav');
+        sideNavs[index].style.display = 'block';
     });
 });
 
 sideNavHideBtns.forEach((btn, index) => {
         btn.addEventListener('click',() => {
-        sideNavs[index].classList.remove('show__post__sidenav');
+        sideNavs[index].style.display = 'none';
     });
 });
 

@@ -6,7 +6,6 @@
 {% block body %}
 <main class="complete--post--container">
 
-
     <article>
 
         <section class="post__header">
@@ -14,14 +13,14 @@
             <div class="post__author__container">
 
                 <div class="post__author__img__wrapper">
-                    <a href="{{url_for('user_profile',user_id=post.author.id)}}" class="img__link" title='Post Author'>
+                    <a href="{{url_for('usersbp.user_profile',user_id=post.author.id)}}" class="img__link" title='Post Author'>
                         <img src="{{url_for('static',filename='user-images/'+post.author.profile_pic)}}" alt="">
                     </a>
                 </div>
 
                 <div class="post__author__name__container">
                     <div>
-                        <a href="{{url_for('user_profile',user_id=post.author.id)}}" class="author__name" title='Post Author'>{{post.author.firstname}}</a>
+                        <a href="{{url_for('usersbp.user_profile',user_id=post.author.id)}}" class="author__name" title='Post Author'>{{post.author.firstname}}</a>
                         {% if post.author == current_user %}
                         <p class="current__user">You</p>
                         {% endif %}
@@ -45,12 +44,12 @@
                         <i class="fas fa-times"></i>
                     </button>
                     
-                    <a href="{{url_for('edit_post',post_id=post.id)}}" title='Edit Post'>
+                    <a href="{{url_for('postsbp.edit_post',post_id=post.id)}}" title='Edit Post'>
                         <i class="fas fa-edit"></i>
                         <span>Edit Post</span>
                     </a>
 
-                    <a href="{{url_for('delete_post',post_id=post.id)}}" title='Delete Post'>
+                    <a href="{{url_for('postsbp.delete_post',post_id=post.id)}}" title='Delete Post'>
                         <i class="fas fa-trash"></i>
                         <span>Delete Post</span>
                     </a>
@@ -111,14 +110,15 @@
 
                 <form class="comment__form" method="POST" autocomplete="off">
                     {{form.hidden_tag()}}
-                    {{form.body(placeholder="Write your comment")}}
+                    {{form.body(placeholder="Write your comment", spellcheck="false")}}
+                    <span></span>
                     {{form.submit}}
                 </form>
 
             </div>
 
             <!-------------------- All Comments ----------------------->
-            <div class="user__comments___container">
+            <div class="user__comments__container">
 
                 {% for comment in comments %}
                 <div class="user__comment__wrapper">
@@ -131,23 +131,24 @@
                             </div>
 
                             <div class="commented__user__info">
-                                <a href="{{url_for('user_profile', user_id=comment.commenter_id)}}">{{comment.commented_user.firstname}}</a>
+                                <a href="{{url_for('usersbp.user_profile', user_id=comment.commenter_id)}}">{{comment.commented_user.firstname}}</a>
                                 <span>{{comment.timestamp.strftime('%d %b %Y')}}</span>
                             </div>
                         </div>
                         
-                        {% if current_user == comment.commented_user %}
-                        <div class="comment__control__btns"> 
-                            <a href="" class="edit__comment__btn" title='Edit Comment'>
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <form method="post" action="">
+                        
+                        {% if current_user == comment.commented_user or current_user == post.author %} 
+                        <div class="comment__control__btns">
+
+                            <form method="post" action="{{url_for('postsbp.delete_comment', comment_id=comment.id)}}">
                                 <button type="submit" title="delete Comment" class="delete__comment__btn">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
+        
                         </div>
                         {% endif %}
+                        
                     </div>
 
                     <div class="commented__text">
@@ -171,4 +172,55 @@
 
 {% block script %}
 <script src="{{url_for('static', filename='minjs/layoutHome.js')}}"></script>
+
+<script>
+
+    const commentField = document.querySelector('.comment__form textarea');
+    const commentForm = document.querySelector('.comment__form');
+    const commentsContainer = document.querySelector('.user__comments__container');
+    const totalComments = document.querySelector('.comment__btn span');
+    const error = document.querySelector('.comment__form span');
+
+
+    commentForm.addEventListener('submit', e => {
+        e.preventDefault();
+
+        if(commentField.value.length > 2000) {
+            error.textContent = 'Upto 2000 characters are allowed';
+            return;
+        }
+
+        fetch('{{url_for("postsbp.complete_post", post_id=post.id)}}', {
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            method : 'POST',
+            body : JSON.stringify({
+                'comment_text': commentField.value
+            })  
+        })
+        .then(res => {
+
+            if(res.status >= 200 && res.status < 400) {
+                res.json()
+                .then(res => {
+
+                    const html = `<div class="user__comment__wrapper"><div class="commented__user__section"><div class="user__info__section"><div class="user__image__wrapper">
+                                <img src="../../static/user-images/${res.commenter_avatar}" alt="Commentor"></div><div class="commented__user__info">
+                                <a href="/user_profile/${res.commenter_id}">${res.firstname}</a><span>${res.time}</span></div></div><div class="comment__control__btns">
+                                <form method="post" action="/delete_comment/${res.comment_id}"><button type="submit" title="delete Comment" class="delete__comment__btn">
+                                <i class="fas fa-trash"></i></button></form></div></div><div class="commented__text"><p>${res.comment_body}</p></div></div>`;
+                    
+                    commentsContainer.insertAdjacentHTML('afterbegin', html);
+                    totalComments.textContent = res.total_comments;
+                    commentField.value = '';
+                });
+            }
+            else {
+                throw Error('Something went wrong');
+            }
+        })
+    });
+
+</script>
 {% endblock script %}

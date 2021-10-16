@@ -60,7 +60,7 @@ LOGIN FORM SECTION
            color:var(--label-color);
            line-height:1.35;
            letter-spacing:.05em;
-           font-size:1.2rem;
+           font-size:1.1em;
         }
        input {
            width:100%;
@@ -98,10 +98,10 @@ LOGIN FORM SECTION
            line-height:1.35;
            margin-left:.6em;
            letter-spacing:.05em;
+           font-size:1.1em;
         }
     }
     &__submit__group {
-       
         margin-bottom:1em;
 
         input[type="submit"] {

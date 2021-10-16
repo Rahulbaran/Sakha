@@ -18,12 +18,12 @@
         {% for following in current_user.followed %}
         <div class="following">
 
-            <a class="following__avatar__link" href="{{url_for('user_profile',user_id=following.id)}}">
+            <a class="following__avatar__link" href="{{url_for('usersbp.user_profile',user_id=following.id)}}">
                 <img src="{{url_for('static',filename='user-images/'+following.profile_pic)}}" alt="">
             </a>
 
             <div class="following__name__wrapper">
-                <a href="{{url_for('user_profile',user_id=following.id)}}">{{following.firstname}} {{following.lastname}}</a>
+                <a href="{{url_for('usersbp.user_profile',user_id=following.id)}}">{{following.firstname}} {{following.lastname}}</a>
                 <h4>@{{following.username}}</h4>
             </div>
 

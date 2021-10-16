@@ -114,12 +114,12 @@ class PostLike(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
 
 
-
+ 
 
 class Comment(db.Model):
-    __tablename__ = "comments"
+    __tablename__ = "comment"
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.Text, nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
-    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'),nullable=False)
-    commenter_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    commenter_id = db.Column(db.Integer, db.ForeignKey('users.id'))

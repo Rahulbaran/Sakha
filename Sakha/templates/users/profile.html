@@ -5,14 +5,22 @@
 {% endblock stylesheet %}
 
 {% block body %}
-<main class="profile--main--container">
 
+<!------------- Create Post lnk ------------------>
+<div class="create__post__link__container">
+    <a href="{{url_for('postsbp.create_post')}}" title="Create Post">
+        <i class="fas fa-plus"></i>
+    </a>
+</div>
+
+
+<main class="profile--main--container">
 
     <!-- __________________________User pictures_____________________________ -->
     <section class="profile__sub__container__one">
 
         <div class="profile__header__img__container">
-            <a href="{{url_for('avatar')}}" title='Update Header'>
+            <a href="{{url_for('usersbp.avatar')}}" title='Update Header'>
                 <img src="{{url_for('static', filename='user-images/'+current_user.header_pic)}}" alt="Profile Header Image" class="header__img">
             </a>
         </div>
@@ -20,7 +28,7 @@
         <div class="profile__avatar__img__container">
 
             <div class="avatar__container">
-                <a href="{{url_for('avatar')}}" title='Update Profile Image'>
+                <a href="{{url_for('usersbp.avatar')}}" title='Update Profile Image'>
                     <img src="{{url_for('static', filename='user-images/'+current_user.profile_pic)}}" alt="Profile Avatar" class="avatar">
                 </a>
                 <h2>{{current_user.firstname}} {{current_user.lastname}}</h2>
@@ -32,12 +40,12 @@
             </button>
 
             <nav class="profile__navigation profile__navigation__hidden">
-                <a href="{{url_for('settings')}}" class="profile__navigation__link">
+                <a href="{{url_for('usersbp.settings')}}" class="profile__navigation__link">
                     <i class="fas fa-edit"></i>
                     <span>Edit Profile</span>
                 </a>
         
-                <a href="{{url_for('create_post')}}" class="profile__navigation__link">
+                <a href="{{url_for('postsbp.create_post')}}" class="profile__navigation__link">
                     <i class="fas fa-plus-circle"></i>
                     <span>CREATE POST</span>
                 </a>
@@ -76,8 +84,8 @@
         </div>
 
         <div class="follow__details__container">
-            <a href="{{url_for('followers_list')}}" class="followers__btn">{{current_user.followers.count()}} Followers</a>
-            <a href="{{url_for('following_list')}}" class="following__btn">{{current_user.followed.all() | length}} Following</a>
+            <a href="{{url_for('usersbp.followers_list')}}" class="followers__btn">{{current_user.followers.count()}} Followers</a>
+            <a href="{{url_for('usersbp.following_list')}}" class="following__btn">{{current_user.followed.all() | length}} Following</a>
         </div>
 
     </section>
@@ -126,12 +134,12 @@
                                 <i class="fas fa-times"></i>
                             </button>
                             
-                            <a href="{{url_for('edit_post',post_id=post.id)}}" title='Edit Post'>
+                            <a href="{{url_for('postsbp.edit_post',post_id=post.id)}}" title='Edit Post'>
                                 <i class="fas fa-edit"></i>
                                 <span>Edit Post</span>
                             </a>
 
-                            <a href="{{url_for('delete_post',post_id=post.id)}}" title='Delete Post'>
+                            <a href="{{url_for('postsbp.delete_post',post_id=post.id)}}" title='Delete Post'>
                                 <i class="fas fa-trash"></i>
                                 <span>Delete Post</span>
                             </a>
@@ -145,14 +153,14 @@
                 <div class="post__body">
 
                     <div class="post__content__container">
-                        <a href="{{url_for('complete_post',post_id=post.id)}}">
+                        <a href="{{url_for('postsbp.complete_post',post_id=post.id)}}">
                             {{post.content | truncate(250, False, '')}}
                         </a>
                     </div>
 
                     {% if post.postImage %}
                     <div class="post__image__container">
-                        <a href="{{url_for('complete_post',post_id=post.id)}}">
+                        <a href="{{url_for('postsbp.complete_post',post_id=post.id)}}">
                             <img src="{{url_for('static',filename='user-images/'+post.postImage)}}" alt="Post Image">
                         </a>
                     </div>
@@ -172,7 +180,7 @@
                         <span style="color:rgb(63, 61, 79)">{{post.likes.count()}}</span>
                     </button>
 
-                    <a href="{{url_for('complete_post', post_id=post.id)}}" class="comment__btn" title='Comment'>
+                    <a href="{{url_for('postsbp.complete_post', post_id=post.id)}}" class="comment__btn" title='Comment'>
                         <i class="far fa-comment"></i>
                         <span>{{post.comments.count()}}</span>
                     </a>
@@ -193,16 +201,16 @@
 
         <!-- Previous Page if available -->
         {% if posts.has_prev %}
-        <a href="{{url_for('profile', page=posts.prev_num)}}" class="other__page page">&lt;</a>
+        <a href="{{url_for('usersbp.profile', page=posts.prev_num)}}" class="other__page page">&lt;</a>
         {% endif %}
         <!-- ------------- -->
 
         {% for page in posts.iter_pages(left_edge=1,left_current=1,right_edge=1,right_current=2) %}
         {% if page %}
         {% if page == posts.page %}
-        <a href="{{url_for('profile', page=page)}}" class="current__page page">{{page}}</a>
+        <a href="{{url_for('usersbp.profile', page=page)}}" class="current__page page">{{page}}</a>
         {% else %}
-        <a href="{{url_for('profile', page=page)}}" class="other__page page">{{page}}</a>
+        <a href="{{url_for('usersbp.profile', page=page)}}" class="other__page page">{{page}}</a>
         {% endif %}
         {% else %}
         .....
@@ -211,7 +219,7 @@
 
         <!-- Next Page if available -->
         {% if posts.has_next %}
-        <a href="{{url_for('profile', page=posts.next_num)}}" class="other__page page">&gt;</a>
+        <a href="{{url_for('usersbp.profile', page=posts.next_num)}}" class="other__page page">&gt;</a>
         {% endif %}
         <!-- ----------- -->
 

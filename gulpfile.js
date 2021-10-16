@@ -5,6 +5,8 @@ const cssnano = require('cssnano');
 const terser = require('gulp-terser');
 const concat = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
+const autoprefixer = require('autoprefixer');
+
 
 
 
@@ -12,7 +14,9 @@ const sourcemaps = require('gulp-sourcemaps');
 function scssTask(){
     return src('Sakha/static/scss/*.scss')
     .pipe(sass())
-    .pipe(postcss([cssnano()]))
+    .pipe(sourcemaps.init())
+    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe(sourcemaps.write('./'))
     .pipe(dest('Sakha/static/css'));
 }
 
@@ -90,9 +94,9 @@ function layoutUserProfileJS() {
 
 //Task ---> Watch the changes made in SCSS and JS
 function watchTask() {
-    watch(['Sakha/static/js/*.js', 'Sakha/static/scss/*.scss'], 
-            series(scssTask, minifyJS, layoutFollowersJS, layoutHomeJS, 
-                    layoutProfileJS, layoutSettingsJS, layoutUserProfileJS));
+    watch('Sakha/static/js/*.js', series(minifyJS, layoutFollowersJS, layoutHomeJS, 
+                                        layoutProfileJS, layoutSettingsJS, layoutUserProfileJS));
+    watch('Sakha/static/scss/*.scss', scssTask);
 }
 
 

@@ -4,6 +4,33 @@
     align-items:$align;
     flex-direction:$dir;
 }
+
+
+.create__post__link__container {
+    position:fixed;
+    bottom:15px;
+    right:20px;
+
+    a { 
+        text-decoration:none;
+        background-color:var(--general-color);
+        padding:.85em 1.1em;
+        border-radius:50%;
+        display:block;
+        box-shadow:0 4px 10px 2px rgba(0,0,0,.5);
+        transition:transform 150ms linear;
+
+        i {
+            color:var(--color-white);
+            font-size:1.45em;
+        }
+        &:hover,
+        &:focus {
+            transform:scale(.96);
+        }
+    }
+}  
+
 /************************
 PROFILE SUB SECTION 2
 *************************/
@@ -277,15 +304,16 @@ POST BUTTONS RELATED STYLING
         }
         
         div {
-            @include flex(center, flex-start,column);
+            @include flex(center, flex-start, column);
             position:absolute;
             top:-1em;
             right:-1em;
             width:8em;
-            background-color:rgb(243, 236, 255);
+            box-shadow:-4px 4px 6px rgba(0,0,0,.3);
             padding:2em .75em 1em;
-            clip-path:polygon(var(--x, 100%) 0,100% 0,100% 100%,var(--x,100%) 100%);
-            transition:clip-path 200ms ease-in-out;
+            display:none;
+            background-color:var(--color-white);
+            border-radius:.3em;
 
             a {
                 font-size:.9em;
@@ -317,9 +345,7 @@ POST BUTTONS RELATED STYLING
     }
 }
 
-.show__post__sidenav {
-    --x:0;
-}
+
 
 /***************************
 POST ASSETS
@@ -334,7 +360,7 @@ POST ASSETS
             color:var(--label-color);
             font-family:'Noto Sans',sans-serif;
             line-height:1.5;
-            font-size:1.1em;
+            font-size:1em;
             margin-bottom:.5em;
         }
     }

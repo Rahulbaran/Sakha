@@ -88,7 +88,7 @@ APPLICATION HEADER
     &--fixed {
         width:100%;
         top:0;
-        position:fixed;
+        position:absolute;
         z-index:100;
     }
 }
@@ -185,9 +185,9 @@ Navigation when user is not logged in
     }
 
     &__application__stuffs {
-        top:4.6em;
+        top:4.675em;
         right:0;
-        position:fixed;
+        position:absolute;
         background-color:var(--header-color);
         @include flex(center,flex-start,column);
         padding:1em 1.5em;

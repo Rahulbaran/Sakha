@@ -1,7 +1,7 @@
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, RecaptchaField
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, SubmitField, BooleanField, PasswordField, RadioField, TextAreaField
-from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError, Regexp
+from wtforms import StringField, TextAreaField, SubmitField, PasswordField, RadioField, BooleanField
+from wtforms.validators import DataRequired, Length, EqualTo, Regexp, ValidationError, Email
 from flask_login import current_user
 from Sakha.models import User
 
@@ -18,6 +18,7 @@ class RegistrationForm(FlaskForm):
     gender = RadioField('Gender', choices=[('Female', 'Female'), ('Male', 'Male'), ('Others', 'Others')], validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8, max=100, message='password should be atleast 8 characters long')])
     reenter_password = PasswordField('Reenter Password', validators=[EqualTo('password', message='reentered password should be similar to password')])
+    recaptcha = RecaptchaField()
     submit = SubmitField('Create New Account')
 
 
@@ -67,7 +68,6 @@ class AboutUpdateForm(FlaskForm):
 
 
 
-
 class UniqueDetailsUpdateForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=5, max=30, message='username should be atleast 5 characters long'),
                                                     Regexp(r'^[a-zA-Z0-9]+$' ,message = 'username should contain only alphabats and numbers')])
@@ -96,22 +96,6 @@ class UploadAvatarForm(FlaskForm):
     header_pic = FileField('Header Image', validators=[FileAllowed(['jpg','png','gif','svg', 'jpeg'],
                                                         message='Image with extension jpg/png/gif/svg is only allowed')])
     submit = SubmitField('Upload')
-
-
-
-
-class PostForm(FlaskForm):
-    content=TextAreaField('Content', validators=[Length(max = 5000, message = 'Upto 5000 characters are allowed')])
-    postImage = FileField('Upload Image', validators=[FileAllowed(['jpg','png','gif','svg', 'jpeg'],
-                                                        message = 'Image with extension jpg/png/gif/svg is only allowed')])
-    submit = SubmitField('Post')
-
-
-
-
-class CommentForm(FlaskForm):
-    body = TextAreaField(validators=[Length(max = 1000, message = 'Upto 1000 characters are allowed')])
-    submit = SubmitField('Comment')
 
 
 
