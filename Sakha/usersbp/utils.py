@@ -1,14 +1,14 @@
 import secrets, os
 from PIL import Image
-from flask import url_for
+from flask import url_for, current_app
 from flask_mail import Message
-from Sakha import mail, app
+from Sakha import mail
 
 
 
 
 def registration_mail(user):
-    msg = Message('Registration Successful', sender=('Team Sakha',app.config['MAIL_USERNAME']), recipients=[user.email])
+    msg = Message('Registration Successful', sender=('Team Sakha', current_app.config['MAIL_USERNAME']), recipients=[user.email])
     msg.html = f'''<h1>🎊 Congratulation {user.firstname + ' ' + user.lastname}</h1>
 <p>You have created a brand new account in our platform and we are glad to get you as a new user and welcome you on </b>Sakha</b>.</p>
 <p>You can login using the <a href="http://127.0.0.1:5000/login" target="_blank" rel="noreferrer noopener">link</a>.</p>'''
@@ -20,7 +20,7 @@ def save_avatar(pic):
     random_hex = secrets.token_hex(16)
     _, ext = os.path.splitext(pic.filename)
     mod_pic = random_hex + ext
-    path = os.path.join(app.config['UPLOAD_PATH'], 'static', 'user-images', mod_pic)
+    path = os.path.join(current_app.config['UPLOAD_PATH'], 'static', 'user-images', mod_pic)
 
     img_size = (250,250)
     img = Image.open(pic)
@@ -34,7 +34,7 @@ def save_header(pic):
     random_hex = secrets.token_hex(16)
     _, ext = os.path.splitext(pic.filename)
     mod_pic = random_hex + ext
-    path = os.path.join(app.config['UPLOAD_PATH'], 'static', 'user-images', mod_pic)
+    path = os.path.join(current_app.config['UPLOAD_PATH'], 'static', 'user-images', mod_pic)
 
     img_size = (1500,1500)
     img = Image.open(pic)
@@ -46,7 +46,7 @@ def save_header(pic):
 
 def delete_pic(file):
     if file != 'default.png' and file != 'header.jpg':
-        path = os.path.join(app.config['UPLOAD_PATH'], 'static', 'user-images', file)
+        path = os.path.join(current_app.config['UPLOAD_PATH'], 'static', 'user-images', file)
         try:
             os.remove(path)
         except:

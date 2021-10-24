@@ -1,13 +1,7 @@
 # import os
-from Sakha import app
-# from Sakha.config import DevelopmentConfig, ProductionConfig
+from Sakha import create_app
 
-
-# env = os.getenv('ENV')
-
-# if env == 'dev': app.config.from_object(DevelopmentConfig)
-# elif env == 'prod': app.config.from_object(ProductionConfig)
-
+app = create_app()
 
 if __name__=="__main__":
     app.run(debug=True, port=5000)
