@@ -17,7 +17,7 @@
 
     <div class="settings__heading__container">
         <h1 class="settings__heading">Account Settings</h1>
-        <p>Hello {{current_user.firstname}}, You can update your account details here.</p>
+        <p>Hello {{current_user.firstname | capitalize}} {{current_user.lastname | capitalize}}, You can update your account details here.</p>
     </div>
 
 

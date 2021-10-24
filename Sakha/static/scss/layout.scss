@@ -1,6 +1,6 @@
 $font-primary:'Lora',sans-serif;
 $font-secondary:'Poppins',sans-serif;
-$font-tertiary:'Poppins',sans-serif;
+$font-tertiary:'Ubuntu',sans-serif;
 @mixin flex($just,$align,$dir:row) {
     display:flex;
     justify-content:$just;
@@ -10,10 +10,10 @@ $font-tertiary:'Poppins',sans-serif;
 
 :root {
     --header-color:#F3F0D7;
-    --general-color:rgb(120, 73, 231);
-    --body-bg-1:#70555c;
-    --body-bg-2:#745058;
-    --body-bg-3:#643a44;
+    --general-color:rgb(97, 40, 230);
+    --body-bg-1:#ff92a3;
+    --body-bg-2:#fa7286;
+    --body-bg-3:#ef7c8e;
     --logo-color-1:hsl(199, 100%, 10%);
     --logo-color-2:rgb(192, 36, 8);
     --footer-link-color:#222;
@@ -21,18 +21,18 @@ $font-tertiary:'Poppins',sans-serif;
     --warning-color:rgb(158, 0, 0);
     --info-color:rgb(0, 33, 141);
     --nav-border-color:rgb(132, 104, 163);
-    --nav-heading-color:#444;
+    --nav-heading-color:#333;
     --home-logged-bg:#CEE5D0;
     --color-white:#fff;
     --color-black:#000;
     --followers-bg-color:#D8B384;
     --color-yellow:yellow;
     --input-color:rgb(248, 248, 248);
-    --btn-color-1:rgb(177, 24, 185);
+    --btn-color-1:rgb(148, 46, 221);
     --btn-color-2:rgb(128, 66, 199);
     --createPost-btn-1:#5E454B;
     --createPost-btn-2:#5E454B;
-    --btn-hover-color-1:rgb(216, 10, 226);
+    --btn-hover-color-1:rgb(118, 13, 204);
     --btn-hover-color-2:rgb(109, 47, 255);
     --grad-color-1:rgb(255, 47, 0);
     --grad-color-2:rgb(131, 83, 226);
@@ -67,7 +67,7 @@ body {
     background-image:linear-gradient(to top right, var(--body-bg-1), var(--body-bg-2), var(--body-bg-3));
     background-attachment: fixed;
     background-size: contain;
-    font:500 1em/1.6 $font-tertiary;
+    font:500 1em/1.6 $font-secondary;
 }
 
 ::selection {
@@ -81,14 +81,14 @@ APPLICATION HEADER
 .header {
     &--section {
         background-color:var(--header-color);
-        padding:.8em;
+        padding:.75em;
         @include flex(space-between, center);
-        box-shadow:0 6px 15px rgba(0,0,0,.15);
+        box-shadow:0 8px 13px rgba(0,0,0,.25);
     }
     &--fixed {
         width:100%;
         top:0;
-        position:absolute;
+        position:fixed;
         z-index:100;
     }
 }
@@ -185,21 +185,18 @@ Navigation when user is not logged in
     }
 
     &__application__stuffs {
-        top:4.675em;
+        top:4.55em;
         right:0;
-        position:absolute;
+        position:fixed;
         background-color:var(--header-color);
         @include flex(center,flex-start,column);
         padding:1em 1.5em;
-        border-top:2px solid var(--nav-border-color);
-        border-bottom-left-radius:.25em;
-        border-bottom-right-radius:.25em;
-        box-shadow:-8px 8px 15px rgba(0,0,0,.25);
+        border-top:1px solid var(--nav-border-color);
+        box-shadow:-8px 8px 15px rgba(0,0,0,.3);
         transform:translateX(20em);
         opacity:0;
-        transition:transform 400ms ease-in-out,opacity 500ms ease;
+        transition:transform 400ms ease-in-out,opacity 400ms ease;
     
-
         h4 {
             font-weight:700;
             font-family:'Nunito',sans-serif;
@@ -216,7 +213,6 @@ Navigation when user is not logged in
     &__application__show__stuffs {
         transform:translateX(0);
         opacity:1;
-
     }
     &__application__link {
         margin-bottom:.35em;
@@ -256,7 +252,7 @@ Navigation when user is logged in
             width:3.2em;
             object-fit:cover;
             border-radius:50%;
-            border:.15em solid currentColor;
+            border:2px solid currentColor;
             margin-right:.75em;
             
         }

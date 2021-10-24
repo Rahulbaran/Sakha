@@ -80,15 +80,14 @@ POST AUTHOR RELATED STYLING
                 opacity:.65;
             }
         }
-        .current__user {
-            margin-left:1.5em;
-            padding:.15em .8em;
-            border-radius:.75em;
-            text-align:center;
+        .current__user__label {
+            display:block;
+            margin-left:1em;
+            padding:1px 8px;
+            border-radius:3px;
             color:var(--color-white);
-            font-size:.75em;
-            letter-spacing:.03em;
-            background-color:rgb(54, 179, 54);
+            font-size:.7em;
+            background-color:rgb(123, 25, 221);
         }
         span {
             line-height:1;

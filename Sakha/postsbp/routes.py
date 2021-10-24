@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request,
 from flask_login import login_required, current_user
 from Sakha import db
 from Sakha.models import Post, Comment
-from Sakha.postsbp.form import PostForm, CommentForm
+from Sakha.postsbp.form import CreatePostForm, EditPostForm, CommentForm
 from Sakha.postsbp.utils import save_post_pic
 from Sakha.usersbp.utils import delete_pic
 
@@ -17,7 +17,7 @@ postsbp = Blueprint('postsbp', __name__)
 @postsbp.route('/create_post', methods=['GET', 'POST'])
 @login_required
 def create_post():
-    form = PostForm()
+    form = CreatePostForm()
     if form.validate_on_submit():
         if form.postImage.data:
             pic = save_post_pic(form.postImage.data)
@@ -37,7 +37,7 @@ def create_post():
 @postsbp.route('/edit_post/post-<int:post_id>', methods=['GET','POST'])
 @login_required
 def edit_post(post_id):
-    form = PostForm()
+    form = EditPostForm()
     post = Post.query.filter_by(id=post_id).first_or_404()
     if post.author != current_user:
         abort(403)

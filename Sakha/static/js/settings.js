@@ -21,6 +21,8 @@ const lastname = document.querySelector('.lastname__field');
 const nameForm = document.querySelector('.nameForm');
 const firstnameError = document.querySelector('.firstname__error');
 const lastnameError = document.querySelector('.lastname__error');
+const headingContainerPara = document.querySelector('.settings__heading__container p');
+
 
 
 nameForm.addEventListener('submit', e => {
@@ -49,8 +51,22 @@ nameForm.addEventListener('submit', e => {
                 'lastname':lastname.value
             })
         })
-        .then(res => res.text()).then(res => res)
-        .catch(res => console.log(res.text()))
+        .then(res => {
+
+            if(res.status >= 200 && res.status < 400){
+                res.json()
+                .then(res => {
+                    headingContainerPara.textContent = `Hello ${res.firstname} ${res.lastname}, 
+                                                        You can update your account details here.`;
+                }); 
+            }
+            else {
+                throw Error(`${res.status} Something went wrong`);
+            }
+        })
+        .catch(res => {
+            throw Error(`${res.status}  Something went wrong`);
+        })
     
         msgContainer.classList.remove('message--hide');
     }
@@ -96,9 +112,20 @@ aboutForm.addEventListener('submit', e => {
                 'address':address.value
             })
         })
-        .then(res => res.text()).then(res => res)
-        .catch(res => console.log(res.text()))
+        .then(res => {
+            if(res.status >= 200 && res.status < 400) {
+                res.text().then(res => res);
+            }
+            else {
+                throw Error(`${res.status} Something went wrong`);
+            }
+        })
+        .catch(res => {
+            throw Error(`${res.status} Something went wrong`);
+        })
     }
     
     msgContainer.classList.remove('message--hide');
 });
+
+

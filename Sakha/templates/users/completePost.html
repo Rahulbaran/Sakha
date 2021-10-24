@@ -22,7 +22,7 @@
                     <div>
                         <a href="{{url_for('usersbp.user_profile',user_id=post.author.id)}}" class="author__name" title='Post Author'>{{post.author.firstname}}</a>
                         {% if post.author == current_user %}
-                        <p class="current__user">You</p>
+                        <p class="current__user__label">You</p>
                         {% endif %}
                     </div>
 

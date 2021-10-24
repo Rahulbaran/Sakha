@@ -5,12 +5,19 @@ from wtforms.validators import Length
 
 
 
-class PostForm(FlaskForm):
+class CreatePostForm(FlaskForm):
     content=TextAreaField('Content', validators=[Length(max = 5000, message = 'Upto 5000 characters are allowed')])
     postImage = FileField('Upload Image', validators=[FileAllowed(['jpg','png','gif','svg', 'jpeg'],
                                                         message = 'Image with extension jpg/png/gif/svg is only allowed')])
-    submit = SubmitField('Post')
+    submit = SubmitField('Create Post')
 
+
+
+class EditPostForm(FlaskForm):
+    content=TextAreaField('Content', validators=[Length(max = 5000, message = 'Upto 5000 characters are allowed')])
+    postImage = FileField('Upload Image', validators=[FileAllowed(['jpg','png','gif','svg', 'jpeg'],
+                                                        message = 'Image with extension jpg/png/gif/svg is only allowed')])
+    submit = SubmitField('Update Post')
 
 
 

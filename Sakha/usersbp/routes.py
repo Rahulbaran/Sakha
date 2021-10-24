@@ -94,7 +94,10 @@ def updateName():
     current_user.firstname=data.get('firstname')
     current_user.lastname = data.get('lastname')
     db.session.commit()
-    return 'OK',200
+    return {
+        'firstname' : current_user.firstname.capitalize(),
+        'lastname' : current_user.lastname.capitalize()
+    }
 
 
 
