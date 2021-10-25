@@ -4,6 +4,7 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
+from flask_moment import Moment
 from Sakha.config import DevelopmentConfig, ProductionConfig, TestingConfig
 
 
@@ -13,6 +14,7 @@ db = SQLAlchemy()
 bcrypt = Bcrypt()
 mail = Mail()
 migrate = Migrate(db)
+moment = Moment()
 login_manager = LoginManager()
 login_manager.login_view='usersbp.login'
 login_manager.login_message = 'You should login to access the requested page'
@@ -37,7 +39,7 @@ def create_app(Prod=ProductionConfig, Test=TestingConfig, Dev = DevelopmentConfi
     bcrypt.init_app(app)
     migrate.init_app(app)
     login_manager.init_app(app)
-
+    moment.init_app(app)
 
     # Register BluePrint
     from Sakha.mainbp.routes import mainbp

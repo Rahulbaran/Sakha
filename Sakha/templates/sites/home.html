@@ -44,7 +44,7 @@
                             {% endif %}
                         </div>
 
-                        <span>{{post.postDate.strftime('%I:%M %p')}}&nbsp;&nbsp;{{post.postDate.strftime(' %d %b %y')}}</span>
+                        <span>{{moment(post.postDate).fromNow(refresh=True)}}</span>
                     </div>
 
                 </div>

@@ -52,7 +52,7 @@
     integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <!-------------------- Custom Stylesheet  ---------------------->
+    <!----------------------- Custom Stylesheet  ------------------------->
     <!-- <link rel="stylesheet" href="../static/css/layout.min.css"> -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/layout.css')}}">
 
@@ -60,6 +60,9 @@
     <!-- --- Jinja block for linking stylesheets in child templates -- -->
     {% block stylesheet %}
     {% endblock stylesheet %}
+
+    <!----------------------- moment.js cdn link ------------------------->
+    {{moment.include_moment()}}
 
 </head>
 <body>

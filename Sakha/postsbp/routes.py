@@ -95,7 +95,7 @@ def complete_post(post_id):
             'comment_id' : userComment.id,
             'comment_body' : userComment.body,
             'commenter_avatar': userComment.commented_user.profile_pic,
-            'time' : userComment.timestamp.strftime('%d %b %Y'),
+            'time' : userComment.timestamp,
             'commenter_id' : userComment.commenter_id,
             'total_comments' : totalComments,
             'firstname': userComment.commented_user.firstname
