@@ -1,75 +1,74 @@
 {% extends 'others/layout.html' %}
 {% block stylesheet %}
-<link rel="stylesheet" href="{{url_for('static',filename='css/followStuffs.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/followStuffs.css')}}">
 {% endblock %}
 {% block body %}
-<!--------------------------------- Following Section ------------------------------- -->
-<section class="following__container">
+    <!--------------------------------- Following Section ------------------------------- -->
+    <section class="following__container">
 
-    <!------- Following list hide button ------->
-    <button class="following__list__hide__btn">
-        <i class="fas fa-arrow-left"></i>
-    </button>
+        <!------- Following list hide button ------->
+        <button class="following__list__hide__btn">
+            <i class="fas fa-arrow-left"></i>
+        </button>
 
-    <h1>Following List</h1>
+        <h1>Following List</h1>
 
-    <div class="following__wrapper">
+        <div class="following__wrapper">
 
-        {% for following in user.followed %}
+            {% for following in user.followed %}
 
-        <!--------------- Current User ------------------>
-        {% if following == current_user %}
-        <div class="following" style="grid-template-columns:1fr 2fr 1fr;">
+            <!--------------- Current User ------------------>
+            {% if following == current_user %}
+            <div class="following" style="grid-template-columns:1fr 2fr 1fr;">
 
-            <a class="following__avatar__link" href="{{url_for('usersbp.user_profile',user_id=following.id)}}">
-                <img src="{{url_for('static',filename='user-images/'+following.profile_pic)}}" alt="">
-            </a>
+                <a class="following__avatar__link" href="{{url_for('usersbp.user_profile',user_id=following.id)}}">
+                    <img src="{{url_for('static',filename='user-images/'+following.profile_pic)}}" alt="">
+                </a>
 
-            <div class="following__name__wrapper">
-                <a href="{{url_for('usersbp.user_profile',user_id=following.id)}}">{{following.firstname}} {{following.lastname}}</a>
-                <h4>@{{following.username}}</h4>
+                <div class="following__name__wrapper">
+                    <a href="{{url_for('usersbp.user_profile',user_id=following.id)}}">{{following.firstname}} {{following.lastname}}</a>
+                    <h4>@{{following.username}}</h4>
+                </div>
+
             </div>
+
+            <!-------------Other Users -------------- -->
+            {% else %}
+            <div class="following">
+
+                <a class="following__avatar__link" href="{{url_for('usersbp.user_profile',user_id=following.id)}}">
+                    <img src="{{url_for('static',filename='user-images/'+following.profile_pic)}}" alt="">
+                </a>
+
+                <div class="following__name__wrapper">
+                    <a href="{{url_for('usersbp.user_profile',user_id=following.id)}}">{{following.firstname}} {{following.lastname}}</a>
+                    <h4>@{{following.username}}</h4>
+                </div>
+
+                <div class="following__btn__container">
+                    {% if current_user.is_following(following) %}
+                    <button class="follow__btn " data-userid="{{following.id}}">
+                        following
+                    </button>
+        
+                    {% else %}
+                    <button class="follow__btn" data-userid="{{following.id}}">
+                        follow
+                    </button>
+                    {% endif %}
+                </div>
+
+            </div>
+            {% endif %}
+            {% endfor %}
 
         </div>
 
-        <!-------------Other Users -------------- -->
-        {% else %}
-        <div class="following">
-
-            <a class="following__avatar__link" href="{{url_for('usersbp.user_profile',user_id=following.id)}}">
-                <img src="{{url_for('static',filename='user-images/'+following.profile_pic)}}" alt="">
-            </a>
-
-            <div class="following__name__wrapper">
-                <a href="{{url_for('usersbp.user_profile',user_id=following.id)}}">{{following.firstname}} {{following.lastname}}</a>
-                <h4>@{{following.username}}</h4>
-            </div>
-
-            <div class="following__btn__container">
-                {% if current_user.is_following(following) %}
-                <button class="follow__btn " data-userid="{{following.id}}">
-                    following
-                </button>
-    
-                {% else %}
-                <button class="follow__btn" data-userid="{{following.id}}">
-                    follow
-                </button>
-                {% endif %}
-            </div>
-
-        </div>
-        {% endif %}
-        {% endfor %}
-
-    </div>
-
-</section>
-<!-- _______________________________________________ -->
-
+    </section>
+    <!-- _______________________________________________ -->
 {% endblock %}
 
 {% block script %}
-<script src="{{url_for('static', filename='minjs/layoutFollowers.js')}}"></script>
+    <script src="{{url_for('static', filename='minjs/layoutFollowers.js')}}"></script>
 {% endblock %}
 

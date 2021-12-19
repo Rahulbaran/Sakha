@@ -1,183 +1,180 @@
 {% extends 'others/layout.html' %}
 {% block stylesheet %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/userProfile.css')}}">
-<link rel="stylesheet" href="{{url_for('static', filename='css/pagination.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/userProfile.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/pagination.css')}}">
 {% endblock stylesheet %}
 
 {% block body %}
-<main class="profile--main--container">
+    <main class="profile--main--container">
 
 
-    <!-- _____________________________  User pictures  _________________________________ -->
-    <section class="profile__sub__container__one">
+        <!-- _____________________________  User pictures  _________________________________ -->
+        <section class="profile__sub__container__one">
 
-        <div class="profile__header__img__container">
-            <img src="{{url_for('static', filename='user-images/'+user.header_pic)}}" alt="User Header Picture" class="header__img">
-        </div>
+            <div class="profile__header__img__container">
+                <img src="{{url_for('static', filename='user-images/'+user.header_pic)}}" alt="User Header Picture" class="header__img">
+            </div>
 
-        <div class="profile__avatar__img__container">
+            <div class="profile__avatar__img__container">
 
-            <div class="avatar__container">
-                <div class="avatar__wrapper">
-                    <img src="{{url_for('static', filename='user-images/'+user.profile_pic)}}" alt="User Profile Picture" class="avatar">
+                <div class="avatar__container">
+                    <div class="avatar__wrapper">
+                        <img src="{{url_for('static', filename='user-images/'+user.profile_pic)}}" alt="User Profile Picture" class="avatar">
+                    </div>
+                    <h2>{{user.firstname}} {{user.lastname}}</h2>
+                    <p>@{{user.username}}</p>
                 </div>
-                <h2>{{user.firstname}} {{user.lastname}}</h2>
-                <p>@{{user.username}}</p>
+
             </div>
 
-        </div>
-
-    </section>
-    <!-- ______________________________________________ -->
+        </section>
+        <!-- ______________________________________________ -->
 
 
+        <!-- ______________________________  User Info section  __________________________________ -->
+        <section class="profile__sub__container__two">
 
-    <!-- ______________________________  User Info section  __________________________________ -->
-    <section class="profile__sub__container__two">
+            <div>
+                {% if user.about_user %}
+                <p class="about_user">{{user.about_user}}</p>
+                {% endif %}
 
-        <div>
-            {% if user.about_user %}
-            <p class="about_user">{{user.about_user}}</p>
-            {% endif %}
+                {% if user.address %}
+                <div class="location__container">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>{{user.address}}</span>
+                </div>
+                {% endif %}
 
-            {% if user.address %}
-            <div class="location__container">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>{{user.address}}</span>
+                <div class="follow__details__container">
+                    <a class="followers__btn" href="{{url_for('usersbp.user_followers',user_id=user.id)}}">{{user.followers.count()}} Followers</a>
+                    <a class="following__btn" href="{{url_for('usersbp.user_following',user_id=user.id)}}">{{user.followed.count()}} Following</a>
+                </div>
             </div>
-            {% endif %}
 
-            <div class="follow__details__container">
-                <a class="followers__btn" href="{{url_for('usersbp.user_followers',user_id=user.id)}}">{{user.followers.count()}} Followers</a>
-                <a class="following__btn" href="{{url_for('usersbp.user_following',user_id=user.id)}}">{{user.followed.count()}} Following</a>
+            <div class="follow__btn__container">
+
+                {% if current_user.is_following(user) %}
+                <button class="follow__btn" data-userid="{{user.id}}">
+                    following
+                </button>
+
+                {% else %}
+                <button class="follow__btn" data-userid="{{user.id}}">
+                    follow
+                </button>
+                {% endif %}
+
             </div>
-        </div>
 
-        <div class="follow__btn__container">
+        </section>
+        <!-- ______________________________________________ -->
 
-            {% if current_user.is_following(user) %}
-            <button class="follow__btn" data-userid="{{user.id}}">
-                following
-            </button>
-
-            {% else %}
-            <button class="follow__btn" data-userid="{{user.id}}">
-                follow
-            </button>
-            {% endif %}
-
-        </div>
-
-    </section>
-    <!-- ______________________________________________ -->
-
-
-
-    
-    <!--------------------------------- All the posts of the current user ---------------------------------->
-    <section class="profile__user__posts__container">
-
-        <div class="profile__user__posts">
         
-            {% for post in posts.items %}
-            <article>
+        <!--------------------------------- All the posts of the current user ---------------------------------->
+        <section class="profile__user__posts__container">
 
-                <div class="post__header">
-
-                    <div class="post__author__container">
-
-                        <div class="post__author__img__wrapper">
-                            <img src="{{url_for('static',filename='user-images/'+ user.profile_pic)}}" alt="">
-                        </div>
-
-                        <div class="post__author__name__container">
-                            <p class="author__name" title='Post Author'>{{user.firstname}}</p>
-                            <span>{{moment(post.postDate).fromNow(refresh=True)}}</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="post__body">
-
-                    <div class="post__content__container">
-                        <a href="">
-                            {{post.content | truncate(250, False, '')}}
-                        </a>
-                    </div>
-
-                    {% if post.postImage %}
-                    <div class="post__image__container">
-                        <a href="">
-                            <img src="{{url_for('static',filename='user-images/'+post.postImage)}}" alt="Post Image">
-                        </a>
-                    </div>
-                    {% endif %}
-
-                </div>
-
-
-                <div class="post__footer">
-                    
-                    {% if current_user.has_liked(post) %}
-                    <button class="heart__btn heart__btn__active" data-postid = {{post.id}}>
-                        <i class="fas fa-heart"></i>
-                    {% else %}   
-                    <button class="heart__btn" data-postid = {{post.id}}>
-                        <i class="far fa-heart"></i>
-                    {% endif %}
-                        <span style="color:rgb(63, 61, 79)">{{post.likes.count()}}</span>
-                    </button>
-
-                    <a href="{{url_for('postsbp.complete_post',post_id=post.id)}}" class="comment__btn" title='Comment'>
-                        <i class="far fa-comment"></i>
-                        <span>{{post.comments.count()}}</span>
-                    </a>
-                </div>
-
-            </article>
-            {% endfor %}
+            <div class="profile__user__posts">
             
-        </div>
+                {% for post in posts.items %}
+                <article>
 
-    </section>
+                    <div class="post__header">
 
-    <!--___________________________PAGINTAION FOR POSTS_____________________________-->
-    {% if posts.total > 5 %}
-    <section class="pagination__section">
-        <!-- Previous Page if available -->
-        {% if posts.has_prev %}
-        <a href="{{url_for('usersbp.user_profile',user_id=user.id, page=posts.prev_num)}}" class="other__page page">&lt;</a>
-        {% endif %}
-        <!-- ------------- -->
+                        <div class="post__author__container">
 
-        {% for page in posts.iter_pages(left_edge=1,left_current=1,right_edge=1,right_current=2) %}
-        {% if page %}
-        {% if page == posts.page %}
-        <a href="{{url_for('usersbp.user_profile',user_id=user.id, page=page)}}" class="current__page page">{{page}}</a>
-        {% else %}
-        <a href="{{url_for('usersbp.user_profile',user_id=user.id, page=page)}}" class="other__page page">{{page}}</a>
-        {% endif %}
-        {% else %}
-        .....
-        {% endif %}
-        {% endfor %}
+                            <div class="post__author__img__wrapper">
+                                <img src="{{url_for('static',filename='user-images/'+ user.profile_pic)}}" alt="">
+                            </div>
 
-        <!-- Next Page if available -->
-        {% if posts.has_next %}
-        <a href="{{url_for('usersbp.user_profile',user_id=user.id, page=posts.next_num)}}" class="other__page page">&gt;</a>
+                            <div class="post__author__name__container">
+                                <p class="author__name" title='Post Author'>{{user.firstname}}</p>
+                                <span>{{moment(post.postDate).fromNow(refresh=True)}}</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="post__body">
+
+                        <div class="post__content__container">
+                            <a href="">
+                                {{post.content | truncate(250, False, '')}}
+                            </a>
+                        </div>
+
+                        {% if post.postImage %}
+                        <div class="post__image__container">
+                            <a href="">
+                                <img src="{{url_for('static',filename='user-images/'+post.postImage)}}" alt="Post Image">
+                            </a>
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="post__footer">
+                        
+                        {% if current_user.has_liked(post) %}
+                        <button class="heart__btn heart__btn__active" data-postid = {{post.id}}>
+                            <i class="fas fa-heart"></i>
+                        {% else %}   
+                        <button class="heart__btn" data-postid = {{post.id}}>
+                            <i class="far fa-heart"></i>
+                        {% endif %}
+                            <span style="color:rgb(63, 61, 79)">{{post.likes.count()}}</span>
+                        </button>
+
+                        <a href="{{url_for('postsbp.complete_post',post_id=post.id)}}" class="comment__btn" title='Comment'>
+                            <i class="far fa-comment"></i>
+                            <span>{{post.comments.count()}}</span>
+                        </a>
+                    </div>
+
+                </article>
+                {% endfor %}
+                
+            </div>
+
+        </section>
+
+        <!--___________________________PAGINTAION FOR POSTS_____________________________-->
+        {% if posts.total > 5 %}
+        <section class="pagination__section">
+            <!-- Previous Page if available -->
+            {% if posts.has_prev %}
+            <a href="{{url_for('usersbp.user_profile',user_id=user.id, page=posts.prev_num)}}" class="other__page page">&lt;</a>
+            {% endif %}
+            <!-- ------------- -->
+
+            {% for page in posts.iter_pages(left_edge=1,left_current=1,right_edge=1,right_current=2) %}
+            {% if page %}
+            {% if page == posts.page %}
+            <a href="{{url_for('usersbp.user_profile',user_id=user.id, page=page)}}" class="current__page page">{{page}}</a>
+            {% else %}
+            <a href="{{url_for('usersbp.user_profile',user_id=user.id, page=page)}}" class="other__page page">{{page}}</a>
+            {% endif %}
+            {% else %}
+            .....
+            {% endif %}
+            {% endfor %}
+
+            <!-- Next Page if available -->
+            {% if posts.has_next %}
+            <a href="{{url_for('usersbp.user_profile',user_id=user.id, page=posts.next_num)}}" class="other__page page">&gt;</a>
+            {% endif %}
+            <!-- ----------- -->
+        </section>
         {% endif %}
-        <!-- ----------- -->
-    </section>
-    {% endif %}
-    <!-- _____________________________________________ -->
-    
-</main>
+        <!-- _____________________________________________ -->
+        
+    </main>
 {% endblock body %}
 
 
 {% block script %}
-<script src="{{url_for('static',filename='minjs/layoutUserProfile.js')}}"></script>
+    <script src="{{url_for('static',filename='minjs/layoutUserProfile.js')}}"></script>
 {% endblock %}

@@ -1,43 +1,42 @@
 {% extends 'others/layout.html' %}
 {% block stylesheet %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/aboutus.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/aboutus.css')}}">
 {% endblock stylesheet %}
 
 {% block body %}
+    <section class="about__us__section">
+        <div class="first__section">
+            <h3>What is Sakha ?</h3>
+            <p>Sakha is a soical network web application developed by <a href="">me</a>. It provides a great platform to make connection with people around the globe.</p>
+        </div>
 
-<section class="about__us__section">
-    <div class="first__section">
-        <h3>What is Sakha ?</h3>
-        <p>Sakha is a soical network web application developed by <a href="">me</a>. It provides a great platform to make connection with people around the globe.</p>
-    </div>
+        <div class="second__section">
+            <h3>Why Sakha ?</h3>
+            <p>I wanted to develop my own soical network application and so I started working on it & effort of one month, I completed it.</p>
+        </div>
 
-    <div class="second__section">
-        <h3>Why Sakha ?</h3>
-        <p>I wanted to develop my own soical network application and so I started working on it & effort of one month, I completed it.</p>
-    </div>
+        <div class="creator__section">
+            <div class="creator__image__wrapper"></div>
 
-    <div class="creator__section">
-        <div class="creator__image__wrapper"></div>
+            <div class="creator__details__wrapper">
+                <div class="creator__name__wrapper">
+                    <h4>Rahul Kumar</h4>
+                </div>
 
-        <div class="creator__details__wrapper">
-            <div class="creator__name__wrapper">
-                <h4>Rahul Kumar</h4>
-            </div>
+                <div class="creator__info__wrapper">
+                    <p>👏Hi everyone, I am Rahul from India. I have pursued B.Tech in Civil Engineering from <a>BIT Sindri</a>. I wanted to be a web 
+                    developer👨‍💻 that's why I took a decision to be pursue as a web developer rather than a civil engineer.</p>
 
-            <div class="creator__info__wrapper">
-                <p>👏Hi everyone, I am Rahul from India. I have pursued B.Tech in Civil Engineering from <a>BIT Sindri</a>. I wanted to be a web 
-                developer👨‍💻 that's why I took a decision to be pursue as a web developer rather than a civil engineer.</p>
+                    <p>I have developed many web applications in the journey of web development and this is one of them.</p>
+                    <p>You can checkout my <a href="">github</a> profile to know more about my projects.</p>
 
-                <p>I have developed many web applications in the journey of web development and this is one of them.</p>
-                <p>You can checkout my <a href="">github</a> profile to know more about my projects.</p>
-
-                <p>Thank You🙂</p>
+                    <p>Thank You🙂</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 {% endblock %}
 
 {% block script %}
- <script src="{{url_for('static', filename='minjs/layout.js')}}"></script>
+    <script src="{{url_for('static', filename='minjs/layout.js')}}"></script>
 {% endblock %}

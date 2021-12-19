@@ -1,115 +1,112 @@
 .about__us__section {
-    background-color:hsl(219, 18%, 16%);
-    margin-top:4.58em;
-    padding:2em 0 3em;
-    color:rgb(226, 166, 14);
+    background-color: hsl(219, 18%, 16%);
+    margin-top: 4.58em;
+    padding: 2em 0 3em;
+    color: rgb(226, 166, 14);
 
     > div {
-        width:90%;
-        max-width:1040px;
-        margin:0 auto;
+        width: 90%;
+        max-width: 1040px;
+        margin: 0 auto;
     }
 
     h3 {
-        font-size:1.65em;
-        font-family:'Nunito',sans-serif;
-        position:relative;
-        margin-bottom:.5em;
+        font-size: 1.65em;
+        font-family: "Nunito", sans-serif;
+        position: relative;
+        margin-bottom: 0.5em;
 
         &::after {
-            content:'';
-            position:absolute;
+            content: "";
+            position: absolute;
             bottom: 2px;
-            left:0;
-            width:100px;
-            height:3px;
-            background-color:currentColor;
-            border-radius:2px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background-color: currentColor;
+            border-radius: 2px;
         }
     }
-    
 }
 
 .first__section,
 .second__section {
-    
     p {
-        font-family:'Noto sans',sans-serif;
-        font-size:1.1em;
-        margin-bottom:1em;
+        font-family: "Noto sans", sans-serif;
+        font-size: 1.1em;
+        margin-bottom: 1em;
     }
-    
+
     a {
-        color:currentColor;
+        color: currentColor;
     }
 }
 .second__section p {
-    margin-bottom:3em;
+    margin-bottom: 3em;
 }
-
 
 .creator {
     &__section {
-        width:100%;
-        display:grid;
-        grid-template-columns:1fr;
-        justify-content:flex-start;
-        align-items:flex-start;
-        background-color:hsl(222, 16%, 12%);
-        box-shadow:5px 5px 10px rgba(0,0,0,.5);
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: flex-start;
+        align-items: flex-start;
+        background-color: hsl(222, 16%, 12%);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     }
 
     &__image__wrapper {
-        min-width:100%;
-        height:24em;
-        background-image:url("../site-images/me.jpg");
+        min-width: 100%;
+        height: 24em;
+        background-image: url("../site-images/me.jpg");
         background-size: cover;
-        background-repeat:no-repeat;
+        background-repeat: no-repeat;
     }
 
     &__details__wrapper {
-        padding:1em;
-        min-width:100%;
+        padding: 1em;
+        min-width: 100%;
 
         h4 {
-            font-size:1.5em;
-            font-family:'Nunito',sans-serif;
-            position:relative;
-            margin-bottom:.5em;
+            font-size: 1.5em;
+            font-family: "Nunito", sans-serif;
+            position: relative;
+            margin-bottom: 0.5em;
 
             &::after {
-                content:'';
-                position:absolute;
+                content: "";
+                position: absolute;
                 bottom: 2px;
-                left:0;
-                width:80px;
-                height:2px;
-                background-color:currentColor;
-                border-radius:2px;
+                left: 0;
+                width: 80px;
+                height: 2px;
+                background-color: currentColor;
+                border-radius: 2px;
             }
         }
 
         p {
-            color:var(--color-white);
-            font-family:'Noto sans',sans-serif;
-            font-size:1.1em;
-            margin-bottom:.75em;
+            color: var(--color-white);
+            font-family: "Noto sans", sans-serif;
+            font-size: 1.1em;
+            margin-bottom: 0.75em;
 
             a {
-                color:currentColor;
+                color: currentColor;
             }
         }
     }
 }
 
-
-
-
+/******************
+MEDIA QUERIES
+******************/
 @media screen and(min-width:720px) {
     .creator__section {
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
     .creator__image__wrapper {
-        height:100%;
+        height: 100%;
     }
 }

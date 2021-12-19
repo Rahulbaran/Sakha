@@ -3,160 +3,176 @@ LOGIN FORM SECTION
 **************************/
 .form {
     &--main {
-        width:90%;
-        max-width:640px;
-        margin:8em auto 3em;
+        width: 90%;
+        max-width: 640px;
+        margin: 8em auto 3em;
         background-color: var(--color-white);
-        font-family:inherit;
-        box-shadow:0 0 10px rgba(0,0,0,.8);
-        padding:.45em;
+        font-family: inherit;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        padding: 0.45em;
     }
-    border:.12em dashed #888;
-    padding:2em 1.5em;
+    border: 0.12em dashed #888;
+    padding: 2em 1.5em;
 
     legend {
-        display:block;
-        text-align:center;
-        margin-bottom:2em;
-        font-size:1.3em;
-        text-transform:uppercase;
-        font-family:'Nunito',sans-serif;
-        font-weight:700;
-        color:var(--general-color);
-        letter-spacing:.1em;
-        position:relative;
+        display: block;
+        text-align: center;
+        margin-bottom: 2em;
+        font-size: 1.3em;
+        text-transform: uppercase;
+        font-family: "Nunito", sans-serif;
+        font-weight: 700;
+        color: var(--general-color);
+        letter-spacing: 0.1em;
+        position: relative;
 
         &::after,
         &::before {
-            content:'';
-            position:absolute;
-            bottom:0;
-            width:30%;
-            height:.2em;
-            border-radius:50%;
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 30%;
+            height: 0.2em;
+            border-radius: 50%;
         }
-        &::after { 
-            right:0;
-            left:60%;
-            background-image:linear-gradient(to top right, var(--grad-color-1) 30%,
-                            var(--grad-color-2) 50%, var(--grad-color-3));
+        &::after {
+            right: 0;
+            left: 60%;
+            background-image: linear-gradient(
+                to top right,
+                var(--grad-color-1) 30%,
+                var(--grad-color-2) 50%,
+                var(--grad-color-3)
+            );
         }
         &::before {
-            left:10%;
-            background-image:linear-gradient(to top left, var(--grad-color-1) 30%,
-                            var(--grad-color-2) 50%, var(--grad-color-3));
+            left: 10%;
+            background-image: linear-gradient(
+                to top left,
+                var(--grad-color-1) 30%,
+                var(--grad-color-2) 50%,
+                var(--grad-color-3)
+            );
         }
     }
 
     &__group {
-        display:flex;
-        justify-content:center;
-        align-items:flex-start;
-        flex-direction:column;
-        margin-bottom:1em;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 1em;
 
-       label {
-           text-transform:capitalize;
-           color:var(--label-color);
-           line-height:1.35;
-           letter-spacing:.05em;
-           font-size:1.1em;
+        label {
+            text-transform: capitalize;
+            color: var(--label-color);
+            line-height: 1.35;
+            letter-spacing: 0.05em;
+            font-size: 1.1em;
         }
-       input {
-           width:100%;
-           padding:.6em .7em;
-           font-family:'Noto Sans',sans-serif;
-           letter-spacing:.75px;
-           font-size:1em;
-           font-weight:400;
-           background-color:var(--input-color);
-           border-radius:.25em;
-           border:none;
-           border:.1em solid var(--input-color);
-           box-shadow:0 0 3px rgba(0,0,0,.4);
-           outline:none;
+        input {
+            width: 100%;
+            padding: 0.6em 0.7em;
+            font-family: "Noto Sans", sans-serif;
+            letter-spacing: 0.75px;
+            font-size: 1em;
+            font-weight: 400;
+            background-color: var(--input-color);
+            border-radius: 0.25em;
+            border: none;
+            border: 0.1em solid var(--input-color);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+            outline: none;
 
-           &:focus {
-               border-color:var(--input-border-color);
-           }
+            &:focus {
+                border-color: var(--input-border-color);
+            }
         }
-       span{
-            font-size:.7em;
-            letter-spacing:.02em;
-            color:rgb(206, 39, 39);
+        span {
+            font-size: 0.7em;
+            letter-spacing: 0.02em;
+            color: rgb(206, 39, 39);
         }
     }
     &__remember__group {
-        display:flex;
-        justify-content:flex-start;
-        align-items:center;
-        margin-bottom:.8em;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 0.8em;
 
         label {
-            text-transform:capitalize;
-           color:var(--label-color);
-           line-height:1.35;
-           margin-left:.6em;
-           letter-spacing:.05em;
-           font-size:1.1em;
+            text-transform: capitalize;
+            color: var(--label-color);
+            line-height: 1.35;
+            margin-left: 0.6em;
+            letter-spacing: 0.05em;
+            font-size: 1.1em;
         }
     }
     &__submit__group {
-        margin-bottom:1em;
+        margin-bottom: 1em;
 
         input[type="submit"] {
-            margin-top:1em;
-            text-transform:uppercase;
-            background-image:linear-gradient(to top, var(--btn-color-1), var(--btn-color-2));
-            color:var(--color-white);
-            width:100%;
-            padding:.75em;
-            font-weight:500;
-            font-family:inherit;
-            border:none;
-            font-size:1em;
-            letter-spacing:.05em;
-            box-shadow:0 0 4px var(--btn-shadow-color);
-            position:relative;
-            border-radius:.35em;
-        
+            margin-top: 1em;
+            text-transform: uppercase;
+            background-image: linear-gradient(
+                to top,
+                var(--btn-color-1),
+                var(--btn-color-2)
+            );
+            color: var(--color-white);
+            width: 100%;
+            padding: 0.75em;
+            font-weight: 500;
+            font-family: inherit;
+            border: none;
+            font-size: 1em;
+            letter-spacing: 0.05em;
+            box-shadow: 0 0 4px var(--btn-shadow-color);
+            position: relative;
+            border-radius: 0.35em;
+
             &:hover,
             &:focus {
-                cursor:pointer;
-                background-image:linear-gradient(to top, var(--btn-hover-color-1), var(--btn-hover-color-2));
+                cursor: pointer;
+                background-image: linear-gradient(
+                    to top,
+                    var(--btn-hover-color-1),
+                    var(--btn-hover-color-2)
+                );
             }
         }
     }
 }
 .password__field {
-    position:relative;
-    width:100%;
+    position: relative;
+    width: 100%;
 
     i {
-        position:absolute;
-        right:1em;
-        top:50%;
-        transform:translateY(-50%);
-        color:var(--label-color);
-        cursor:pointer;
+        position: absolute;
+        right: 1em;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--label-color);
+        cursor: pointer;
     }
 }
 .register__link__section,
 .forgot__password {
-    margin-top:.2em;
-    font-family:'Nunito',sans-serif;
-    font-size:1.15em;
+    margin-top: 0.2em;
+    font-family: "Nunito", sans-serif;
+    font-size: 1.15em;
 }
 .register__link,
 .forgot__password {
-    text-decoration:none;
-    color:var(--general-color);
-    font-weight:600;
-    display:inline-block;
+    text-decoration: none;
+    color: var(--general-color);
+    font-weight: 600;
+    display: inline-block;
 
     &:hover,
     &:focus {
-        text-decoration:.12em underline currentColor;
-        text-underline-offset:.15em;
+        text-decoration: 0.12em underline currentColor;
+        text-underline-offset: 0.15em;
     }
 }

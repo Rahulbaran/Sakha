@@ -1,83 +1,80 @@
 {% extends 'others/layout.html' %}
 {% block stylesheet %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
 {% endblock stylesheet %}
 
 {% block body %}
-<main class="form--main">
+    <main class="form--main">
+        <form method="post" class="form" autocomplete="off">
+            {{form.hidden_tag()}}
 
-    <form method="post" class="form" autocomplete="off">
-        {{form.hidden_tag()}}
+            <legend>Login</legend>
 
-        <legend>Login</legend>
+            <div class="form__group">
+                {{form.email.label}}
+                {{form.email(placeholder="Enter Email Address")}}
+                {% if form.email.errors %}
+                {% for error in form.email.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+                {% endif %}
+            </div>
 
-        <div class="form__group">
-            {{form.email.label}}
-            {{form.email(placeholder="Enter Email Address")}}
-            {% if form.email.errors %}
-            {% for error in form.email.errors %}
-            <span>{{error}}</span>
-            {% endfor %}
-            {% endif %}
-        </div>
+            <div class="form__group">
+                {{form.password.label}}
+                <div class="password__field">
+                    {{form.password(placeholder="Enter Password")}}
+                    <i class="fa fa-eye"></i>
+                </div>   
+                {% if form.password.errors %}
+                {% for error in form.password.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+                {% endif %}
+            </div>
 
-        <div class="form__group">
-            {{form.password.label}}
-            <div class="password__field">
-                {{form.password(placeholder="Enter Password")}}
-                <i class="fa fa-eye"></i>
-            </div>   
-            {% if form.password.errors %}
-            {% for error in form.password.errors %}
-            <span>{{error}}</span>
-            {% endfor %}
-            {% endif %}
-        </div>
+            <div class="form__remember__group">
+                {{form.remember}}
+                {{form.remember.label}}
+            </div>
 
-        <div class="form__remember__group">
-            {{form.remember}}
-            {{form.remember.label}}
-        </div>
+            <div class="form__submit__group">
+                {{form.submit}}
+            </div>
 
-        <div class="form__submit__group">
-            {{form.submit}}
-        </div>
+            <a href="{{url_for('usersbp.requestPasswordReset')}}" class="forgot__password">Forgot Password??</a>
 
-        <a href="{{url_for('usersbp.requestPasswordReset')}}" class="forgot__password">Forgot Password??</a>
+            <p class="register__link__section">
+                New here
+                <a href="{{url_for('usersbp.register')}}" class="register__link">register</a>
+                folk
+            </p>
 
-        <p class="register__link__section">
-            New here
-            <a href="{{url_for('usersbp.register')}}" class="register__link">register</a>
-            folk
-        </p>
-
-    </form>
-   
-
-</main>
+        </form>
+    </main>
 {% endblock %}
 
 {% block script %}
-<script src="{{url_for('static', filename='minjs/layout.js')}}"></script>
-<script>
+    <script src="{{url_for('static', filename='minjs/layout.js')}}"></script>
+    <script>
 
-    /*********************To show or hide password**********************/
-    const password = document.querySelector('.password__field input')
-    const eyeIcon = document.querySelector('.password__field .fa-eye');
-    let tracker = true;
+        /*********************To show or hide password**********************/
+        const password = document.querySelector('.password__field input')
+        const eyeIcon = document.querySelector('.password__field .fa-eye');
+        let tracker = true;
 
-    eyeIcon.addEventListener('click', () => {
-        if(tracker) {
-            password.type="text";
-            eyeIcon.classList.add('fa-eye-slash');
-            tracker = false;
-        }
-        else {
-            password.type="password";
-            eyeIcon.classList.remove('fa-eye-slash');
-            tracker = true;
-        }
-    });
+        eyeIcon.addEventListener('click', () => {
+            if(tracker) {
+                password.type="text";
+                eyeIcon.classList.add('fa-eye-slash');
+                tracker = false;
+            }
+            else {
+                password.type="password";
+                eyeIcon.classList.remove('fa-eye-slash');
+                tracker = true;
+            }
+        });
 
-</script>
+    </script>
 {% endblock %}

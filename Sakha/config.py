@@ -18,7 +18,7 @@ class BaseConfig:
     # Default Configuration
     FLASK_ENV = 'development'
     DEBUG = False
-    Testing = False
+    TESTING = False
 
 
     # Configuration applicable for all type of environments
@@ -41,19 +41,18 @@ class BaseConfig:
 # Configuration for development mode
 class DevelopmentConfig(BaseConfig):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.getenv('SQL_DATABASE_URI') or \
-                             'sqlite:///' + os.path.join(basedir, 'Database', 'sakha.db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('SQL_DATABASE_URI') or 'sqlite:///Database/sakha.db'
 
-
+# os.getenv('SQL_DATABASE_URI') or 
 
 # Configuration for Testing mode
 class TestingConfig(BaseConfig):
-    Testing = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'Database', 'test.db')
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///Database/test.db' 
 
 
 
 # Configuration for production mode
 class ProductionConfig(BaseConfig):
     FLASK_ENV = 'production'
-    SQLALCHEMY_DATABASE_URI = os.getenv('PROD_DATABASE_URI', default='sqlite:///' + os.path.join(basedir, 'Database', 'prod.db'))
+    SQLALCHEMY_DATABASE_URI = os.getenv('PROD_DATABASE_URI', default='sqlite:///Database/prod.db')

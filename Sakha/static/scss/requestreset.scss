@@ -3,114 +3,128 @@ REQUEST PASSWORD FORM SECTION
 **************************/
 .form {
     &--main {
-        width:90%;
-        max-width:640px;
-        margin:8em auto 3em;
+        width: 90%;
+        max-width: 640px;
+        margin: 8em auto 3em;
         background-color: var(--color-white);
-        font-family:inherit;
-        box-shadow:0 0 10px rgba(0,0,0,.8);
-        padding:.45em;
+        font-family: inherit;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        padding: 0.45em;
     }
-    border:.12em dashed #888;
-    padding:2em 1.5em;
+    border: 0.12em dashed #888;
+    padding: 2em 1.5em;
 
     legend {
-        display:block;
-        text-align:center;
-        margin-bottom:2em;
-        font-size:1.3em;
-        text-transform:capitalize;
-        font-family:'Nunito',sans-serif;
-        font-weight:700;
-        color:var(--general-color);
-        letter-spacing:.1em;
-        position:relative;
+        display: block;
+        text-align: center;
+        margin-bottom: 2em;
+        font-size: 1.3em;
+        text-transform: capitalize;
+        font-family: "Nunito", sans-serif;
+        font-weight: 700;
+        color: var(--general-color);
+        letter-spacing: 0.1em;
+        position: relative;
 
         &::after,
         &::before {
-            content:'';
-            position:absolute;
-            bottom:0;
-            width:30%;
-            height:.2em;
-            border-radius:50%;
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 30%;
+            height: 0.2em;
+            border-radius: 50%;
         }
-        &::after { 
-            right:0;
-            left:60%;
-            background-image:linear-gradient(to top right, var(--grad-color-1) 30%,
-                            var(--grad-color-2) 50%, var(--grad-color-3));
+        &::after {
+            right: 0;
+            left: 60%;
+            background-image: linear-gradient(
+                to top right,
+                var(--grad-color-1) 30%,
+                var(--grad-color-2) 50%,
+                var(--grad-color-3)
+            );
         }
         &::before {
-            left:10%;
-            background-image:linear-gradient(to top left, var(--grad-color-1) 30%,
-                            var(--grad-color-2) 50%, var(--grad-color-3));
+            left: 10%;
+            background-image: linear-gradient(
+                to top left,
+                var(--grad-color-1) 30%,
+                var(--grad-color-2) 50%,
+                var(--grad-color-3)
+            );
         }
     }
 
     &__group {
-        display:flex;
-        justify-content:center;
-        align-items:flex-start;
-        flex-direction:column;
-        margin-bottom:1em;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 1em;
 
         label {
-            text-transform:capitalize;
-            font-size:1.1em;
-            color:var(--label-color);
-            letter-spacing:.05em;
+            text-transform: capitalize;
+            font-size: 1.1em;
+            color: var(--label-color);
+            letter-spacing: 0.05em;
         }
         input {
-            width:100%;
-            padding:.6em .7em;
-            font-family:'Noto Sans',sans-serif;
-            font-size:1em;
-            letter-spacing:.75px;
-            font-weight:400;
-            background-color:var(--input-color);
-            border-radius:.25em;
-            border:none;
-            border:.1em solid var(--input-color);
-            box-shadow:0 0 3px rgba(0,0,0,.4);
-            outline:none;
+            width: 100%;
+            padding: 0.6em 0.7em;
+            font-family: "Noto Sans", sans-serif;
+            font-size: 1em;
+            letter-spacing: 0.75px;
+            font-weight: 400;
+            background-color: var(--input-color);
+            border-radius: 0.25em;
+            border: none;
+            border: 0.1em solid var(--input-color);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+            outline: none;
 
-           &:focus {
-               border-color:var(--input-border-color);
-           }
+            &:focus {
+                border-color: var(--input-border-color);
+            }
         }
-       span{
-            font-size:.7em;
-            letter-spacing:.02em;
-            color:rgb(206, 39, 39);
+        span {
+            font-size: 0.7em;
+            letter-spacing: 0.02em;
+            color: rgb(206, 39, 39);
         }
     }
     &__submit__group {
-       
-        margin-bottom:1em;
+        margin-bottom: 1em;
 
         input[type="submit"] {
-            margin-top:1em;
-            text-transform:uppercase;
-            background-image:linear-gradient(to top, var(--btn-color-1), var(--btn-color-2));
-            color:var(--color-white);
-            width:100%;
-            padding:.75em;
-            font-family:inherit;
-            font-weight:500;
-            border:none;
-            font-size:1em;
-            letter-spacing:.05em;
-            box-shadow:0 0 4px var(--btn-shadow-color);
-            position:relative;
-            border-radius:.35em;
-        
+            margin-top: 1em;
+            text-transform: uppercase;
+            background-image: linear-gradient(
+                to top,
+                var(--btn-color-1),
+                var(--btn-color-2)
+            );
+            color: var(--color-white);
+            width: 100%;
+            padding: 0.75em;
+            font-family: inherit;
+            font-weight: 500;
+            border: none;
+            font-size: 1em;
+            letter-spacing: 0.05em;
+            box-shadow: 0 0 4px var(--btn-shadow-color);
+            position: relative;
+            border-radius: 0.35em;
+
             &:hover,
             &:focus {
-                cursor:pointer;
-                background-image:linear-gradient(to top, var(--btn-hover-color-1), var(--btn-hover-color-2));
+                cursor: pointer;
+                background-image: linear-gradient(
+                    to top,
+                    var(--btn-hover-color-1),
+                    var(--btn-hover-color-2)
+                );
             }
         }
     }
 }
-

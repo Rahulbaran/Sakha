@@ -1,132 +1,131 @@
 {% extends 'others/layout.html' %}
 {% block stylesheet %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/register.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/register.css')}}">
 {% endblock stylesheet %}
 
 {% block body %}
-<main class="form--main">
+    <main class="form--main">
 
-    <form method="post" class="form" autocomplete="off">
-        {{form.hidden_tag()}}
+        <form method="post" class="form" autocomplete="off">
+            {{form.hidden_tag()}}
 
-        <legend>Register</legend>
+            <legend>Register</legend>
 
-        <div class="form__name__group">
+            <div class="form__name__group">
+                <div class="form__group">
+                    {{form.firstname.label}}
+                    {{form.firstname(placeholder="Enter Firstname")}}
+                    {% if form.firstname.errors %}
+                    {% for error in form.firstname.errors %}
+                    <span>{{error}}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="form__group">
+                    {{form.lastname.label}}
+                    {{form.lastname(placeholder="Enter Lastname")}}
+                    {% if form.lastname.errors %}
+                    {% for error in form.lastname.errors %}
+                    <span>{{error}}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
             <div class="form__group">
-                {{form.firstname.label}}
-                {{form.firstname(placeholder="Enter Firstname")}}
-                {% if form.firstname.errors %}
-                {% for error in form.firstname.errors %}
+                {{form.username.label}}
+                {{form.username(placeholder="Enter an Username")}}
+                {% if form.username.errors %}
+                {% for error in form.username.errors %}
                 <span>{{error}}</span>
                 {% endfor %}
                 {% endif %}
             </div>
 
             <div class="form__group">
-                {{form.lastname.label}}
-                {{form.lastname(placeholder="Enter Lastname")}}
-                {% if form.lastname.errors %}
-                {% for error in form.lastname.errors %}
+                {{form.email.label}}
+                {{form.email(placeholder="Enter Email Address")}}
+                {% if form.email.errors %}
+                {% for error in form.email.errors %}
                 <span>{{error}}</span>
                 {% endfor %}
                 {% endif %}
             </div>
-        </div>
 
-        <div class="form__group">
-            {{form.username.label}}
-            {{form.username(placeholder="Enter an Username")}}
-            {% if form.username.errors %}
-            {% for error in form.username.errors %}
-            <span>{{error}}</span>
-            {% endfor %}
-            {% endif %}
-        </div>
+            <div class="form__gender__group">
+                {{form.gender.label}}
+                {{form.gender}}
+                {% if form.gender.errors %}
+                {% for error in form.gender.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+                {% endif %}
+            </div>
 
-        <div class="form__group">
-            {{form.email.label}}
-            {{form.email(placeholder="Enter Email Address")}}
-            {% if form.email.errors %}
-            {% for error in form.email.errors %}
-            <span>{{error}}</span>
-            {% endfor %}
-            {% endif %}
-        </div>
+            <div class="form__group">
+                {{form.password.label}}
+                <div class="password__field">
+                    {{form.password(placeholder="Enter Password")}}
+                    <i class="fa fa-eye"></i>
+                </div>   
+                {% if form.password.errors %}
+                {% for error in form.password.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+                {% endif %}
+            </div>
 
-        <div class="form__gender__group">
-            {{form.gender.label}}
-            {{form.gender}}
-            {% if form.gender.errors %}
-            {% for error in form.gender.errors %}
-            <span>{{error}}</span>
-            {% endfor %}
-            {% endif %}
-        </div>
+            <div class="form__group">
+                {{form.reenter_password.label}}
+                {{form.reenter_password(placeholder="Reenter Password")}}
+                {% if form.reenter_password.errors %}
+                {% for error in form.reenter_password.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+                {% endif %}
+            </div>
 
-        <div class="form__group">
-            {{form.password.label}}
-            <div class="password__field">
-                {{form.password(placeholder="Enter Password")}}
-                <i class="fa fa-eye"></i>
-            </div>   
-            {% if form.password.errors %}
-            {% for error in form.password.errors %}
-            <span>{{error}}</span>
-            {% endfor %}
-            {% endif %}
-        </div>
+            <div>
+                {{form.recaptcha}}
+            </div>
 
-        <div class="form__group">
-            {{form.reenter_password.label}}
-            {{form.reenter_password(placeholder="Reenter Password")}}
-            {% if form.reenter_password.errors %}
-            {% for error in form.reenter_password.errors %}
-            <span>{{error}}</span>
-            {% endfor %}
-            {% endif %}
-        </div>
+            <div class="form__submit__group">
+                {{form.submit}}
+            </div>
 
-        <div>
-            {{form.recaptcha}}
-        </div>
+            <p class="login__link__section">
+                Have an account,
+                <a href="{{url_for('usersbp.login')}}" class="login__link">login</a>
+                folk
+            </p>
 
-        <div class="form__submit__group">
-            {{form.submit}}
-        </div>
+        </form>
 
-        <p class="login__link__section">
-            Have an account,
-            <a href="{{url_for('usersbp.login')}}" class="login__link">login</a>
-            folk
-        </p>
-
-    </form>
-   
-
-</main>
+    </main>
 {% endblock %}
 
 {% block script %}
-<script src="{{url_for('static', filename='minjs/layout.js')}}"></script>
-<script>
+    <script src="{{url_for('static', filename='minjs/layout.js')}}"></script>
+    <script>
 
-    /*********************To show or hide password**********************/
-    const password = document.querySelector('.password__field input')
-    const eyeIcon = document.querySelector('.password__field .fa-eye');
-    let tracker = true;
+        /*********************To show or hide password**********************/
+        const password = document.querySelector('.password__field input')
+        const eyeIcon = document.querySelector('.password__field .fa-eye');
+        let tracker = true;
 
-    eyeIcon.addEventListener('click', () => {
-        if(tracker) {
-            password.type="text";
-            eyeIcon.classList.add('fa-eye-slash');
-            tracker = false;
-        }
-        else {
-            password.type="password";
-            eyeIcon.classList.remove('fa-eye-slash');
-            tracker = true;
-        }
-    });
-    
-</script>
+        eyeIcon.addEventListener('click', () => {
+            if(tracker) {
+                password.type="text";
+                eyeIcon.classList.add('fa-eye-slash');
+                tracker = false;
+            }
+            else {
+                password.type="password";
+                eyeIcon.classList.remove('fa-eye-slash');
+                tracker = true;
+            }
+        });
+        
+    </script>
 {% endblock %}

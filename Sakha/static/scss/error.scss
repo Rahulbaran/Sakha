@@ -1,34 +1,32 @@
 .error__msg__container {
-    background-color:hsl(256, 34%, 24%);
-    margin-top:4.6em;
-    display:grid;
-    justify-content:center;
-    align-items:center;
-    // grid-gap:15px 0;
-    text-align:center;
-    padding:8em 1em;
-    color:hsl(331, 58%, 44%);
+    background-color: hsl(256, 34%, 24%);
+    margin-top: 4.6em;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8em 1em;
+    color: hsl(331, 58%, 44%);
 
     h1 {
-        font-size:9em;
-        line-height:1em;
+        font-size: 9em;
+        line-height: 1em;
     }
     p {
-        line-height:1.2;
-        font-size:1.1em;
-        margin-bottom:1.5em;
+        line-height: 1.2;
+        font-size: 1.1em;
+        margin-bottom: 1.5em;
     }
     a {
-        justify-self:center;
-        background-color:rgb(226, 166, 14);
-        text-decoration:none;
-        display:inline-block;
-        padding:.6em 1em;
+        justify-self: center;
+        background-color: rgb(226, 166, 14);
+        text-decoration: none;
+        display: inline-block;
+        padding: 0.6em 1em;
         border-radius: 4px;
-        box-shadow:0 0 4px rgba(0,0,0,.3);
-        font-size:1.1em;
-        color:hsl(222, 16%, 12%);
-        font-weight:600;
-
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+        font-size: 1.1em;
+        color: hsl(222, 16%, 12%);
+        font-weight: 600;
     }
 }
