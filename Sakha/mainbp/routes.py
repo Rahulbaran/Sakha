@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, abort
 from Sakha.models import Post
 
 
@@ -30,3 +30,11 @@ def about_us():
 @mainbp.route('/contact_us')
 def contact_us():
     return render_template('sites/contact.html', title='Contact Us')
+
+
+
+
+
+@mainbp.route('/our_policies')
+def our_policies():
+    abort(404)

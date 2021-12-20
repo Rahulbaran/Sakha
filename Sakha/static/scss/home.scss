@@ -5,29 +5,31 @@
     flex-direction: $dir;
 }
 
-/***************************
-HOMEPAGE WHEN USER IS NOT LOGGED IN
-***************************/
+/* **************************
+* HOMEPAGE WHEN USER IS NOT LOGGED IN
+************************** */
 .home {
     &--general--main {
-        margin-top: 4.58em;
+        margin-top: 4.55em;
         background-color: var(--home-logged-bg);
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr;
-        padding: 0 1.5em 3em;
+        @include flex(space-between, center);
+        gap: 30px 40px;
+        padding: 3em;
     }
     &__svg__container {
         width: 100%;
+        flex: 1 1 auto;
 
         img {
-            display: block;
             width: 100%;
+            display: block;
         }
     }
     &__content__container {
         @include flex(center, center, column);
         font-family: "Poppins", sans-serif;
+        width: 100%;
+        flex: 1 1 auto;
 
         h1 {
             font-family: "Nunito", cursive;
@@ -72,6 +74,7 @@ HOMEPAGE WHEN USER IS NOT LOGGED IN
     color: var(--color-white);
     border-radius: 0.25em;
     box-shadow: 0 0 4px var(--btn-shadow-color);
+    transition: background-color 200ms;
 
     i {
         margin-left: 1em;
@@ -207,9 +210,9 @@ POST AUTHOR RELATED STYLING
         }
     }
 
-    /****************************
-POST BUTTONS RELATED STYLING
-*****************************/
+    /* ***************************
+* POST BUTTONS RELATED STYLING
+**************************** */
     &__related__btn__links__container {
         position: relative;
 
@@ -327,9 +330,11 @@ LIKE AND COMMENT BTNS
 /*************************
 MEDIA QUERIES
 **************************/
-@media (min-width: 769px) {
+@media (max-width: 768px) {
     .home--general--main {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 0 2em 1.5em;
+        flex-direction: column;
+        justify-content: Center;
+        align-items: flex-start;
+        padding: 3em 1.5em;
     }
 }

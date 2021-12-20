@@ -19,10 +19,8 @@
 
     <main class="home__logged--main">
 
-
         <!-- ____________________________ALL POSTS_________________________________ -->
         <section class="home__logged__posts__container">
-
             {% for post in posts.items %}
             <article>
 
@@ -151,13 +149,10 @@
         {% endif %}
         <!-- _____________________________________________ -->
 
-
     </main>
 
-
-
-    <!--_____________________________Homepage when user has not logged in_____________________________-->
-    {% else %}
+<!--_____________________________Homepage when user has not logged in_____________________________-->
+{% else %}
     <main class="home--general--main">
 
         <div class="home__svg__container">

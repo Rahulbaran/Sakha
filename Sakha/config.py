@@ -24,7 +24,7 @@ class BaseConfig:
     # Configuration applicable for all type of environments
     SECRET_KEY=os.getenv('SECRET_KEY')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    MAX_CONTENT_LENGTH = 5*1024*1024
+    MAX_CONTENT_LENGTH = 16*1024*1024
     RECAPTCHA_PUBLIC_KEY = os.environ.get('PUBLIC_KEY')
     RECAPTCHA_PRIVATE_KEY = os.environ.get('PRIVATE_KEY')
     MAIL_SERVER = 'smtp.googlemail.com'
@@ -55,4 +55,4 @@ class TestingConfig(BaseConfig):
 # Configuration for production mode
 class ProductionConfig(BaseConfig):
     FLASK_ENV = 'production'
-    SQLALCHEMY_DATABASE_URI = os.getenv('PROD_DATABASE_URI', default='sqlite:///Database/prod.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///Database/prod.db'

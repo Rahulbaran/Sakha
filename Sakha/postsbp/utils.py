@@ -11,7 +11,7 @@ def save_post_pic(pic):
     mod_pic = random_hex + ext
     path = os.path.join(current_app.config['UPLOAD_PATH'], 'static', 'user-images', mod_pic)
 
-    img_size = (800, 800)
+    img_size = (1000, 1000)
     img = Image.open(pic)
     img.thumbnail(img_size)
     img.save(path)

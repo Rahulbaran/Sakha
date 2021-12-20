@@ -22,7 +22,7 @@ def save_avatar(pic):
     mod_pic = random_hex + ext
     path = os.path.join(current_app.config['UPLOAD_PATH'], 'static', 'user-images', mod_pic)
 
-    img_size = (250,250)
+    img_size = (300,300)
     img = Image.open(pic)
     img.thumbnail(img_size)
     img.save(path)
