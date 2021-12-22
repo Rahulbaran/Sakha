@@ -5,19 +5,19 @@
 
 ## How to run it locally
 
-#### Clone the project
+### Clone the project
 
 ```bash
 $ git clone https://github.com/Rahulbaran/Sakha.git
 ```
 
-#### Create the virtual environment
+### Create the virtual environment
 
 ```bash
 $ python3 -m venv virtual
 ```
 
-#### Activate the virtual environment
+### Activate the virtual environment
 
 ##### Windows
 
@@ -31,19 +31,19 @@ $ virtual/scripts/activate.bat
 $ source virtual/bin/activate
 ```
 
-#### Install all the python packages using requirements.text
+### Install all the python packages using requirements.text
 
 ```bash
 (virtual)$ pip install -r requirements.txt
 ```
 
-#### Create a folder of name `Database` inside `Sakha` folder
+### Create a folder of name `Database` inside `Sakha` folder
 
 ```bash
 (virtual)$ mkdir Sakha/Database
 ```
 
-#### Create a file `.env` in the root folder and put the following inputs in the file which will be used in app configuration
+### Create a file `.env` in the root folder and put the following inputs in the file which will be used in app configuration
 
 | INPUT NAME                                                                                                                  |
 | --------------------------------------------------------------------------------------------------------------------------- |
@@ -53,7 +53,7 @@ $ source virtual/bin/activate
 | GMAIL_USERNAME                                                                                                              |
 | GMAIL_PASSWORD (You will have to generate it using google account)                                                          |
 
-#### In the terminal/command prompt setup the following configuration
+### In the terminal/command prompt setup the following configuration
 
 ##### Windows
 
@@ -69,7 +69,7 @@ $ source virtual/bin/activate
 (virtual)$ export FLASK_APP=run && export FLASK_ENV=development
 ```
 
-#### Activate your python interpreter & create a sqlite database inside _Database_ folder using the following commands
+### Activate your python interpreter & create a sqlite database inside _Database_ folder using the following commands
 
 ```bash
 >>> from Sakha import create_app, db
@@ -84,7 +84,7 @@ You can also use MYSQL database. To setup the MYSQL Database for the application
 SQL_DATABASE_URI = 'mysql+pymysql://<username>:<password>@localhost/sakha'
 ```
 
-#### Exit from the Python Interpreter & run the application
+### Exit from the Python Interpreter & run the application
 
 ```bash
 $ flask run
