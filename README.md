@@ -1,51 +1,61 @@
-# Sakha
+# [Sakha](https://sakha.pythonanywhere.com)
 
-It is social network web application which has been created by me with ❤ for people. It is a flask application and I spent a lot of time to create this.
-You can run this application locally after going through the steps mentioned below.
+-   It is a simple social network web application created using Flask for backend & JavaScript for frontend.
+-   You can run the application locally using the guides mentioned below.
 
 ## How to run it locally
 
-### Clone the project
+#### Clone the project
 
 ```bash
 $ git clone https://github.com/Rahulbaran/Sakha.git
 ```
 
-### Create the virtual environment
+#### Create the virtual environment
 
 ```bash
 $ python3 -m venv virtual
 ```
 
-### Activate the virtual environment
+#### Activate the virtual environment
 
-#### Windows
+##### Windows
 
 ```bash
 $ virtual/scripts/activate.bat
 ```
 
-#### Mac/Linux
+##### Mac/Linux
 
 ```bash
-$ virtual/Scripts/activate
+$ source virtual/bin/activate
 ```
 
-### Install all the python packages using requirements.text
+#### Install all the python packages using requirements.text
 
 ```bash
 (virtual)$ pip install -r requirements.txt
 ```
 
-### Create a folder of name `Database` inside `Sakha` folder
+#### Create a folder of name `Database` inside `Sakha` folder
 
 ```bash
-(virtual)$ mkdir Database
+(virtual)$ mkdir Sakha/Database
 ```
 
-### In the terminal/command prompt setup the following
+#### Create a file `.env` in the root folder and put the following inputs in the file which will be used in app configuration
 
-#### Windows
+| INPUT NAME                                                                                                                  |
+| --------------------------------------------------------------------------------------------------------------------------- |
+| SECRET_KEY                                                                                                                  |
+| RECAPTCHA_PRIVATE_KEY (You will have to register your application in Google Recaptcha website to get private & public keys) |
+| RECAPTCHA_PUBLIC_KEY                                                                                                        |
+| GMAIL_USERNAME                                                                                                              |
+| GMAIL_PASSWORD (You will have to generate it using google account)                                                          |
+
+#### In the terminal/command prompt setup the following configuration
+
+##### Windows
 
 ```bash
 > set FLASK_APP=run
@@ -53,16 +63,31 @@ $ virtual/Scripts/activate
 
 ```
 
-#### Mac/Linux
+##### Mac/Linux
 
 ```shell
 (virtual)$ export FLASK_APP=run && export FLASK_ENV=development
 ```
 
-### Activate your python interpretor & import
+#### Activate your python interpreter & create a sqlite database inside _Database_ folder using the following commands
 
-### Run the application
+```bash
+>>> from Sakha import create_app, db
+>>> with create_app().app_context():
+        db.create_all()
+
+```
+
+You can also use MYSQL database. To setup the MYSQL Database for the application, put the following configuration inside `.env` file and follow the same path you took for creating sqlite database.
+
+```
+SQL_DATABASE_URI = 'mysql+pymysql://<username>:<password>@localhost/sakha'
+```
+
+#### Exit from the Python Interpreter & run the application
 
 ```bash
 $ flask run
 ```
+
+-   Website Link - [https://sakha.pythonanywhere.com](https://sakha.pythonanywhere.com)
