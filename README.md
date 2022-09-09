@@ -75,7 +75,6 @@ $ source virtual/bin/activate
 >>> from Sakha import create_app, db
 >>> with create_app().app_context():
         db.create_all()
-
 ```
 
 You can also use MYSQL database. To setup the MYSQL Database for the application, put the following configuration inside `.env` file and follow the same path you took for creating sqlite database.
@@ -90,4 +89,4 @@ SQL_DATABASE_URI = 'mysql+pymysql://<username>:<password>@localhost/sakha'
 $ flask run
 ```
 
--   Website Link - [https://sakha.pythonanywhere.com](https://sakha.pythonanywhere.com)
+> Checkout the [app](https://sakha.pythonanywhere.com)
