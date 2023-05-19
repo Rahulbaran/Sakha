@@ -1,7 +1,7 @@
 # [Sakha](https://sakha.pythonanywhere.com)
 
--   It is a simple social network web application created using Flask and JavaScript.
--   You can run the application locally using the guides mentioned below.
+- A basic social media app that allows users to connect with friends and share content. Users can create and share posts, photos, and videos. They can also follow other users, like posts, and comment on posts. The app is easy to use and can be accessed from any device.
+- Flask & JavaScript have been used to develop the app.
 
 ## How to run it locally
 
